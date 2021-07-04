@@ -1,0 +1,240 @@
+<input type="checkbox" [checked]="true" id="nav-toggle"> <!-- If Checked, Opens the Side Bar -->
+
+<!-- Main Sidebar -->
+<div class="sidebar">
+
+    <!-- Sidebar Logo Img -->
+    <div class="sidebar-small-logo">
+        <a href="#" (click)="displayHome()"><img src="assets/images/initial-logo.png" width="60px"></a>
+    </div>
+    <div class="sidebar-brand">
+        <img src="assets/images/logo.png.PNG" width="220px">
+    </div>
+
+    <!-- Sidebar Links -->
+    <div class="sidebar-menu">
+        <ul>
+            
+            <!-- Home Icon, displays home component on main page -->
+            <li>
+                <a href="#" (click)="displayHome()" [class]="homeActivate">
+                    <span class="las la-home"></span>
+                    <span> Home</span>
+                </a>
+            </li>
+
+            <!-- Orders Icon, displays orders component(Create Waybill Page)  on main page -->
+            <li>
+                <a href="#" (click)="displayOrders()" [class]="ordersActivate">
+                    <span class="las la-box-open"> </span>
+                    <span> Orders</span>
+                </a>
+
+                <!--Orders Icon Dropdown-->
+                <div class="dropdown">
+                    <ul>
+
+                        <!-- Create Waybill Icon, displays orders component(Create Waybill Page) on main page -->
+                        <li>
+                            <a href="#" (click)="displayOrders()" [class]="createWaybillActivate">
+                                <i class="las la-file-invoice"></i>
+                                <span> Create Waybill</span>
+                            </a>
+                        </li>
+
+                        <!-- Create Waybills in Bulk Icon, displays create waybills in bulk component in main page -->
+                        <li>
+                            <a href="#" [class]="waybillBulkActivate" (click)="displayWaybillBulk()">
+                                <i class="las la-file-invoice-dollar"></i>
+                                <span> Create Waybills in Bulk</span>
+                            </a>
+                        </li>
+
+                        <!-- Order Management Icon, displays order management component in main page -->
+                        <li>
+                            <a href="#" [class]="orderManageActivate" (click)="displayOrderManage()">
+                                <i class="las la-tasks"></i>
+                                <span> Order Management</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Finance Icon, displays finance summary component(Finance Summary Page) in main page -->
+            <li>
+                <a href="#" [class]="financeActivate" (click)="displayFinanceSummary()">
+                    <span class="las la-coins"> </span>
+                    <span> Finance</span>
+                </a>
+                
+                <!-- Finance Icon Dropdown -->
+                <div class="dropdown">
+                    <ul>
+                        
+                        <!--Finance Summary Icon, displays finance summary component in main page-->
+                        <li>
+                            <a href="#" [class]="financeSummaryActivate" (click)="displayFinanceSummary()">
+                                <i class="lar la-chart-bar"></i>
+                                <span> Finance Summary</span>
+                            </a>
+                        </li>
+    
+                        <!--Account Payables Icon, displays finance payables component in main page-->
+                        <li>
+                            <a href="#" [class]="financePayablesActivate" (click)="displayFinancePayables()">
+                                <i class="las la-credit-card"></i>
+                                <span> Account Payables</span>
+                            </a>
+                        </li>
+                        
+                        <!--Account Receivables Icon, displays finance receivables component in main page-->
+                        <li>
+                            <a href="#" [class]="financeReceivablesActivate" (click)="displayFinanceReceivables()">
+                                <i class="las la-money-check"></i>
+                                <span> Account Receivables</span>
+                            </a>
+                        </li>
+                        
+                        <!--Statement of Account Icon, displays finance statement component in main page-->
+                        <li>
+                            <a href="#" [class]="financeStatementActivate" (click)="displayFinanceStatement()">
+                                <i class="las la-newspaper"></i>
+                                <span> Statement of Account</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <!--Service Icon, displays service component(Express Tracking Page) in main page -->
+            <li>
+                <a href="#" (click)="displayService()" [class]="serviceActivate">
+                    <span class="las la-handshake"></span>
+                    <span>Service</span>
+                </a>
+
+                <!--Service Icon Dropdown-->
+                <div class="dropdown">
+                    <ul>
+
+                        <!--Express Tracking Icon, displays service component(Express Tracking Page) in main page-->
+                        <li>
+                            <a href="#" [class]="expressTrackingActivate" (click)="displayService()">
+                                <i class="las la-truck"></i>
+                                <span>Express Tracking</span>
+                            </a>
+                        </li>
+
+                        <!--Ticket Management Icon, displays problematic shipment component(Ticket Management Page) in main page-->
+                        <li>
+                            <a href="#" [class]="problematicShipmentActivate" (click)="displayProblematicShipment()">
+                                <i class="las la-exclamation-circle"></i>
+                                <span>Ticket Management</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <!--Account Management Icon, displays user component(My Pickup Location Page) in main page-->
+            <li>
+                <a href="#" (click)="displayUser()" [class]="userActivate">
+                    <span class="las la-user-cog"></span>
+                    <span>Account Management</span>
+                </a>
+
+                <!--Account Management Dropdown-->
+                <div class="dropdown">
+                    <ul>
+                        <!--My Pickup Location Icon, displays user component(My Pickup Location Page) in main page-->
+                        <li>
+                            <a href="#" [class]="pickupAddressActivate" (click)="displayUser()">
+                                <i class="las la-map-marker-alt"></i>
+                                <span> My Pickup Location</span>
+                            </a>
+                        </li>
+
+                        <!--My Recipient Address Icon, displays recipient address component in main page-->
+                        <li>
+                            <a href="#" [class]="recipientAddressActivate" (click)="displayRecipientAddress()">
+                                <i class="las la-map-marked-alt"></i>
+                                <span> My Recipient Address</span>
+                            </a>
+                        </li>
+
+                        <!--My User Accounts Icon, displays account component(My User Accounts Page) in main page-->
+                        <li>
+                            <a href="#" (click)="displayAccount()" [class]="accountActivate">
+                                <i class="las la-user-lock"></i>
+                                <span> My User Accounts</span>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--Nav Bar and Main Content-->
+<div class="main-content">
+    <!--Header-->
+    <header>
+        <h2>
+            <!--On Click Opens Side bar-->
+            <label for="nav-toggle">
+                <span class="las la-bars"></span>
+            </label>
+
+            Dashboard
+        </h2>
+
+        <!--Search Button-->
+        <div class="search-wrapper">
+            <span class="las la-search"></span>
+            <input type="search" placeholder="Search Here">
+        </div>
+
+        <!--User Information-->
+        <div class="user-wrapper">
+            <img src="assets/images/a.jpg" width="30">
+            <div>
+                <!--User Name-->
+                <h4>Andy Banua</h4>
+
+                <!--Shop Name-->
+                <select>
+                    <option value="">Shop Name</option>
+                </select>
+
+            </div>
+        </div>
+    </header>
+
+    <!--Main Page, displays home by default-->
+    <main>
+        
+        <app-home *ngIf="isHome"></app-home> <!--Displays Home Component if assigned boolean is true-->
+        <app-orders *ngIf="isOrders"></app-orders> <!--Displays Orders Component(Create Waybill Page) if assigned boolean is true-->
+        <app-waybill-bulk *ngIf=isWaybillBulk></app-waybill-bulk> <!--Displays Waybill Bulk Component if assigned boolan is true-->
+        <app-order-manage *ngIf=isOrderManage></app-order-manage> <!--Displays Order Manage Component if assigned boolan is true-->
+        <app-finance-summary *ngIf="isFinanceSummary"></app-finance-summary> <!--Displays Finance Summary Component if assigned boolean is true-->
+        <app-finance-payables *ngIf="isFinancePayables"></app-finance-payables> <!--Displays Finance Payables Component if assigned boolean is true-->
+        <app-finance-receivables *ngIf="isFinanceReceivables"></app-finance-receivables> <!--Displays Finance Receivables Component if assigned boolean is true-->
+        <app-finance-statement *ngIf="isFinanceStatement"></app-finance-statement> <!--Displays Finance Statement Component if assigned boolean is true-->
+        <app-service *ngIf="isService"></app-service> <!--Displays Service Component(Express Tracking Page) if assigned boolean is true-->
+        <app-problematic-shipment *ngIf=isProblematicShipment></app-problematic-shipment> <!--Displays problematic shipment component(Ticket Management Page) if assgined boolean is true-->
+        <app-user *ngIf="isUser"></app-user> <!--Displays User Component(My Pickup Location Page) if assigned boolean is true-->
+        <app-recipient-address *ngIf=isrecipientAddress></app-recipient-address> <!--Displays Recipient Address Component if assigned boolean is true-->
+        <app-account *ngIf="isAccount"></app-account> <!--Displays Account Component(My User Accounts Page) if assigned component is true-->
+        <!--<app-shipping-fee *ngIf=isShippingFee></app-shipping-fee>   Hidden Shipping Fee Component-->
+        <!--<app-waybill *ngIf="isWaybill"></app-waybill>   Old Create Waybill Component-->
+
+    </main>
+</div>
+<router-outlet></router-outlet>

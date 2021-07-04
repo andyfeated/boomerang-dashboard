@@ -1,0 +1,161 @@
+<!--Ticket Management-->
+
+<div class="ticket-management-header">
+    <div class="finance-main-head">
+        <h2>Ticket Management</h2>
+    </div>
+
+    <div class="ticket-head">
+        <div class="ticket-head-button">
+            <button>Create New Ticket</button>
+        </div>
+
+        <div class="ticket-search-button">
+            <button>Search</button>
+        </div>
+        <div class="ticket-head-search">
+            <input type="search" placeholder="Mobile Number">
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<div class="ticket-management-body">
+    <div class="ticket-body-left">
+        <div class="ticket-body-title">
+            <h3>Problematic List</h3>
+        </div>
+
+        <table id="customerss">
+            <tr>
+                <th><select>
+                        <option value="">Order ID</option>
+                    </select></th>
+
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+            </tr>
+
+
+        </table>
+    </div>
+
+    <div class="ticket-body-middle">
+        <h3>Ticket Information</h3>
+
+        <div class="ticket-middle-input-longer">
+            <select>
+                <option>Status</option>
+            </select>
+        </div>
+
+        <div class="ticket-middle-input-long">
+            <input type="date">
+        </div>
+
+        <div class="ticket-middle-button-left">
+            <button>Update Captain</button>
+        </div>
+
+        <div class="ticket-middle-button-left">
+            <button>Mark as RTS</button>
+        </div>
+
+        <div class="ticket-middle-main">
+            <div class="ticket-main-head">
+                <div class="ticket-choices">
+                    <a (click)="displayTicketCustomer()" href="#" [class]="ticketCustomerActivate">Customer Information</a>
+                </div>
+            
+                <div class="ticket-choices">
+                    <a (click)="displayTicketOrder()" [class]="ticketOrderActivate" href="#">Order Information</a>
+                </div>
+            
+                <div class="ticket-choices">
+                    <a (click)="displayTicketCaptain()" [class]="ticketCaptainActivate" href="#">Captain's Report</a>
+                </div>
+            </div>
+
+            <div class="ticket-main-content">
+                <app-ticket-customer  *ngIf="isTicketCustomer"></app-ticket-customer>
+                <app-ticket-order *ngIf="isTicketOrder"></app-ticket-order>
+                <app-ticket-captain *ngIf="isTicketCaptain"></app-ticket-captain>
+            </div>
+        </div>
+    </div>
+
+    <div class="ticket-body-right">
+        <div class="ticket-body-title">
+            <h3>Problematic List</h3>
+        </div>
+
+        <table id="customerss">
+            <tr>
+                <th>
+                    <select>
+                        <option value="">Order ID</option>
+                    </select>
+                </th>
+
+                <th>
+                    <select>
+                        <option value="">Status</option>
+                    </select>
+                </th>
+
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+                <td>Sample Data</td>
+            </tr>
+            <tr>
+                <td>Sample Data</td>
+                <td>Sample Data</td>
+            </tr>
+
+
+        </table>
+    </div>
+</div>

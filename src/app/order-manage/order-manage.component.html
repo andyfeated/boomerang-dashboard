@@ -1,0 +1,100 @@
+<div class="main-waybill">
+    <div class="query-table-orders">
+        <div class="query-conditions">
+            <h5>QueryConditions</h5>
+        </div>
+
+        <div class="order-manage-radio">
+            <input type="radio" name="choice">
+            <label>Order Number</label>
+            <input type="radio" name="choice">
+            <label>Waybill Number</label><br>
+            <input type="text" placeholder="Please Enter the Tracking Number">
+        </div>
+
+        <div class="order-manage-label">
+            <label>Order Date</label>
+            <input type="date">
+        </div>
+
+        <div class="order-manage-label">
+            <label>Order Status</label>
+            <select>
+                <option>Pending</option>
+                <option>Schedule to Branch</option>
+                <option>Schedule to Rider</option>
+                <option>Successfully Retrieved Item</option>
+                <option>Cancel</option>
+            </select>
+        </div>
+
+        <div class="order-manage-label">
+            <label>Print Number</label>
+            <select>
+                <option>In Descending Order By Order Time</option>
+                <option>In Ascending Order By Order Time</option>
+                <option>In Descending Order By Number of Prints</option>
+                <option>In Ascending Order By Number of Prints</option>
+                <option>In Descending Order By Name of Recipient</option>
+                <option>In Ascending Order By Name of Recipient</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="order-manage-buttons">
+        <button class="short-button">Search</button>
+        <button class="short-button">Reset</button>
+        <button class="short-button">Export</button>
+        <button class="long-button">Waybill Print</button>
+        <button class="long-button">Express Tracking</button>
+        <button class="long-button">Cancel Order</button>
+
+    </div>
+
+    <div class="container">
+        <div class="waybill-query-table">
+            <table id="customers">
+                <tr>
+                  <th>Customer Name</th>
+                  <th>AWB</th>
+                  <th>Mobile Number</th>
+                  <th>Province</th>
+                  <th>Municipality</th>
+                  <th>Address Line</th>
+                  <th>Barangay</th>
+                  <th>Product Description</th>
+                  <th>Item Value</th>
+                  <th>COD Fee</th>
+                  <th>Insurance Fee</th>
+                  <th>Weight</th>
+                  <th>Shipment Fee</th>
+                  <th>Remarks</th>
+                  <th>Size</th>
+                  <th>OrdersID</th>
+                </tr>
+
+                <tr *ngFor="let item of parcelObs | async">
+
+                    <!--Displays the awb values from the parcels array-->
+                    <td>{{item.customerName}}</td>
+                    <!--Displays the weight values from the parcels array-->
+                    <td>{{item.awb}}</td>
+                    <td>{{item.mobileNumber}}</td>
+                    <td>{{item.province}}</td>
+                    <td>{{item.municipality}}</td>
+                    <td>{{item.addressLine}}</td>
+                    <td>{{item.barangay}}</td>
+                    <td>{{item.productDescription}}</td>
+                    <td>{{item.itemValue}}</td>
+                    <td>{{item.codFee}}</td>
+                    <td>{{item.insuranceFee}}</td>
+                    <td>{{item.weight}}</td>
+                    <td>{{item.shipmentFee}}</td>
+                    <td>{{item.remarks}}</td>
+                    <td>{{item.size}}</td>
+                    <td>{{item.ordersId}}</td>
+                </tr>
+              </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,336 @@
+<!-- Customer Information Card -->
+<div class="customer-information">
+    <div class="customer-information-top">
+        <!-- Customer Information Header -->
+        <div class="dasboard-bulk-orders-header">
+            <h4><i class="las la-user-plus"></i> Customer Information</h4>
+        </div>
+
+        <!-- Customer Information Forms' Left Side-->
+        <div class="customer-information-content">
+            <!--Customer Name-->
+            <div class="customer-information-label">
+                <label>Customer Name</label>
+            </div>
+
+            <div class="customer-information-input">
+                <input #customerNameInput type="text" placeholder="Sample">
+            </div>
+
+            <!--Mobile Number-->
+            <div class="customer-information-label">
+                <label>Mobile Number</label>
+            </div>
+
+            <div class="customer-information-input">
+                <input #mobileNumberInput type="text" placeholder="Sample">
+            </div>
+
+            <!--Province-->
+            <div class="customer-information-label">
+                <label>Province</label>
+            </div>
+
+            <div class="customer-information-input">
+                <select #provinceInput>
+                    <option>Manila</option>
+                    <option>Camarines Sur</option>
+                    <option>Albay</option>
+                    <option>Cebu</option>
+                    <option>Davao</option>
+                </select>
+            </div>
+
+            <!--Municipality-->
+            <div class="customer-information-label">
+                <label>Municipality/City</label>
+            </div>
+
+            <div class="customer-information-input">
+                <input #municipalityInput type="text" placeholder="Sample">
+            </div>
+      
+        </div>
+
+        <!-- Customer Information Forms' Right Side-->
+        <div class="customer-information-content">
+
+            <!--AWB Number-->
+            <div class="customer-information-label">
+                <label>AWB Number</label>
+            </div>
+
+            <div class="customer-information-input">
+                <input disabled type="text" placeholder="Sample">
+            </div>
+
+            <!--Address Line-->
+            <div class="customer-information-label">
+                <label>Address Line</label>
+            </div>
+
+            <div class="customer-information-input">
+                <input #addressLineInput type="text" placeholder="Sample">
+            </div>
+
+            <!--Barangay-->
+            <div class="customer-information-label">
+                <label>Barangay</label>
+            </div>
+
+            <div class="customer-information-input">
+                <input #barangayInput type="text" placeholder="Sample">
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="customer-information-bottomside">
+        <div class="dasboard-bulk-orders-header">
+            <h4><i class="las la-user-plus"></i> Shop Addrress</h4>
+        </div>
+        
+        <div class="customer-information-label">
+            <label>Province</label>
+        </div>
+
+        <div class="customer-information-input">
+            <select #shopProvinceInput>
+                <option>Manila</option>
+                <option>Camarines Sur</option>
+                <option>Albay</option>
+            </select>
+        </div>
+    </div>
+
+    <!--Order Information-->
+    <div class="customer-information-bottom">
+        <!--Order Information Header-->
+        <div class="dasboard-bulk-orders-header">
+            <h4><i class="las la-inbox"></i> Order Information</h4>
+        </div>
+
+        <!--Product Description-->
+        <div class="customer-information-bottom-label">
+            <label>Product Description</label>
+        </div>
+
+        <div class="customer-information-bottom-input">
+            <input #productDescriptionInput placeholder="Sample">
+        </div>
+
+
+       
+        <div class="customer-information-form-small">
+
+             <!--Third Line-->
+            <div class="third-line">
+
+                <!--Weight-->
+                <div class="customer-information-bottom-label">
+                    <label>Weight in Grams</label>
+                </div>
+    
+                <div class="customer-information-bottom-input-small">
+                    <input hidden #weightInput placeholder="Sample">
+                    <input disabled #weightInt type="number" placeholder="0">
+                </div>
+
+                <!--Item Value-->
+                <div class="customer-information-bottom-label">
+                    <label>Item Value</label>
+                </div>
+
+                <div class="customer-information-bottom-input-small">
+                    <input #itemValueInt type="number" placeholder="0">
+                </div>
+
+                <!--Pouch Size-->
+                <div class="customer-information-bottom-select">
+                    <select #sizeInput>
+                        <option>Volumetric</option>
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <!--Fourth Line-->
+            <div class="third-line">
+
+                <!--Insurance Fee-->
+                <div class="customer-information-bottom-label">
+                    <label>Insurance Fee</label>
+                </div>
+    
+                <div class="customer-information-bottom-input-small">
+                    <input disabled [value]="insuranceFeeValue" #insuranceFeeInput placeholder="Sample">
+                </div>
+
+                <!--Shipment Fee-->
+                <div class="customer-information-bottom-label">
+                    <label>Shipment Fee</label>
+                </div>
+    
+                <div class="customer-information-bottom-input-small">
+                    <input disabled #shipmentFeeInput placeholder="0">
+                </div>
+
+                <!--Cod Fee-->
+                <div class="customer-information-bottom-label">
+                    <label>COD Fee</label>
+                </div>
+    
+                <div class="customer-information-bottom-input-small">
+                    <input disabled [value]="codFeeValue" #codFeeInput placeholder="Sample">
+                </div>
+
+                <div class="customer-information-bottom-label">
+                    <label>Length</label>
+                </div>
+    
+                <div class="customer-information-bottom-input-small">
+                    <input #lengthInput placeholder="0">
+                </div>
+
+                <div class="customer-information-bottom-label">
+                    <label>Width</label>
+                </div>
+    
+                <div class="customer-information-bottom-input-small">
+                    <input #widthInput placeholder="0">
+                </div>
+
+                <div class="customer-information-bottom-label">
+                    <label>Height</label>
+                </div>
+    
+                <div class="customer-information-bottom-input-small">
+                    <input #heightInput placeholder="0">
+                </div>
+            </div>
+
+            
+
+            <!--Remarks-->
+            <div class="customer-information-bottom-labell">
+                <label>Remarks</label>
+            </div>
+
+            <div class="customer-information-bottom-input-last">
+                <input #remarksInput placeholder="Sample">
+            </div>
+
+            <div>
+                <!--Total Sales Card-->
+                <div class="customer-card">
+                    <h5>Total Sales</h5>
+                    <h1>{{itemValueNumber}}</h1>
+                </div>
+
+                <!--Total Cod Fee Card-->
+                <div class="customer-card">
+                    <h5>Total COD Fee</h5>
+                    <h1>{{codFeeNumber}}</h1>
+                </div>
+
+                <!--Total Insurance Fee Card-->
+                <div class="customer-card">
+                    <h5>Total Insurance Fee</h5>
+                    <h1>{{insuranceFeeNumber}}</h1>
+                </div>
+
+                <!--Create Waybill Bulk Button-->
+                <!--Takes the value of every enabled form and passes it to the addParcel() Function-->
+                <!--The addParcel() Funtion adds the values from these inputs to the waybill.services.ts parcels array-->
+                <div class="button-container">
+                        <button (click)="addParcel(
+                                        customerNameInput.value,
+                                        mobileNumberInput.value,
+                                        provinceInput.value,
+                                        shopProvinceInput.value,
+                                        municipalityInput.value,
+                                        addressLineInput.value,
+                                        barangayInput.value, 
+                                        productDescriptionInput.value,
+                                        itemValueInt.value,
+                                        codFeeInput.value,
+                                        weightInput.value,
+                                        insuranceFeeInput.value,
+                                        shipmentFeeInput.value,
+                                        remarksInput.value,
+                                        sizeInput.value,
+                                        weightInt.value,
+                                        lengthInput.value, widthInput.value, heightInput.value
+                                        )">Create Waybiil Bulk</button>
+
+                    <button (click)="setRegion(provinceInput.value, shopProvinceInput.value, sizeInput.value, lengthInput.value, widthInput.value, heightInput.value)">Temp Button</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Parcel In this Bulk Order-->
+<div class="customer-information-table">
+    <!--Parcel In this Bulk Order Header-->
+    <div class="dasboard-bulk-orders-header">
+        <h4><i class="las la-inbox"></i> Parcel in this Bulk Order</h4>
+    </div>
+
+    <div class="containers">
+        <div class="waybill-query-table-create">
+            <!--Orders ID-->
+            <!--Takes a value from Waybill Service that creates a random 8 digit number and displays it-->
+            Orders ID:{{ordersID}}
+
+            <!--Parcel in this bulk order table-->
+            <table id="customerss">
+                <!--Table Header-->
+                <tr>            
+                    <th>
+                        <p>AWB Number</p>
+                    </th>
+                    <th>
+                        <p>Weight</p>
+                    </th>
+                </tr>
+                
+                <!--Table Body-->
+                <!--The parcels array from orders.component.ts sets its values to the values from the waybill.service.ts's parcel array-->
+
+                <tr *ngFor="let item of parcelObs | async">
+
+                    <!--Displays the awb values from the parcels array-->
+                    <td>
+                        {{item.awb}}
+                    </td>
+                    <!--Displays the weight values from the parcels array-->
+                    <td>
+                        {{item.weight}} KG
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+
+        <div class="card-table-margin">
+            <!--Total Parcels Card-->
+            <div class="customer-card-table">
+                <h5>Total Parcels</h5>
+                <h1>{{parcelsNumber}}</h1>
+            </div>
+    
+            <!--Total Weight Card-->
+            <div class="customer-card-table">
+                <h5>Total Weight (KG)</h5>
+                <h1>{{weightNumber}}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
