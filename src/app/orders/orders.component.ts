@@ -76,16 +76,6 @@ export class OrdersComponent implements OnInit {
 
   ordersID = this.waybillService.orderIDService                    //returns a random 8 digit number from waybill.service.ts
 
-  totalParcels = 0                                                  //holds and displays the total numbers of parcels that was made and displays it via interpolation
-  totalSales = 0                                                    //holds and displays the total sum of every itemvalue and displays it via interpolation
-  totalCodFee= 0                                                    //holds and displays the total sum of every codFee and displays it via interpolation
-  totalInsuranceFee = 0                                             //holds and displays the total sum of every insuranceFee and displays it via interpolation
-  totalWeight = 0                                                   //holds and displays the total sum of every weight and displays it via interpolation
-
-  codFeeString = "0"                                                //returns a rounded off value of totalCodFee
-  insuranceFeeString = "0"                                          //returns a rounded off value of totalInsuranceFee
-  weightString = "0"                                                //returns a rounded off value of totalWeight
-
   constructor(private waybillService: WaybillService) { }
 
   ngOnInit(): void {
@@ -127,24 +117,15 @@ export class OrdersComponent implements OnInit {
 
     //Takes every values from the parameters and the converted integers and adds it to the parcels array in waybill.service.ts as an array
     this.waybillService.parcels.push({customerName: customerNameInput, awb: this.awbInput, mobileNumber: mobileNumberInput, province: provinceInput, municipality: municipalityInput, addressLine: addressLineInput, barangay: barangayInput, productDescription: productDescriptionInput, itemValueInt: this.itemValueConvert, codFeeInt: this.codFeeIntConvert,  codFee: codFeeInput, weightInt: this.weightIntConvert, weight: weightInput, insuranceFeeInt: this.insuranceFeeIntConvert, insuranceFee: insuranceFeeInput, shipmentFee: shipmentFeeInput, remarks: remarksInput, size: sizeInput, ordersId: this.ordersID})
-
-    this.totalParcels += 1                                         //every time the addParcel() function is called, add 1 to the totalParcel variable
-    this.totalSales += this.itemValueConvert                       //every time the addParcel() function is called, add the value of itemValueConvert to totalSales variable
-    this.totalCodFee += this.codFeeIntConvert                      //every time the addParcel() function is called, add the value of codFeeIntConvert to totalCodFee variable
-    this.codFeeString = this.totalCodFee.toFixed(2)                //rounds off totalCodFee
-    this.totalInsuranceFee += this.insuranceFeeIntConvert          //every time the addParcel() function is called, add the value of insuranceFeeIntConvert to totalInsuranceFee variable
-    this.insuranceFeeString = this.totalInsuranceFee.toFixed(2)    //rounds off totalInsuranceFee
-    this.totalWeight += this.weightIntConvert                      //every time the addParcel() function is called, add the value of weightIntConvert to totalWeight variable
-    this.weightString = this.totalWeight.toFixed(2)                //rounds off totalWeight
-
-    this.setRegion(provinceInput, shopProvinceInput, sizeInput, lengthInput, widthInput, heightInput)
+  
+    this.setShipmentFeeAndVolumetricWeight(provinceInput, shopProvinceInput, sizeInput, lengthInput, widthInput, heightInput)
     console.log("Shipment Fee: " +this.shipmentFee)
     console.log("Volumetric Weight: " + this.volumetricWeight)
     //DYNAMIC
     this.waybillService.addToFirestore(customerNameInput, this.awbInput, mobileNumberInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, shopProvinceInput)
   }
 
-  setRegion(provinceInput: string, shopProvinceInput: string, sizeInput: string, lengthInput: string, widthInput: string, heightInput:string){
+  setShipmentFeeAndVolumetricWeight(provinceInput: string, shopProvinceInput: string, sizeInput: string, lengthInput: string, widthInput: string, heightInput:string){
     if(this.regionLuzon.includes(provinceInput)){
       this.region = "Luzon"
     }else if(this.regionVisayas.includes(provinceInput)){
@@ -218,8 +199,6 @@ export class OrdersComponent implements OnInit {
         this.regionShipment(lengthInput, widthInput, heightInput, this.veryFarRegionPrices)
       }
     }
-
-
   }
 
   regionShipment(length: string, width: string, height: string, prices: number[]){
