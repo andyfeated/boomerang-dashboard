@@ -27,9 +27,9 @@ export class OrdersComponent implements OnInit {
 
   //Shipment Fee Values
   region = ""
-  regionLuzon = ["Albay", "Camarines Sur"]
-  regionVisayas = ["Cebu", "Leyte"]
-  regionMindanao = ["Davao", "General Santos"]
+  regionLuzon = ["Albay", "Camarines Sur", "Cavite"]
+  regionVisayas = ["Cebu", "Leyte", "Tacloban"]
+  regionMindanao = ["Davao", "General Santos", "South Cotabato"]
   regionNCR = ["Manila"]
   provinces = [...this.regionNCR,...this.regionLuzon, ...this.regionVisayas, ...this.regionMindanao]
   shopProvinces = [...this.regionNCR,...this.regionLuzon]
