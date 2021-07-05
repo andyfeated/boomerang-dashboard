@@ -760,6 +760,11 @@ main{
     width: 25%;
 }
 
+.customer-information-bottom-label2{
+    display: inline-block;
+    padding: 12.5px;
+    width: 23.5%;
+}
 
 .customer-information-bottom-select{
     width: 30%;
@@ -791,6 +796,11 @@ main{
 
 .third-line .customer-information-bottom-input-small{
     width: 10%;
+}
+
+.customer-information-label2{
+    display: inline-block;
+    margin-right: 65px;
 }
 
 .waybill{

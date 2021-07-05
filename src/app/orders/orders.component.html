@@ -32,13 +32,11 @@
             </div>
 
             <div class="customer-information-input">
-                <select #provinceInput>
-                    <option>Manila</option>
-                    <option>Camarines Sur</option>
-                    <option>Albay</option>
-                    <option>Cebu</option>
-                    <option>Davao</option>
+                <select #provinceInput >
+                    <option *ngFor="let item of provinces">{{item}}</option>
+                    
                 </select>
+
             </div>
 
             <!--Municipality-->
@@ -64,15 +62,6 @@
                 <input disabled type="text" placeholder="Sample">
             </div>
 
-            <!--Address Line-->
-            <div class="customer-information-label">
-                <label>Address Line</label>
-            </div>
-
-            <div class="customer-information-input">
-                <input #addressLineInput type="text" placeholder="Sample">
-            </div>
-
             <!--Barangay-->
             <div class="customer-information-label">
                 <label>Barangay</label>
@@ -80,6 +69,15 @@
 
             <div class="customer-information-input">
                 <input #barangayInput type="text" placeholder="Sample">
+            </div>
+
+            <!--Address Line-->
+            <div class="customer-information-label">
+                <label>Address Line</label>
+            </div>
+
+            <div class="customer-information-input">
+                <input #addressLineInput type="text" placeholder="Sample">
             </div>
             
         </div>
@@ -96,9 +94,7 @@
 
         <div class="customer-information-input">
             <select #shopProvinceInput>
-                <option>Manila</option>
-                <option>Camarines Sur</option>
-                <option>Albay</option>
+                <option *ngFor="let item of shopProvinces">{{item}}</option>
             </select>
         </div>
     </div>
@@ -127,28 +123,31 @@
             <div class="third-line">
 
                 <!--Weight-->
-                <div class="customer-information-bottom-label">
-                    <label>Weight in Grams</label>
-                </div>
-    
-                <div class="customer-information-bottom-input-small">
-                    <input hidden #weightInput placeholder="Sample">
-                    <input disabled #weightInt type="number" placeholder="0">
+                <div hidden>
+                    <div class="customer-information-bottom-label">
+                        <label>Weight in Grams</label>
+                    </div>
+        
+                    <div class="customer-information-bottom-input-small">
+                        <input hidden #weightInput placeholder="Sample">
+                        <input disabled #weightInt type="number" placeholder="0">
+                    </div>
                 </div>
 
                 <!--Item Value-->
-                <div class="customer-information-bottom-label">
+                <div class="customer-information-bottom-label2">
                     <label>Item Value</label>
                 </div>
 
-                <div class="customer-information-bottom-input-small">
+                <div class="customer-information-label2">
                     <input #itemValueInt type="number" placeholder="0">
                 </div>
 
                 <!--Pouch Size-->
                 <div class="customer-information-bottom-select">
-                    <select #sizeInput>
-                        <option>Volumetric</option>
+                    <select [(ngModel)]="choice" #sizeInput>
+                        <option value="" disabled selected>Shipment Type</option>
+                        <option value="Volumetric">Volumetric</option>
                         <option>Small</option>
                         <option>Medium</option>
                         <option>Large</option>
@@ -175,7 +174,7 @@
                 </div>
     
                 <div class="customer-information-bottom-input-small">
-                    <input disabled #shipmentFeeInput placeholder="0">
+                    <input disabled [value]="shipmentFeeValue" #shipmentFeeInput>
                 </div>
 
                 <!--Cod Fee-->
@@ -184,35 +183,36 @@
                 </div>
     
                 <div class="customer-information-bottom-input-small">
-                    <input disabled [value]="codFeeValue" #codFeeInput placeholder="Sample">
+                    <input disabled [value]="codFeeValue" #codFeeInput>
                 </div>
 
-                <div class="customer-information-bottom-label">
-                    <label>Length</label>
-                </div>
+                <div class="lwh" [hidden]="choice !== 'Volumetric'">
+                    <div class="customer-information-bottom-label">
+                        <label>Length</label>
+                    </div>
+        
+                    <div class="customer-information-bottom-input-small">
+                        <input #lengthInput placeholder="0">
+                    </div>
     
-                <div class="customer-information-bottom-input-small">
-                    <input #lengthInput placeholder="0">
-                </div>
-
-                <div class="customer-information-bottom-label">
-                    <label>Width</label>
-                </div>
+                    <div class="customer-information-bottom-label">
+                        <label>Width</label>
+                    </div>
+        
+                    <div class="customer-information-bottom-input-small">
+                        <input #widthInput placeholder="0">
+                    </div>
     
-                <div class="customer-information-bottom-input-small">
-                    <input #widthInput placeholder="0">
-                </div>
-
-                <div class="customer-information-bottom-label">
-                    <label>Height</label>
-                </div>
-    
-                <div class="customer-information-bottom-input-small">
-                    <input #heightInput placeholder="0">
+                    <div class="customer-information-bottom-label">
+                        <label>Height</label>
+                    </div>
+        
+                    <div class="customer-information-bottom-input-small">
+                        <input #heightInput placeholder="0">
+                    </div>
                 </div>
             </div>
 
-            
 
             <!--Remarks-->
             <div class="customer-information-bottom-labell">
@@ -244,7 +244,6 @@
 
                 <!--Create Waybill Bulk Button-->
                 <!--Takes the value of every enabled form and passes it to the addParcel() Function-->
-                <!--The addParcel() Funtion adds the values from these inputs to the waybill.services.ts parcels array-->
                 <div class="button-container">
                         <button (click)="addParcel(
                                         customerNameInput.value,
@@ -265,8 +264,7 @@
                                         weightInt.value,
                                         lengthInput.value, widthInput.value, heightInput.value
                                         )">Create Waybiil Bulk</button>
-
-                </div>
+                                        </div>
             </div>
         </div>
     </div>

@@ -22,6 +22,7 @@ import { TicketCustomerComponent } from './ticket-customer/ticket-customer.compo
 import { TicketOrderComponent } from './ticket-order/ticket-order.component';
 import { TicketCaptainComponent } from './ticket-captain/ticket-captain.component';
 import { WaybillService } from './waybill.service';
+import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore'
@@ -48,12 +49,14 @@ import { environment } from 'src/environments/environment';
     TicketCustomerComponent,
     TicketOrderComponent,
     TicketCaptainComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    FormsModule
   ],
   providers: [WaybillService],
   bootstrap: [AppComponent]

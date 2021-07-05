@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WaybillService } from '../waybill.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-orders',
@@ -9,6 +10,9 @@ import { WaybillService } from '../waybill.service';
 })
 export class OrdersComponent implements OnInit {
 
+  choice = ""
+
+  //Shipment Rates
   sameRegionPrices = [50, 70, 90, 190, 310, 405, 515, 555, 655, 755, 855, 955, 1055, 1155, 1255, 1355, 1455, 1555, 1655, 1755, 1855, 1955, 2055, 2155, 2255, 2355, 2455, 2555, 2655, 2755, 4307.50, 4457.50, 5357.50, 5507.50, 5657.50, 5807.50, 5957.50, 6107.50, 6257.50, 6407.50, 6557.50, 6707.50, 6857.50, 7007.50, 7157.50, 7307.50, 7457.50, 7607.50, 7757.50, 7907.50, 8057.50, 8207.50, 8357.50, 8507.50, 8657.50, 8807.50, 8957.50,
     9107.50, 9257.50, 9407.50, 9557.50, 9707.50, 9857.50, 10007.50, 10157.50, 10307.50, 10457.50, 10607.50, 10757.50, 10907.50, 11057.50, 11207.50, 11357.50, 11507.50, 11657.50, 11807.50, 11957.50, 12107.50, 12257.50, 13157.50, 13307.50, 13457.50, 13607.50, 13757.50, 13907.50, 14057.50, 14207.50, 14357.50, 14507.50, 14657.50, 14807.50, 14957.50, 15107.50, 15257.50, 15407.50, 15557.50, 15707.50, 15857.50, 16007.50, 16157.50]
 
@@ -21,65 +25,48 @@ export class OrdersComponent implements OnInit {
   veryFarRegionPrices = [90.00, 150.00, 180.00, 280.00, 390.00, 500.00, 605.00, 645.00, 761.00, 877.00, 993.00, 1109.00, 1225.00, 1341.00, 1457.00, 1573.00, 1689.00, 1805.00, 1921.00, 2037.00, 2153.00, 2269.00, 2385.00, 2501.00, 2617.00, 2733.00, 2849.00, 2965.00, 3081.00, 3197.00, 4994.50, 5168.50, 6212.50, 6386.50, 6560.50, 6734.50, 6908.50, 7082.50, 7256.50, 7430.50, 7604.50, 7778.50, 7952.50, 8126.50, 8300.50, 8474.50, 8648.50, 8822.50, 8996.50, 9170.50, 9344.50, 9518.50, 9692.50, 9866.50,
      10040.50, 10214.50, 10388.50, 10562.50, 10736.50, 10910.50, 11084.50, 11258.50, 11432.50, 11606.50, 11780.50, 11954.50, 12128.50, 12302.50, 12476.50, 12650.50, 12824.50, 12998.50, 13172.50, 13346.50, 13520.50, 13694.50, 13868.50, 14042.50, 14216.50, 15260.50, 15434.50, 15608.50, 15782.50, 15956.50, 16130.50, 16304.50, 16478.50, 16652.50, 16826.50, 17000.50, 17174.50, 17348.50, 17522.50, 17696.50, 17870.50, 18044.50, 18218.50, 18392.50, 18566.50, 18740.50]
 
+  //Shipment Fee Values
   region = ""
   regionLuzon = ["Albay", "Camarines Sur"]
-  regionVisayas = ["Cebu"]
-  regionMindanao = ["Davao"]
-  regionNCR = ["Manila", "Cubao"]
-
+  regionVisayas = ["Cebu", "Leyte"]
+  regionMindanao = ["Davao", "General Santos"]
+  regionNCR = ["Manila"]
+  provinces = [...this.regionNCR,...this.regionLuzon, ...this.regionVisayas, ...this.regionMindanao]
+  shopProvinces = [...this.regionNCR,...this.regionLuzon]
   shopRegion = ""
 
-  shipmentFee = 0
-  volumetricWeight = 0
+  //OBSERVABLE
+  parcelObs = this.waybillService.parcelObs
 
+  //Template Values
   weightNumber = ""
   itemValueNumber = 0
   codFeeNumber = 0
   insuranceFeeNumber = 0
   parcelsNumber = 0
 
-  //OBSERVABLE
-  parcelObs = this.waybillService.parcelObs
-
-  data = []
-  overallWeight = 0
-
-  //parcels array that stores the values of inputs in the orders.component.html
-  parcels = [
-    {customerName: "sample",
-     awb: 0,
-     mobileNumber: "sample",
-     province: "sample",
-     municipality: "sample",
-     addressLine: "sample",
-     barangay: "sample",
-     productDescription: "sample",
-     itemValueInt: 0,
-     codFeeInt: 0,
-     insuranceFeeInt: 0,
-     weightInt: 0,
-     remarks:"",
-     size: "",
-     ordersId: 0,
-    }   
-  ]
-
+  //Input Values
   awbInput =  0
-
+  shipmentFee = 0
+  volumetricWeight = 0
   itemValueConvert = 0                                              //Stores the itemValue's value as an integer
   weightIntConvert = 0                                              //Stores the weight's value as an integer
   codFeeIntConvert = 0                                              //Stores the codFee's value as an integer
   insuranceFeeIntConvert = 0                                        //Stores the insuranceFee's value as an integer
-
-  codFeeValue = 0                                                   //holds and displays the value of codFee in the COD Fee input via Interpolation
-  insuranceFeeValue = 0                                             //holds and displays the value of insuranceFee in the Insurance Fee input via Interpolation
-
   ordersID = this.waybillService.orderIDService                    //returns a random 8 digit number from waybill.service.ts
 
-  constructor(private waybillService: WaybillService) { }
+  codFeeValue = 0                                                   
+  insuranceFeeValue = 0   
+  shipmentFeeValue = 0                                         
+
+  constructor(private waybillService: WaybillService) { 
+    
+  }
 
   ngOnInit(): void {
-    this.parcels = this.waybillService.returnParcel()               //changes the value of this.parcels to parcels array form waybill.service.ts
+    this.provinces.sort()
+    this.shopProvinces.sort()
+    //Observables that return the total values and displays it in the template
     this.waybillService.getTotalWeight().subscribe(weights => {
       this.weightNumber = weights
     })
@@ -101,9 +88,7 @@ export class OrdersComponent implements OnInit {
     })
   }
 
-
-  //ADDS THE VALUES FROM THE ORDERS.COMPONENT.HTML'S INPUT TO THE WAYBILL.SERVICES.TS INORDER FOR ITS DATA TO BE SHARED ACCROSS DIFFERENT COMPONENTS
-
+  //Adds values to the parcel collection in Firestore Database
   addParcel(customerNameInput: string, mobileNumberInput: string, provinceInput: string, shopProvinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
     this.awbInput = Math.floor(Math.random() * 10000000000)
 
@@ -112,20 +97,18 @@ export class OrdersComponent implements OnInit {
     this.codFeeIntConvert = this.itemValueConvert * 0.02            //Takes the value of itemValue, multiplies it by 0.02, and stores it in a local variable
     this.insuranceFeeIntConvert = this.itemValueConvert * 0.01      //Takes the value of itemValue, multiplies it by 0.01, and stores it in a local variable
 
+    this.setShipmentFeeAndVolumetricWeight(provinceInput, shopProvinceInput, sizeInput, lengthInput, widthInput, heightInput)
+
     this.codFeeValue = this.codFeeIntConvert                        //returns the value of codFee and stores it in a local variable
     this.insuranceFeeValue = this.insuranceFeeIntConvert            //returns the value of insuranceFee and stores it in a local variable
+    this.shipmentFeeValue = this.shipmentFee
 
-    //Takes every values from the parameters and the converted integers and adds it to the parcels array in waybill.service.ts as an array
-    this.waybillService.parcels.push({customerName: customerNameInput, awb: this.awbInput, mobileNumber: mobileNumberInput, province: provinceInput, municipality: municipalityInput, addressLine: addressLineInput, barangay: barangayInput, productDescription: productDescriptionInput, itemValueInt: this.itemValueConvert, codFeeInt: this.codFeeIntConvert,  codFee: codFeeInput, weightInt: this.weightIntConvert, weight: weightInput, insuranceFeeInt: this.insuranceFeeIntConvert, insuranceFee: insuranceFeeInput, shipmentFee: shipmentFeeInput, remarks: remarksInput, size: sizeInput, ordersId: this.ordersID})
-  
-    this.setShipmentFeeAndVolumetricWeight(provinceInput, shopProvinceInput, sizeInput, lengthInput, widthInput, heightInput)
-    console.log("Shipment Fee: " +this.shipmentFee)
-    console.log("Volumetric Weight: " + this.volumetricWeight)
     //DYNAMIC
     this.waybillService.addToFirestore(customerNameInput, this.awbInput, mobileNumberInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, shopProvinceInput)
   }
 
   setShipmentFeeAndVolumetricWeight(provinceInput: string, shopProvinceInput: string, sizeInput: string, lengthInput: string, widthInput: string, heightInput:string){
+    //Sets the region depending on the province
     if(this.regionLuzon.includes(provinceInput)){
       this.region = "Luzon"
     }else if(this.regionVisayas.includes(provinceInput)){
@@ -159,6 +142,7 @@ export class OrdersComponent implements OnInit {
       }else if(sizeInput == "Volumetric"){
         this.regionShipment(lengthInput, widthInput, heightInput, this.sameRegionPrices)
       }
+
     }else if(this.region == "NCR" && this.shopRegion == "Luzon" || this.region =="Luzon" && this.shopRegion == "NCR"){
       if(sizeInput == "Small"){
         this.shipmentFee = this.nearbyRegionPrices[0]
@@ -172,6 +156,7 @@ export class OrdersComponent implements OnInit {
       }else if(sizeInput == "Volumetric"){
         this.regionShipment(lengthInput, widthInput, heightInput, this.nearbyRegionPrices)
       }
+
     }else if(this.region == "Visayas" && this.shopRegion == "NCR" || this.region == "Visayas" && this.shopRegion == "Luzon"){
       if(sizeInput == "Small"){
         this.shipmentFee = this.farRegionPrices[0]
@@ -185,6 +170,7 @@ export class OrdersComponent implements OnInit {
       }else if(sizeInput == "Volumetric"){
         this.regionShipment(lengthInput, widthInput, heightInput, this.farRegionPrices)
       }
+
     }else if(this.region == "Mindanao" && this.shopRegion == "NCR" || this.region == "Mindanao" && this.shopRegion == "Luzon"){
       if(sizeInput == "Small"){
         this.shipmentFee = this.veryFarRegionPrices[0]
@@ -215,23 +201,4 @@ export class OrdersComponent implements OnInit {
       }
     }
   }
-}
-
-export interface Parcel{
-  addressLine: string,
-  awb: number,
-  barangay: string,
-  codFee: number,
-  customerName: string,
-  insuranceFee: number,
-  itemValue: number,
-  mobileNumber: string,
-  municipality: string,
-  ordersId: number,
-  productDescription: string,
-  province: string,
-  remarks:string,
-  shipmentFee: string
-  size: string,
-  weight: number,
 }

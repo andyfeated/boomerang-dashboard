@@ -19,41 +19,12 @@ export class WaybillService {
 
   orderIDService = Math.floor(Math.random() * 100000000)
 
-  parcels = [
-    {customerName: "sample",
-     awb: 0,
-     mobileNumber: "sample",
-     province: "sample",
-     municipality: "sample",
-     addressLine: "sample",
-     barangay: "sample",
-     productDescription: "sample",
-     codFeeInt: 0,
-     insuranceFeeInt: 0,
-     weightInt: 0,
-
-     codFee: "sample",
-     weight: "0",
-     insuranceFee: "sample",
-     shipmentFee: "sample",
-     remarks:"sample",
-     size: "sample",
-
-     itemValueInt: 0,
-     ordersId: 0,
-    }
-     
-  ]
 
   docRef: any
 
   constructor(private afs:AngularFirestore) {
     this.parcelObs = afs.collection("parcels").valueChanges()
    }
-
-  returnParcel(){
-    return this.parcels
-  }
 
   addToFirestore(customerNameInput: string, awbInput: number, mobileNumberInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopProvinceInput: string){
     this.afs.collection("parcels").add({
@@ -78,20 +49,6 @@ export class WaybillService {
       alert("added to database")
     })
   }
-
-  //adds every weight and stores it in totalWeightOverall
-  //  getValue(){
-  //    return this.afs.collection<Parcel>("parcels").valueChanges().subscribe(parcel => {
-  //      for(let i = 0; i < parcel.length; i++){
-  //        const weightArray = parcel[i].weight
-  //        this.totalWeightAfs.push(weightArray)
-  //      }
-  //      for(let j = 0; j < this.totalWeightAfs.length; j++){
-  //        this.totalWeightOverall += this.totalWeightAfs[j]
-  //      }
-  //      console.log("Total Weight: " + this.totalWeightOverall)
-  //    })
-  //  }
 
   getTotalWeight(): Observable<string> {
     return this.afs.collection<Parcel>("parcels").valueChanges().pipe(
