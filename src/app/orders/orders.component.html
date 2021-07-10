@@ -168,34 +168,14 @@
             <!--Create Waybill Bulk Button-->
             <!--Takes the value of every enabled form and passes it to the addParcel() Function-->
             <div class="button-container">
-                    <button (click)="addParcel(
-                                    customerNameInput.value,
-                                    mobileNumberInput.value,
-                                    regionInput.value,
-                                    shopRegionInput.value,
-                                    provinceInput.value,
-                                    municipalityInput.value,
-                                    addressLineInput.value,
-                                    barangayInput.value, 
-                                    productDescriptionInput.value,
-                                    itemValueInt.value,
-                                    codFeeInput.value,
-                                    weightInput.value,
-                                    insuranceFeeInput.value,
-                                    shipmentFeeInput.value,
-                                    remarksInput.value,
-                                    sizeInput.value,
-                                    weightInt.value,
-                                    lengthInput.value, widthInput.value, heightInput.value
-                                    )">Create Waybiil Bulk
-                    </button>
 
-                    <button (click)="generateWaybill( municipalityInput.value)">Generate Waybill</button>
+                    <button hidden (click)="generateWaybill( municipalityInput.value)">Generate Waybill</button>
                                     </div>
         </div>
 
     </div>
 </div>
+
 
 <!--Parcel In this Bulk Order-->
 <div class="customer-information-table">
@@ -206,9 +186,21 @@
 
     <div class="containers">
         <div class="waybill-query-table-create">
+            
             <!--Orders ID-->
             <!--Takes a value from Waybill Service that creates a random 8 digit number and displays it-->
-            Orders ID:{{ordersID}}
+            <table id="customerss">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Insert</th>
+                </tr>
+
+                <tr *ngFor="let item of orderObs$ | async">
+                    <td (click)="getParcels(item)">{{item.orderId}}</td>
+                    <td><button (click)="insertParcel(item,customerNameInput.value,mobileNumberInput.value,regionInput.value,shopRegionInput.value,provinceInput.value,municipalityInput.value,addressLineInput.value,barangayInput.value, productDescriptionInput.value,itemValueInt.value,codFeeInput.value,weightInput.value,insuranceFeeInput.value,shipmentFeeInput.value,remarksInput.value,sizeInput.value,weightInt.value,lengthInput.value, widthInput.value, heightInput.value)">Add Parcel into this Order</button></td>
+                </tr>
+                
+            </table>
 
             <!--Parcel in this bulk order table-->
             <table id="customerss">
@@ -225,19 +217,23 @@
                 <!--Table Body-->
                 <!--The parcels array from orders.component.ts sets its values to the values from the waybill.service.ts's parcel array-->
 
-                <tr *ngFor="let item of parcelObs | async">
+                <tr *ngFor="let item of newParcelObs">
 
                     <!--Displays the awb values from the parcels array-->
                     <td>
-                        {{item.awb}}
+                       {{item.awb}}
                     </td>
                     <!--Displays the weight values from the parcels array-->
                     <td>
-                        {{item.weight}} KG
+                        {{item.weight}}
                     </td>
                 </tr>
                 
             </table>
+            
+            <div class="button-container2">
+                <button (click)="createNewOrder()">Create New Order</button>
+            </div>
         </div>
 
         <div class="card-table-margin">
@@ -253,7 +249,8 @@
                 <h1>{{weightNumber}}</h1>
             </div>
         </div>
+
+        
     </div>
 </div>
-
 

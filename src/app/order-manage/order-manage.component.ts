@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WaybillService } from '../waybill.service';
+import { Observable } from 'rxjs';
+import { Parcel, WaybillService } from '../waybill.service';
 
 @Component({
   selector: 'app-order-manage',
@@ -9,10 +10,19 @@ import { WaybillService } from '../waybill.service';
 export class OrderManageComponent implements OnInit {
 
   parcelObs = this.waybillService.parcelObs
+  parcel?: Parcel
 
   constructor(private waybillService: WaybillService) { }
 
   ngOnInit(): void {
   }
+  
 
+  details(item: Parcel){
+    this.parcel = item
+  }
+
+  deleteDoc(item: Parcel){
+    this.waybillService.delete(item.id)
+  }
 }

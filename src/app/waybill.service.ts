@@ -9,25 +9,63 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-
 export class WaybillService {
   parcelObs!: Observable<any>
+  orderObs$!: Observable<any>
+  newParcelObs$!: Observable<any>
   placeholder!: Observable<any>
 
   totalWeightAfs = [0]
   totalWeightOverall = 0
 
   orderIDService = Math.floor(Math.random() * 100000000)
-
-
   docRef: any
 
   constructor(private afs:AngularFirestore) {
     this.parcelObs = afs.collection("parcels").valueChanges()
-   }
+    this.orderObs$ = afs.collection("orders").valueChanges()
+  }
+
+  addNewOrder(){
+    let orderId = this.afs.createId()
+    this.afs.collection("orders").doc(orderId).set({
+      orderId: Math.floor(Math.random() * 1000000),
+      id: orderId
+    }).then(() => {
+      alert("New Order Generated")
+    })
+  }
+
+  insertParcel(documentId: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string){
+    let documentParcelId = this.afs.createId()
+
+    this.afs.collection("orders").doc(documentId).collection("parcels").doc(documentParcelId).set({
+      id: documentParcelId,
+      customerName: customerNameInput,
+      awb: awbInput,
+      mobileNumber: mobileNumberInput,
+      region: regionInput,
+      shopRegion: shopRegionInput,
+      province: provinceInput,
+      municipality: municipalityInput,
+      addressLine: addressLineInput,
+      barangay: barangayInput,
+      productDescription: productDescriptionInput,
+      itemValue: itemValueInput,
+      codFee: codFeeInput,
+      weight: volumetricWeight,
+      insuranceFee: insuranceFeeInput,
+      shipmentFee: shipmentFee,
+      remarks: remarksInput,
+      size: sizeInput,
+      ordersId: this.orderIDService
+    })
+  }
 
   addToFirestore(customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string){
-    this.afs.collection("parcels").add({
+    let documentId = this.afs.createId()
+    this.afs.collection("parcels").doc(documentId).set({
+      id: documentId,
       customerName: customerNameInput,
       awb: awbInput,
       mobileNumber: mobileNumberInput,
@@ -109,6 +147,14 @@ export class WaybillService {
       })
     )
   }
+
+  delete(id: string){
+    this.afs.collection("parcels").doc(id).delete()
+  }
+
+  getParcels(parcelId: string){
+    return this.afs.collection("orders").doc(parcelId).collection("parcels").valueChanges()
+  }
   
 }
 
@@ -118,6 +164,7 @@ export interface Parcel{
   barangay: string,
   codFee: number,
   customerName: string,
+  id: string,
   insuranceFee: number,
   itemValue: number,
   mobileNumber: string,

@@ -18,6 +18,9 @@ export class OrdersComponent implements OnInit {
 
   choice = ""
 
+  documentId!: string
+  parcelId!: string
+
   //Shipment Rates
   sameRegionPrices = prices[0]
   nearbyRegionPrices = prices[1]
@@ -35,9 +38,11 @@ export class OrdersComponent implements OnInit {
 
   //OBSERVABLE
   parcelObs = this.waybillService.parcelObs
+  newParcelObs: any
+  orderObs$ = this.waybillService.orderObs$
 
   //Template Values
-  weightNumber = ""
+  weightNumber = "0"
   itemValueNumber = 0
   codFeeNumber = 0
   insuranceFeeNumber = 0
@@ -86,46 +91,8 @@ export class OrdersComponent implements OnInit {
     }
 
     this.shopRegions.sort()
-    //Observables that return the total values and displays it in the template
-    this.waybillService.getTotalWeight().subscribe(weights => {
-      this.weightNumber = weights
-    })
-
-    this.waybillService.getTotalItemValue().subscribe(itemValues => {
-      this.itemValueNumber = itemValues
-    })
-    
-    this.waybillService.getTotalCodFee().subscribe(codFees => {
-      this.codFeeNumber = codFees
-    })
-
-    this.waybillService.getTotalInsuranceFee().subscribe(insuranceFees => {
-      this.insuranceFeeNumber = insuranceFees
-    })
-
-    this.waybillService.getTotalParcels().subscribe(parcelCounts => {
-      this.parcelsNumber = parcelCounts
-    })
   }
 
-  //Adds values to the parcel collection in Firestore Database
-  addParcel(customerNameInput: string, mobileNumberInput: string, regionInput: string, shopRegionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
-    this.generateWaybill(municipalityInput)
-
-    this.itemValueConvert = parseInt(itemValueInt)                  //Converts the "Item Value's" value to an integer and stores it in a local variable
-    this.weightIntConvert = parseInt(weightInt) / 1000              //Converts the weight's value to an integer, divides it into 1000, and stores it in a local variable
-    this.codFeeIntConvert = this.itemValueConvert * 0.02            //Takes the value of itemValue, multiplies it by 0.02, and stores it in a local variable
-    this.insuranceFeeIntConvert = this.itemValueConvert * 0.01      //Takes the value of itemValue, multiplies it by 0.01, and stores it in a local variable
-
-    this.setShipmentFeeAndVolumetricWeight(regionInput, shopRegionInput, sizeInput, lengthInput, widthInput, heightInput)
-
-    this.codFeeValue = this.codFeeIntConvert                        //returns the value of codFee and stores it in a local variable
-    this.insuranceFeeValue = this.insuranceFeeIntConvert            //returns the value of insuranceFee and stores it in a local variable
-    this.shipmentFeeValue = this.shipmentFee
-
-    //DYNAMIC
-    this.waybillService.addToFirestore(customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, shopRegionInput)
-  }
 
   setShipmentFeeAndVolumetricWeight(regionInput: string, shopRegionInput: string, sizeInput: string, lengthInput: string, widthInput: string, heightInput:string){
     //Sets the region depending on the region
@@ -242,5 +209,63 @@ export class OrdersComponent implements OnInit {
       }
     }
     
+  }
+
+  createNewOrder(){
+    this.waybillService.addNewOrder()
+  }
+
+  getParcels(item: any){
+    this.parcelId = item.id
+    this.waybillService.getParcels(this.parcelId).subscribe(val => {
+      this.newParcelObs = val
+      this.parcelsNumber = this.newParcelObs.length
+
+      let overallWeight = 0
+      let overallSales = 0
+      let overallCodFee = 0
+      let overallInsuranceFee = 0
+
+      for(let i = 0; i < this.newParcelObs.length; i++){
+         overallWeight += this.newParcelObs[i].weight
+      }
+
+      for(let i = 0; i < this.newParcelObs.length; i++){
+        overallSales += this.newParcelObs[i].itemValue
+      }
+
+      for(let i = 0; i < this.newParcelObs.length; i++){
+        overallCodFee += this.newParcelObs[i].codFee
+      }
+
+      for(let i = 0; i < this.newParcelObs.length; i++){
+        overallInsuranceFee += this.newParcelObs[i].insuranceFee
+      }
+
+      this.weightNumber = overallWeight.toFixed(2)
+      this.itemValueNumber = overallSales
+      this.codFeeNumber = overallCodFee
+      this.insuranceFeeNumber = overallInsuranceFee
+    })
+
+    
+  }
+
+  insertParcel(item: any, customerNameInput: string, mobileNumberInput: string, regionInput: string, shopRegionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
+    this.documentId = item.id
+    this.generateWaybill(municipalityInput)
+
+    this.itemValueConvert = parseInt(itemValueInt)                  //Converts the "Item Value's" value to an integer and stores it in a local variable
+    this.weightIntConvert = parseInt(weightInt) / 1000              //Converts the weight's value to an integer, divides it into 1000, and stores it in a local variable
+    this.codFeeIntConvert = this.itemValueConvert * 0.02            //Takes the value of itemValue, multiplies it by 0.02, and stores it in a local variable
+    this.insuranceFeeIntConvert = this.itemValueConvert * 0.01      //Takes the value of itemValue, multiplies it by 0.01, and stores it in a local variable
+
+    this.setShipmentFeeAndVolumetricWeight(regionInput, shopRegionInput, sizeInput, lengthInput, widthInput, heightInput)
+
+    this.codFeeValue = this.codFeeIntConvert                        //returns the value of codFee and stores it in a local variable
+    this.insuranceFeeValue = this.insuranceFeeIntConvert            //returns the value of insuranceFee and stores it in a local variable
+    this.shipmentFeeValue = this.shipmentFee
+
+    this.waybillService.insertParcel(this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, shopRegionInput)
   }
 }
