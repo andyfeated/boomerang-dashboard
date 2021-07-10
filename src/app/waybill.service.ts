@@ -26,13 +26,14 @@ export class WaybillService {
     this.parcelObs = afs.collection("parcels").valueChanges()
    }
 
-  addToFirestore(customerNameInput: string, awbInput: number, mobileNumberInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopProvinceInput: string){
+  addToFirestore(customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string){
     this.afs.collection("parcels").add({
       customerName: customerNameInput,
       awb: awbInput,
       mobileNumber: mobileNumberInput,
+      region: regionInput,
+      shopRegion: shopRegionInput,
       province: provinceInput,
-      shopProvince: shopProvinceInput,
       municipality: municipalityInput,
       addressLine: addressLineInput,
       barangay: barangayInput,
@@ -113,17 +114,18 @@ export class WaybillService {
 
 export interface Parcel{
   addressLine: string,
-  awb: number,
+  awb: string,
   barangay: string,
   codFee: number,
   customerName: string,
   insuranceFee: number,
   itemValue: number,
   mobileNumber: string,
+  province: string,
   municipality: string,
   ordersId: number,
   productDescription: string,
-  province: string,
+  region: string,
   remarks:string,
   shipmentFee: string
   size: string,

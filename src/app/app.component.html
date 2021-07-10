@@ -177,6 +177,14 @@
                     </ul>
                 </div>
             </li>
+
+            
+            <li>
+                <a (click)="displayManifesto()" [class]="manifestoActivate" href="#">
+                    <span  class="las la-book"></span>
+                    <span> Manifesto</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
@@ -223,6 +231,7 @@
         <app-orders *ngIf="isOrders"></app-orders> <!--Displays Orders Component(Create Waybill Page) if assigned boolean is true-->
         <app-waybill-bulk *ngIf=isWaybillBulk></app-waybill-bulk> <!--Displays Waybill Bulk Component if assigned boolan is true-->
         <app-order-manage *ngIf=isOrderManage></app-order-manage> <!--Displays Order Manage Component if assigned boolan is true-->
+        <app-manifesto *ngIf="isManifesto"></app-manifesto>
         <app-finance-summary *ngIf="isFinanceSummary"></app-finance-summary> <!--Displays Finance Summary Component if assigned boolean is true-->
         <app-finance-payables *ngIf="isFinancePayables"></app-finance-payables> <!--Displays Finance Payables Component if assigned boolean is true-->
         <app-finance-receivables *ngIf="isFinanceReceivables"></app-finance-receivables> <!--Displays Finance Receivables Component if assigned boolean is true-->

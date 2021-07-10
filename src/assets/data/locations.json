@@ -1,0 +1,16 @@
+[
+    ["NCR"],
+    ["CAR","Ilocos Region","Cagayan Valley", "Central Luzon", "CALABARZON", "MIMAROPA", "Bicol Region"],
+    ["Eastern Visayas", "Central Visayas"],
+    ["SOCSARGEN", "Davao Region"],
+
+
+    [
+        "THESE ARE ONLY NOTES FOR HANDLING LOCATIONS.JSON DATA",
+
+        "locations[0] = NCR Regions",
+        "locations[1] = Luzon Regions",
+        "locations[2] = Visayas Regions",
+        "locations[3] = Mindanao Regions"
+    ]
+]

@@ -1,0 +1,45 @@
+[
+    ["NCR","CAR","Ilocos Region", "Cagayan Valley"],
+    [
+        ["", "Metro Manila"],
+        ["","Abra","Apayao","Benguet","Ifugao","Kalinga", "Mountain Province"],
+        ["", "Ilocos Norte", "Ilocos Sur", "La Union", "Pangasinan"],
+        ["", "Batanes", "Cagayan", "Isabela", "Nueva Viscaya", "Quirino"]
+    ],
+    [
+        ["Metro Manila Cities", "Caloocan City","Las Piñas City","Makati City","Malabon City","Mandaluyong City","Manila City","Marikina City","Muntinlupa City","Navotas City","Parañaque City","Pasay City","Pasig City","Quezon City","San Juan City","Taguig City","Valenzuela City"],
+        ["Abra Cities","Bangued","Boliney","Bucay","Bucloc","Daguioman","Danglas","Dolores","La Paz","Lacub","Lagangilang","Lagayan","Langiden","Licuan-Baay","Luba","Malibcong","Manabo","Peñarrubia","Pidigan","Pilar","Sallapadan","San Isidro","San Juan(Abra)","San Quintin","Tayum","Tineg","Tubo","Villaviciosa"],
+        ["Apayao Cities", "Calanasan","Conner","Flora","Kabugao","Luna","Pudtol","Santa Marcela"],
+        ["Benguet Cities", "Atok","Baguio","Bakun","Bokod","Buguias","Itogon","Kabayan","Kapangan","Kibungan","La Trinidad","Mankayan","Sablan","Tuba","Tublay"],
+        ["Ifugao Cities", "Aguinaldo","Alfonso Lista","Asipulo","Banaue","Hingyon","Hungduan","Kiangan","Lagawe","Lamut","Mayoyao","Tinoc"],
+        ["Kalinga Cities", "Balbalan","Lubuagan","Pasil","Pinukpuk","Rizal","Tabuk","Tanudan","Tinglayan"],
+        ["Mountain Province Cities", "Barlig","Bauko","Besao","Bontoc","Natonin","Paracelis","Sabangan","Sadanga","Sagada","Tadian"],
+        ["Ilocos Norte Cities", "Adams","Bacarra","Badoc","Bangui","Banna","Batac","Burgos","Carasi","Currimao","Dingras","Dumalneg","Laoag","Marcos","Nueva Era","Pagudpud","Paoay","Pasuquin","Piddig","Pinili","San Nicolas","Sarrat","Solsona","Vintar"],
+        ["Ilocos Sur Cities", "Alilem","Banayoyo","Bantay","Burgos","Cabugao","Candon","Caoayan","Cervantes","Galimuyod","Gregorio del Pilar","Lidlidda","Magsingal","Nagbukel","Narvacan","Quirino","Salcedo","San Emilio","San Esteban",
+        "San Ildefonso","San Juan(Ilocos Sur)","San Vicente","Santa","Santa Catalina","Santa Cruz","Santa Lucia","Santa Maria","Santiago","Santo Domingo","Sigay","Sinait","Sugpon","Suyo","Tagudin","Vigan"],
+        ["La Union Cities", "Agoo","Aringay","Bacnotan","Bagulin","Balaoan","Bangar","Bauang","Burgos","Caba","Luna","Naguilian","Pugo","Rosario","San Fernando","San Gabriel","San Juan","Santo Tomas","Santol","Sudipen","Tubao"],
+        ["Pangasinan Cities ", "Dagupan City","Alaminos City","San Carlos City","Urdaneta City","Agno","Aguilar","Alcala","Anda","Asingan","Balungao","Bani","Basista","Bautista","Bayambang","Binalonan","Binmaley","Bolinao","Bugallon","Burgos","Calasiao","Dasol","Infanta","Labrador","Laoac","Lingayen","Mabini","Malasiqui","Manaoag","Mangaldan","Mangatarem","Mapandan","Natividad","Pozorrubio","Rosales","San Fabian","San Jacinto","San Manuel","San Nicolas",
+        "San Quintin","Santa Barbara","Santa Maria","Santo Tomas","Sison","Sual","Tayug","Umingan","Urbiztondo","Villasis"],
+        ["Batanes Cities", "Basco","Itbayat","Ivana","Mahatao","Sabtang","Uyugan"],
+        ["Cagayan Cities", "Abulug","Alcala","Allacapan","Amulung","Aparri","Baggao","Ballesteros","Buguey","Calayan","Camalaniugan","Claveria","Enrile","Gattaran","Gonzaga","Iguig","Lal-lo","Lasam","Pamplona","Peñablanca","Piat","Rizal","Sanchez-Mira","Santa Ana","Santa Praxedes","Santa Teresita","Santo Niño","Solana","Tuao","Tuguegarao City"],
+        ["Isabela Cities", "Alicia","Angadanan","Aurora","Benito Soliven","Burgos","Cabagan","Cabatuan","Cauayan","Cordon","Delfin Albano","Dinapigue",
+        "Divilacan","Echague","Gamu","Ilagan","Jones","Luna","Maconacon","Mallig","Naguilian","Palanan","Quezon(Isabela)","Quirino","Ramon","Reina Mercedes","Roxas","San Agustin","San Guillermo","San Isidro","San Manuel","San Mariano","San Mateo","San Pablo","Santa Maria","Santiago","Santo Tomas","Tumauini"],
+        ["Nueva Viscaya Cities", "Alfonso Castañeda","Ambaguio","Aritao","Bagabag","Bambang","Bayombong","Diadi","Dupax del Norte","Dupax del Sur","Kasibu","Kayapa","Quezon(Nueva Viscaya)","Santa Fe","Solano","Villaverde"],
+        ["Quirino Cities", "Aglipay","Cabarroguis","Diffun","Maddela","Nagtipunan","Saguday"]
+        
+
+    ],
+
+    ["Metro Manila","Abra","Apayao","Benguet","Ifugao","Kalinga", "Mountain Province","Ilocos Norte","Ilocos Sur","La Union","Pangasinan", "Batanes", "Cagayan", "Isabela", "Nueva Viscaya", "Quirino"],
+
+
+    ["Caloocan City","Las Piñas City","Makati City","Malabon City","Mandaluyong City","Manila City","Marikina City","Muntinlupa City","Navotas City","Parañaque City","Pasay City","Pasig City","Quezon City","San Juan City","Taguig City","Valenzuela City", "Bangued","Boliney","Bucay","Bucloc","Daguioman","Danglas","Dolores","La Paz","Lacub","Lagangilang","Lagayan","Langiden","Licuan-Baay","Luba","Malibcong","Manabo","Peñarrubia","Pidigan","Pilar","Sallapadan","San Isidro","San Juan","San Quintin","Tayum","Tineg","Tubo","Villaviciosa",
+    "Calanasan","Conner","Flora","Kabugao","Luna","Pudtol","Santa Marcela","Atok","Baguio","Bakun","Bokod","Buguias","Itogon","Kabayan","Kapangan","Kibungan","La Trinidad","Mankayan","Sablan","Tuba","Tublay", "Aguinaldo","Alfonso Lista","Asipulo","Banaue","Hingyon","Hungduan","Kiangan","Lagawe","Lamut","Mayoyao","Tinoc","Balbalan","Lubuagan","Pasil","Pinukpuk","Rizal","Tabuk","Tanudan","Tinglayan", "Barlig","Bauko","Besao","Bontoc","Natonin","Paracelis","Sabangan","Sadanga","Sagada","Tadian",
+    "Adams","Bacarra","Badoc","Bangui","Banna","Batac","Burgos","Carasi","Currimao","Dingras","Dumalneg","Laoag","Marcos","Nueva Era","Pagudpud","Paoay","Pasuquin","Piddig","Pinili","San Nicolas","Sarrat","Solsona","Vintar","Alilem","Banayoyo","Bantay","Burgos","Cabugao","Candon","Caoayan","Cervantes","Galimuyod","Gregorio del Pilar","Lidlidda","Magsingal","Nagbukel","Narvacan","Quirino","Salcedo","San Emilio","San Esteban",
+    "San Ildefonso","San Juan(Ilocos Sur)","San Vicente","Santa","Santa Catalina","Santa Cruz","Santa Lucia","Santa Maria","Santiago","Santo Domingo","Sigay","Sinait","Sugpon","Suyo","Tagudin","Vigan", "Agoo","Aringay","Bacnotan","Bagulin","Balaoan","Bangar","Bauang","Burgos","Caba","Luna","Naguilian","Pugo","Rosario","San Fernando","San Gabriel","San Juan(Abra)","Santo Tomas","Santol","Sudipen","Tubao", "Dagupan City","Alaminos City","San Carlos City","Urdaneta City","Agno","Aguilar","Alcala","Anda","Asingan",
+    "Balungao","Bani","Basista","Bautista","Bayambang","Binalonan","Binmaley","Bolinao","Bugallon","Burgos","Calasiao","Dasol","Infanta","Labrador","Laoac","Lingayen","Mabini","Malasiqui","Manaoag","Mangaldan","Mangatarem","Mapandan","Natividad","Pozorrubio","Rosales","San Fabian","San Jacinto","San Manuel","San Nicolas",
+    "San Quintin","Santa Barbara","Santa Maria","Santo Tomas","Sison","Sual","Tayug","Umingan","Urbiztondo","Villasis", "Basco","Itbayat","Ivana","Mahatao","Sabtang","Uyugan", "Abulug","Alcala","Allacapan","Amulung","Aparri","Baggao","Ballesteros","Buguey","Calayan","Camalaniugan","Claveria","Enrile","Gattaran","Gonzaga","Iguig","Lal-lo","Lasam","Pamplona","Peñablanca","Piat","Rizal","Sanchez-Mira","Santa Ana","Santa Praxedes","Santa Teresita","Santo Niño","Solana","Tuao","Tuguegarao City","Alicia","Angadanan","Aurora","Benito Soliven","Burgos","Cabagan","Cabatuan","Cauayan","Cordon","Delfin Albano","Dinapigue",
+    "Divilacan","Echague","Gamu","Ilagan","Jones","Luna","Maconacon","Mallig","Naguilian","Palanan","Quezon(Isabela)","Quirino","Ramon","Reina Mercedes","Roxas","San Agustin","San Guillermo","San Isidro","San Manuel","San Mariano","San Mateo","San Pablo","Santa Maria","Santiago","Santo Tomas","Tumauini", "Alfonso Castañeda","Ambaguio","Aritao","Bagabag","Bambang","Bayombong","Diadi","Dupax del Norte","Dupax del Sur","Kasibu","Kayapa","Quezon(Nueva Viscaya)","Santa Fe","Solano","Villaverde", "Aglipay","Cabarroguis","Diffun","Maddela","Nagtipunan","Saguday"]
+    
+]
+

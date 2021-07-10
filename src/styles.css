@@ -651,7 +651,7 @@ main{
 .customer-information-top{
     background-color: white;
     border-radius: 10px;
-    height: 240px;
+    height: 340px;
 }
 
 .customer-information-bottom{
@@ -662,11 +662,6 @@ main{
     border-radius: 10px;
 }
 
-.customer-information-bottom input{
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px grey solid;
-}
 
 .customer-information-bottom-input{
     width: 60%;
@@ -692,6 +687,117 @@ main{
     width: 100%;
     height: 30px;
     margin-top: 10px;
+}
+
+.form-field{
+    width: 50%;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    display: inline-block;
+}
+
+.form-field-holder{
+    margin-top: 10px;
+}
+
+.form-field label{
+    display: block;
+    font-size: 12px;
+}
+
+.form-field input{
+    width: 80%;
+    margin-top: 5px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding-left: 5px;
+}
+
+.form-field select{
+    width: 80%;
+    margin-top: 5px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid grey
+}
+
+.form-field-long{
+    padding-left: 15px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.form-field-long label{
+    display: block;
+    font-size: 13px;
+}
+
+.form-field-long input{
+    width: 87%;
+    margin-top: 5px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding-left: 5px;
+}
+
+.form-field-medium{
+    width: 50%;
+    padding-left: 15px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.form-field-medium label{
+    display: block;
+    font-size: 13px;
+}
+
+.form-field-medium input{
+    width: 90%;
+    margin-top: 5px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding-left: 5px;
+}
+
+.form-field-medium select{
+    width: 72%;
+    margin-top: 5px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid grey
+}
+
+.form-field-small{
+    padding-left: 15px;
+    display: inline-block;
+    width: 33%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.form-field-small label{
+    display: block;
+    font-size: 13px;
+}
+
+.form-field-small input{
+    width: 60%;
+    margin-top: 5px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding-left: 5px;
+}
+
+.order-information-container{
+    margin-bottom: 30px;
 }
 
 .button-container{

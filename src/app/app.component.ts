@@ -13,7 +13,8 @@ export class AppComponent {
   isHome = false; //Home Page
   isOrders = true; //Create Waybill Page
   isWaybillBulk = false; //Create Waybills in Bulk Page
-  isOrderManage = false; //Order Management Page  
+  isOrderManage = false; //Order Management Page 
+  isManifesto = false 
   isFinanceSummary = false; //Finance Summary Page
   isFinancePayables = false; //Account Payables Page
   isFinanceReceivables = false; //Account Receivables Page
@@ -44,6 +45,7 @@ export class AppComponent {
   pickupAddressActivate = ""; //My Pickup Location Icon
   recipientAddressActivate = ""; //My Recipient Location Icon
   accountActivate = ""; //My User Accounts Icon
+  manifestoActivate = ""
   
   //Displays Home Component and highlights its icon
   displayHome(){
@@ -147,6 +149,12 @@ export class AppComponent {
     this.isAccount = true;
   } 
 
+  displayManifesto(){
+    this.checkComponent();
+    this.manifestoActivate ="active";
+    this.isManifesto = true;
+  }
+
   //Disables every boolean and string that is associated with the component
   checkComponent(){
     this.isOrders = false;
@@ -162,6 +170,7 @@ export class AppComponent {
     this.isOrderManage = false;
     this.isProblematicShipment = false;
     this.isrecipientAddress = false;
+    this.isManifesto = false
 
     this.ordersActivate = "";
     this.financeActivate = "";
@@ -180,5 +189,6 @@ export class AppComponent {
     this.problematicShipmentActivate = "";
     this.pickupAddressActivate = "";
     this.recipientAddressActivate = "";
+    this.manifestoActivate = "";
   }
 }

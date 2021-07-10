@@ -1,87 +1,58 @@
 <!-- Customer Information Card -->
 <div class="customer-information">
+
     <div class="customer-information-top">
-        <!-- Customer Information Header -->
         <div class="dasboard-bulk-orders-header">
             <h4><i class="las la-user-plus"></i> Customer Information</h4>
         </div>
-
-        <!-- Customer Information Forms' Left Side-->
-        <div class="customer-information-content">
-            <!--Customer Name-->
-            <div class="customer-information-label">
-                <label>Customer Name</label>
-            </div>
-
-            <div class="customer-information-input">
+        <div class="form-field-holder">
+    
+            <div class="form-field">
+                <label for="">Customer Name</label>
                 <input #customerNameInput type="text" placeholder="Sample">
             </div>
-
-            <!--Mobile Number-->
-            <div class="customer-information-label">
-                <label>Mobile Number</label>
-            </div>
-
-            <div class="customer-information-input">
+    
+            <div class="form-field">
+                <label for="">Mobile Number</label>
                 <input #mobileNumberInput type="text" placeholder="Sample">
             </div>
 
-            <!--Province-->
-            <div class="customer-information-label">
-                <label>Province</label>
-            </div>
-
-            <div class="customer-information-input">
-                <select #provinceInput >
-                    <option *ngFor="let item of provinces">{{item}}</option>
-                    
+            <div class="form-field">
+                <label for="">Region</label>
+                <select #regionInput (change)="onChange($event)">
+                    <option *ngFor="let regionNew of regionsNew | keyvalue">{{regionNew.value}}</option>
                 </select>
-
             </div>
 
-            <!--Municipality-->
-            <div class="customer-information-label">
-                <label>Municipality/City</label>
+            <div class="form-field">
+                <label for="">Address Line</label>
+                <input #addressLineInput type="text" placeholder="Sample">
             </div>
 
-            <div class="customer-information-input">
-                <input #municipalityInput type="text" placeholder="Sample">
-            </div>
-      
-        </div>
-
-        <!-- Customer Information Forms' Right Side-->
-        <div class="customer-information-content">
-
-            <!--AWB Number-->
-            <div class="customer-information-label">
-                <label>AWB Number</label>
+            <div class="form-field">
+                <label for="">Province</label>
+                <select #provinceInput (change)="onChangeProvince($event)">
+                    <option *ngFor="let provinceNew of provincesNew.get(selectedRegion)" [value]="provinceNew">{{provinceNew}}</option>
+                </select>
             </div>
 
-            <div class="customer-information-input">
-                <input disabled type="text" placeholder="Sample">
-            </div>
 
-            <!--Barangay-->
-            <div class="customer-information-label">
-                <label>Barangay</label>
-            </div>
-
-            <div class="customer-information-input">
+            <div class="form-field">
+                <label for="">Barangay</label>
                 <input #barangayInput type="text" placeholder="Sample">
             </div>
 
-            <!--Address Line-->
-            <div class="customer-information-label">
-                <label>Address Line</label>
+            <div class="form-field">
+                <label for="">Municipality</label>
+                <select #municipalityInput>
+                    <option *ngFor="let municipalityNew of municipalitiesNew.get(selectedProvince)" >{{municipalityNew}}</option>
+                </select>
             </div>
-
-            <div class="customer-information-input">
-                <input #addressLineInput type="text" placeholder="Sample">
-            </div>
+    
             
         </div>
     </div>
+
 
     <div class="customer-information-bottomside">
         <div class="dasboard-bulk-orders-header">
@@ -89,184 +60,140 @@
         </div>
         
         <div class="customer-information-label">
-            <label>Province</label>
+            <label>Region</label>
         </div>
 
         <div class="customer-information-input">
-            <select #shopProvinceInput>
-                <option *ngFor="let item of shopProvinces">{{item}}</option>
+            <select #shopRegionInput>
+                <option *ngFor="let item of shopRegions">{{item}}</option>
             </select>
         </div>
     </div>
 
-    <!--Order Information-->
     <div class="customer-information-bottom">
-        <!--Order Information Header-->
         <div class="dasboard-bulk-orders-header">
             <h4><i class="las la-inbox"></i> Order Information</h4>
         </div>
 
-        <!--Product Description-->
-        <div class="customer-information-bottom-label">
-            <label>Product Description</label>
-        </div>
-
-        <div class="customer-information-bottom-input">
-            <input #productDescriptionInput placeholder="Sample">
-        </div>
-
-
-       
-        <div class="customer-information-form-small">
-
-             <!--Third Line-->
-            <div class="third-line">
-
-                <!--Weight-->
-                <div hidden>
-                    <div class="customer-information-bottom-label">
-                        <label>Weight in Grams</label>
-                    </div>
-        
-                    <div class="customer-information-bottom-input-small">
-                        <input hidden #weightInput placeholder="Sample">
-                        <input disabled #weightInt type="number" placeholder="0">
-                    </div>
-                </div>
-
-                <!--Item Value-->
-                <div class="customer-information-bottom-label2">
-                    <label>Item Value</label>
-                </div>
-
-                <div class="customer-information-label2">
-                    <input #itemValueInt type="number" placeholder="0">
-                </div>
-
-                <!--Pouch Size-->
-                <div class="customer-information-bottom-select">
-                    <select [(ngModel)]="choice" #sizeInput>
-                        <option value="" disabled selected>Shipment Type</option>
-                        <option value="Volumetric">Volumetric</option>
-                        <option>Small</option>
-                        <option>Medium</option>
-                        <option>Large</option>
-
-                    </select>
-                </div>
+        <div class="order-information-container">
+            <div class="form-field-long">
+                <Label>Product Description</Label>
+                <input #productDescriptionInput placeholder="Sample">
             </div>
-
-            <!--Fourth Line-->
-            <div class="third-line">
-
-                <!--Insurance Fee-->
+    
+            <div class="form-field-medium">
+                <label for="">Item Value</label>
+                <input #itemValueInt type="number" placeholder="0">
+            </div>
+    
+            <div hidden>
                 <div class="customer-information-bottom-label">
-                    <label>Insurance Fee</label>
+                    <label>Weight in Grams</label>
                 </div>
     
                 <div class="customer-information-bottom-input-small">
-                    <input disabled [value]="insuranceFeeValue" #insuranceFeeInput placeholder="Sample">
-                </div>
-
-                <!--Shipment Fee-->
-                <div class="customer-information-bottom-label">
-                    <label>Shipment Fee</label>
-                </div>
-    
-                <div class="customer-information-bottom-input-small">
-                    <input disabled [value]="shipmentFeeValue" #shipmentFeeInput>
-                </div>
-
-                <!--Cod Fee-->
-                <div class="customer-information-bottom-label">
-                    <label>COD Fee</label>
-                </div>
-    
-                <div class="customer-information-bottom-input-small">
-                    <input disabled [value]="codFeeValue" #codFeeInput>
-                </div>
-
-                <div class="lwh" [hidden]="choice !== 'Volumetric'">
-                    <div class="customer-information-bottom-label">
-                        <label>Length</label>
-                    </div>
-        
-                    <div class="customer-information-bottom-input-small">
-                        <input #lengthInput placeholder="0">
-                    </div>
-    
-                    <div class="customer-information-bottom-label">
-                        <label>Width</label>
-                    </div>
-        
-                    <div class="customer-information-bottom-input-small">
-                        <input #widthInput placeholder="0">
-                    </div>
-    
-                    <div class="customer-information-bottom-label">
-                        <label>Height</label>
-                    </div>
-        
-                    <div class="customer-information-bottom-input-small">
-                        <input #heightInput placeholder="0">
-                    </div>
+                    <input hidden #weightInput placeholder="Sample">
+                    <input disabled #weightInt type="number" placeholder="0">
                 </div>
             </div>
-
-
-            <!--Remarks-->
-            <div class="customer-information-bottom-labell">
-                <label>Remarks</label>
+    
+            <div class="form-field-medium">
+                <label for="">Shipment Type</label>
+                <select [(ngModel)]="choice" #sizeInput>
+                    <option value="" disabled selected>Shipment Type</option>
+                    <option value="Volumetric">Volumetric</option>
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                </select>
             </div>
-
-            <div class="customer-information-bottom-input-last">
+    
+            <div [hidden]="choice !== 'Volumetric'">
+                <div class="form-field-small">
+                    <label for="">Length</label>
+                    <input #lengthInput placeholder="0">
+                </div>
+        
+                <div class="form-field-small">
+                    <label for="">Width</label>
+                    <input #widthInput placeholder="0">
+                </div>
+        
+                <div class="form-field-small">
+                    <label for="">Height</label>
+                    <input #heightInput placeholder="0">
+                </div>
+            </div>
+    
+            <div class="form-field-small">
+                <label for="">Insurance Fee</label>
+                <input disabled [value]="insuranceFeeValue" #insuranceFeeInput placeholder="Sample">
+            </div>
+    
+            <div class="form-field-small">
+                <label for="">Shipment Fee</label>
+                <input disabled [value]="shipmentFeeValue" #shipmentFeeInput>
+            </div>
+    
+            <div class="form-field-small">
+                <label for="">COD Fee</label>
+                <input disabled [value]="codFeeValue" #codFeeInput>
+            </div>
+    
+            <div class="form-field-long">
+                <Label>Remarks</Label>
                 <input #remarksInput placeholder="Sample">
             </div>
-
-            <div>
-                <!--Total Sales Card-->
-                <div class="customer-card">
-                    <h5>Total Sales</h5>
-                    <h1>{{itemValueNumber}}</h1>
-                </div>
-
-                <!--Total Cod Fee Card-->
-                <div class="customer-card">
-                    <h5>Total COD Fee</h5>
-                    <h1>{{codFeeNumber}}</h1>
-                </div>
-
-                <!--Total Insurance Fee Card-->
-                <div class="customer-card">
-                    <h5>Total Insurance Fee</h5>
-                    <h1>{{insuranceFeeNumber}}</h1>
-                </div>
-
-                <!--Create Waybill Bulk Button-->
-                <!--Takes the value of every enabled form and passes it to the addParcel() Function-->
-                <div class="button-container">
-                        <button (click)="addParcel(
-                                        customerNameInput.value,
-                                        mobileNumberInput.value,
-                                        provinceInput.value,
-                                        shopProvinceInput.value,
-                                        municipalityInput.value,
-                                        addressLineInput.value,
-                                        barangayInput.value, 
-                                        productDescriptionInput.value,
-                                        itemValueInt.value,
-                                        codFeeInput.value,
-                                        weightInput.value,
-                                        insuranceFeeInput.value,
-                                        shipmentFeeInput.value,
-                                        remarksInput.value,
-                                        sizeInput.value,
-                                        weightInt.value,
-                                        lengthInput.value, widthInput.value, heightInput.value
-                                        )">Create Waybiil Bulk</button>
-                                        </div>
-            </div>
         </div>
+
+        <div>
+            <!--Total Sales Card-->
+            <div class="customer-card">
+                <h5>Total Sales</h5>
+                <h1>{{itemValueNumber}}</h1>
+            </div>
+
+            <!--Total Cod Fee Card-->
+            <div class="customer-card">
+                <h5>Total COD Fee</h5>
+                <h1>{{codFeeNumber}}</h1>
+            </div>
+
+            <!--Total Insurance Fee Card-->
+            <div class="customer-card">
+                <h5>Total Insurance Fee</h5>
+                <h1>{{insuranceFeeNumber}}</h1>
+            </div>
+
+            <!--Create Waybill Bulk Button-->
+            <!--Takes the value of every enabled form and passes it to the addParcel() Function-->
+            <div class="button-container">
+                    <button (click)="addParcel(
+                                    customerNameInput.value,
+                                    mobileNumberInput.value,
+                                    regionInput.value,
+                                    shopRegionInput.value,
+                                    provinceInput.value,
+                                    municipalityInput.value,
+                                    addressLineInput.value,
+                                    barangayInput.value, 
+                                    productDescriptionInput.value,
+                                    itemValueInt.value,
+                                    codFeeInput.value,
+                                    weightInput.value,
+                                    insuranceFeeInput.value,
+                                    shipmentFeeInput.value,
+                                    remarksInput.value,
+                                    sizeInput.value,
+                                    weightInt.value,
+                                    lengthInput.value, widthInput.value, heightInput.value
+                                    )">Create Waybiil Bulk
+                    </button>
+
+                    <button (click)="generateWaybill( municipalityInput.value)">Generate Waybill</button>
+                                    </div>
+        </div>
+
     </div>
 </div>
 
@@ -288,7 +215,7 @@
                 <!--Table Header-->
                 <tr>            
                     <th>
-                        <p>AWB Number</p>
+                        <p>Waybill Number</p>
                     </th>
                     <th>
                         <p>Weight</p>

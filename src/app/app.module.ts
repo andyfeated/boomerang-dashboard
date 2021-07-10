@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
+import { ManifestoComponent } from './manifesto/manifesto.component';
  
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { environment } from 'src/environments/environment';
     TicketCustomerComponent,
     TicketOrderComponent,
     TicketCaptainComponent,
+    ManifestoComponent,
     
   ],
   imports: [
