@@ -648,6 +648,30 @@ main{
     color: white;
 }
 
+#customerss-parcel {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+  
+#customerss-parcel td, #customerss-parcel th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+#customerss-parcel tr:nth-child(even){background-color: #f2f2f2;}
+  
+#customerss-parcel tr:hover {background-color: #ddd;}
+
+#customerss-parcel th {
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: left;
+    background-color: var(--main-color);
+    color: white;
+}
+
 .customer-information-top{
     background-color: white;
     border-radius: 10px;
@@ -1760,4 +1784,17 @@ main{
 .info-columns{
     width: 40%;
     display: inline-block;
+}
+
+.file-button{
+    margin-left: 50px;
+    width: 70%;
+    height: 50px;
+    padding: 10px;
+    margin-top: -20px;
+    color: black;
+}
+
+.file-button input{
+    width: 100%;
 }

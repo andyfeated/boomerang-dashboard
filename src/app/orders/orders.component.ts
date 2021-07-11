@@ -9,6 +9,8 @@ import waybillLocations from 'src/assets/data/waybill-locations.json'
 import waybillNumbers from 'src/assets/data/waybill-numbers.json'
 import waybills from 'src/assets/data/waybills.json'
 
+import * as XLSX from 'xlsx'
+
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -69,6 +71,23 @@ export class OrdersComponent implements OnInit {
 
   selectedRegion!: string
   selectedProvince!: string
+
+  // userList = [
+  //   {
+  //     id: 1,
+  //     name: "Axel Blaise",
+  //     username: "Blaze",
+  //     email: "axelblaize@gmail.com"
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Mitch Banua",
+  //     username: "mitchayyy",
+  //     email: "michilezam@gmail.com"
+  //   }
+  // ]
+  
+  fileName = "dashboard-data.xlsx"
 
   constructor(private waybillService: WaybillService) { 
     
@@ -267,5 +286,16 @@ export class OrdersComponent implements OnInit {
     this.shipmentFeeValue = this.shipmentFee
 
     this.waybillService.insertParcel(this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, shopRegionInput)
+  }
+
+  exportexcel(){
+    let element = document.getElementById('customerss-parcel')
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(element)
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1')
+
+    XLSX.writeFile(wb, this.fileName)
+    alert("Done")
   }
 }

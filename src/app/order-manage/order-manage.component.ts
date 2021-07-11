@@ -16,7 +16,6 @@ export class OrderManageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
 
   details(item: Parcel){
     this.parcel = item

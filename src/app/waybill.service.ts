@@ -41,24 +41,32 @@ export class WaybillService {
 
     this.afs.collection("orders").doc(documentId).collection("parcels").doc(documentParcelId).set({
       id: documentParcelId,
-      customerName: customerNameInput,
-      awb: awbInput,
-      mobileNumber: mobileNumberInput,
-      region: regionInput,
-      shopRegion: shopRegionInput,
-      province: provinceInput,
-      municipality: municipalityInput,
-      addressLine: addressLineInput,
-      barangay: barangayInput,
-      productDescription: productDescriptionInput,
-      itemValue: itemValueInput,
-      codFee: codFeeInput,
-      weight: volumetricWeight,
-      insuranceFee: insuranceFeeInput,
-      shipmentFee: shipmentFee,
-      remarks: remarksInput,
-      size: sizeInput,
-      ordersId: this.orderIDService
+      customerInfo: {
+        customerName: customerNameInput,
+        mobileNumber: mobileNumberInput,
+      },
+      address:{
+        region: regionInput,
+        province: provinceInput,
+        municipality: municipalityInput,
+        shopRegion: shopRegionInput,
+        barangay: barangayInput,
+        addressLine: addressLineInput,
+      },
+      
+      parcelInfo:{
+        awb: awbInput,
+        productDescription: productDescriptionInput,
+        itemValue: itemValueInput,
+        weight: volumetricWeight,
+        codFee: codFeeInput,
+        insuranceFee: insuranceFeeInput,
+        shipmentFee: shipmentFee,
+        remarks: remarksInput,
+        size: sizeInput,
+      },
+    }).then(() => {
+      alert("Parcel added to Orders")
     })
   }
 

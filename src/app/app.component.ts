@@ -11,9 +11,9 @@ export class AppComponent {
   //If Boolean's value is true, it will be shown in main page
 
   isHome = false; //Home Page
-  isOrders = true; //Create Waybill Page
+  isOrders = false; //Create Waybill Page
   isWaybillBulk = false; //Create Waybills in Bulk Page
-  isOrderManage = false; //Order Management Page 
+  isOrderManage = true; //Order Management Page 
   isManifesto = false 
   isFinanceSummary = false; //Finance Summary Page
   isFinancePayables = false; //Account Payables Page

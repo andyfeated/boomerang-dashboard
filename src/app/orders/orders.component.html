@@ -53,6 +53,24 @@
         </div>
     </div>
 
+    <!-- <div style=" margin: auto; width: 50%;">
+        <button (click)="exportexcel()">Export to Excel</button>
+       
+        <table id="excel-table">
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+          </tr>
+          <tr *ngFor="let item of userList">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.username}}</td>
+            <td>{{item.email}}</td>
+          </tr>
+        </table>
+      </div> -->
 
     <div class="customer-information-bottomside">
         <div class="dasboard-bulk-orders-header">
@@ -174,6 +192,8 @@
         </div>
 
     </div>
+
+    
 </div>
 
 
@@ -202,9 +222,7 @@
                 
             </table>
 
-            <!--Parcel in this bulk order table-->
-            <table id="customerss">
-                <!--Table Header-->
+            <table id="customerss-parcel">
                 <tr>            
                     <th>
                         <p>Waybill Number</p>
@@ -214,18 +232,13 @@
                     </th>
                 </tr>
                 
-                <!--Table Body-->
-                <!--The parcels array from orders.component.ts sets its values to the values from the waybill.service.ts's parcel array-->
-
                 <tr *ngFor="let item of newParcelObs">
 
-                    <!--Displays the awb values from the parcels array-->
                     <td>
-                       {{item.awb}}
+                       {{item.parcelInfo.awb}}
                     </td>
-                    <!--Displays the weight values from the parcels array-->
                     <td>
-                        {{item.weight}}
+                        {{item.parcelInfo.weight}}
                     </td>
                 </tr>
                 
@@ -252,5 +265,9 @@
 
         
     </div>
+<!-- 
+    <div class="file-button">
+        <input (change)="importExcelFile($event)" type="file">
+    </div> -->
 </div>
 
