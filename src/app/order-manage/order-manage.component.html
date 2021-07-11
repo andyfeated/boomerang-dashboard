@@ -1,115 +1,58 @@
 <div class="main-waybill">
     <div class="query-table-orders">
-        <div class="query-conditions">
-            <h5>Order Management</h5>
-        </div>
+        <table id="customerss-parcel">
+            <tr>
+                <th>Order ID</th>
+                <th>Waybill Number</th>
+                <th>Date Ordered</th>
+                <th>Shop Location</th>
+                <th>Buyer's Name</th>
+                <th>Buyer's Phone</th>
+                <th>Region</th>
+                <th>Province</th>
+                <th>Municipality</th>
+                <th>Barangay</th>
+                <th>Product Description</th>
+                <th>Parcel Type</th>
+                <th>Product Fee</th>
+                <th>Shipment Fee</th>
+                <th>COD Fee</th>
+                <th>Insurance Fee</th>
+                <th>Payment Method</th>
+                <th>Payment Status</th>
+                <th>VIP ID</th>
+                <th>Shop ID</th>
+                <th>Status</th>
+            </tr>
 
-        <div class="info-display">
-            <div class="info-columns">
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Customer Name:</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.customerName}}</label>
-                    </div>
-                </div>
+            <tr *ngFor="let item of parcelObs$">
+                <td>{{itemOrderId}}</td>
+                <td>{{item.awb}}</td>
+                <td>{{item.dateCreated}}</td>
+                <td>{{item.shopRegion}}</td>
+                <td>{{item.customerName}}</td>
+                <td>{{item.mobileNumber}}</td>
+                <td>{{item.region}}</td>
+                <td>{{item.province}}</td>
+                <td>{{item.municipality}}</td>
+                <td>{{item.barangay}}</td>
+                <td>{{item.productDescription}}</td>
+                <td>{{item.size}}</td>
+                <td>{{item.itemValue}}</td>
+                <td>{{item.shipmentFee}}</td>
+                <td>{{item.codFee}}</td>
+                <td>{{item.insuranceFee}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
 
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Mobile Number:</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.mobileNumber}}</label>
-                    </div>
-                </div>
-    
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Region:</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.region}}</label>
-                    </div>
-                </div>
-    
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Province:</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.province}}</label>
-                    </div>
-                </div>
-    
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Municipality:</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.municipality}}</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-columns">
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Barangay</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.barangay}}</label>
-                    </div>
-                </div>
-
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Address Line:</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.addressLine}}</label>
-                    </div>
-                </div>
-    
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Remarks:</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.remarks}}</label>
-                    </div>
-                </div>
-    
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Shipment Type:</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.size}}</label>
-                    </div>
-                </div>
-
-                <div class="info-container">
-                    <div class="info-label">
-                        <h5>Product Description:</h5> 
-                    </div>
-                    
-                    <div class="info-data">
-                        <label for="">{{parcel?.productDescription}}</label>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+    <div class="button-container3">
+        <button (click)="toExcelFile()">Print Table</button>
     </div>
 
     <div class="container">
@@ -126,9 +69,9 @@
                   
                 </tr>
 
-                <tr (click)="details(item)" *ngFor="let item of parcelObs | async">
+                <tr (click)="details(item)" *ngFor="let item of orderObs$ | async">
                     <td><button>Display Details</button></td>
-                    <td>{{item.ordersId}}</td> 
+                    <td>{{item.orderId}}</td> 
                     <td>{{item.itemValue}}</td>
                     <td>{{item.codFee}}</td>
                     <td>{{item.insuranceFee}}</td>

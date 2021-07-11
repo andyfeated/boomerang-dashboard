@@ -831,6 +831,20 @@ main{
     margin-top: 10px;
 }
 
+.button-container3{
+    width: 25%;
+    margin-right: 30px;
+    margin-top: 30px;
+    margin-bottom: -20px;
+}
+
+.button-container3 button{
+    width: 50%;
+    background-color: var(--main-color);
+    color: white;
+    height: 35px;
+}
+
 .button-container2{
     width: 63%;
     float: right;
@@ -1103,6 +1117,7 @@ main{
 }
 
 
+
 .express-tracking{
     background-color: white;
     height: 100%;
@@ -1240,7 +1255,8 @@ main{
 
 .query-table-orders{
     border: 1px solid #e3e3e3;
-    height: 230px;
+    height: 280px;
+    overflow-x: scroll;
 }
 
 .query-table-orders input,

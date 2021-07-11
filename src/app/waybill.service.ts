@@ -38,33 +38,32 @@ export class WaybillService {
 
   insertParcel(documentId: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string){
     let documentParcelId = this.afs.createId()
+    let year: string = new Date().getFullYear().toString()
+    let month: string = (new Date().getMonth()+1).toString()
+    let day: string = new Date().getDate().toString()
+    let date = year + "/" + month + "/" + day
 
     this.afs.collection("orders").doc(documentId).collection("parcels").doc(documentParcelId).set({
       id: documentParcelId,
-      customerInfo: {
-        customerName: customerNameInput,
-        mobileNumber: mobileNumberInput,
-      },
-      address:{
-        region: regionInput,
-        province: provinceInput,
-        municipality: municipalityInput,
-        shopRegion: shopRegionInput,
-        barangay: barangayInput,
-        addressLine: addressLineInput,
-      },
-      
-      parcelInfo:{
-        awb: awbInput,
-        productDescription: productDescriptionInput,
-        itemValue: itemValueInput,
-        weight: volumetricWeight,
-        codFee: codFeeInput,
-        insuranceFee: insuranceFeeInput,
-        shipmentFee: shipmentFee,
-        remarks: remarksInput,
-        size: sizeInput,
-      },
+      customerName: customerNameInput,
+      awb: awbInput,
+      mobileNumber: mobileNumberInput,
+      region: regionInput,
+      shopRegion: shopRegionInput,
+      province: provinceInput,
+      municipality: municipalityInput,
+      addressLine: addressLineInput,
+      barangay: barangayInput,
+      productDescription: productDescriptionInput,
+      itemValue: itemValueInput,
+      codFee: codFeeInput,
+      weight: volumetricWeight,
+      insuranceFee: insuranceFeeInput,
+      shipmentFee: shipmentFee,
+      remarks: remarksInput,
+      size: sizeInput,
+      ordersId: this.orderIDService,
+      dateCreated: date
     }).then(() => {
       alert("Parcel added to Orders")
     })
@@ -185,4 +184,5 @@ export interface Parcel{
   shipmentFee: string
   size: string,
   weight: number,
+  orderId: number
 }

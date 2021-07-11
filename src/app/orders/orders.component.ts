@@ -72,20 +72,20 @@ export class OrdersComponent implements OnInit {
   selectedRegion!: string
   selectedProvince!: string
 
-  // userList = [
-  //   {
-  //     id: 1,
-  //     name: "Axel Blaise",
-  //     username: "Blaze",
-  //     email: "axelblaize@gmail.com"
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Mitch Banua",
-  //     username: "mitchayyy",
-  //     email: "michilezam@gmail.com"
-  //   }
-  // ]
+  userList = [
+    {
+      id: 1,
+      name: "Axel Blaise",
+      username: "Blaze",
+      email: "axelblaize@gmail.com"
+    },
+    {
+      id: 2,
+      name: "Mitch Banua",
+      username: "mitchayyy",
+      email: "michilezam@gmail.com"
+    }
+  ]
   
   fileName = "dashboard-data.xlsx"
 
@@ -265,6 +265,8 @@ export class OrdersComponent implements OnInit {
       this.itemValueNumber = overallSales
       this.codFeeNumber = overallCodFee
       this.insuranceFeeNumber = overallInsuranceFee
+
+      
     })
 
     
@@ -289,13 +291,6 @@ export class OrdersComponent implements OnInit {
   }
 
   exportexcel(){
-    let element = document.getElementById('customerss-parcel')
-    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(element)
-
-    const wb: XLSX.WorkBook = XLSX.utils.book_new()
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1')
-
-    XLSX.writeFile(wb, this.fileName)
-    alert("Done")
+    
   }
 }
