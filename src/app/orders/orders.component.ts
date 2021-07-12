@@ -72,22 +72,9 @@ export class OrdersComponent implements OnInit {
   selectedRegion!: string
   selectedProvince!: string
 
-  userList = [
-    {
-      id: 1,
-      name: "Axel Blaise",
-      username: "Blaze",
-      email: "axelblaize@gmail.com"
-    },
-    {
-      id: 2,
-      name: "Mitch Banua",
-      username: "mitchayyy",
-      email: "michilezam@gmail.com"
-    }
-  ]
-  
   fileName = "dashboard-data.xlsx"
+
+  data!: [][]
 
   constructor(private waybillService: WaybillService) { 
     
@@ -290,7 +277,35 @@ export class OrdersComponent implements OnInit {
     this.waybillService.insertParcel(this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, shopRegionInput)
   }
 
-  exportexcel(){
-    
+  onFileChange(eve: any){
+    const target : DataTransfer = <DataTransfer>eve.target
+    if(target.files.length != 1){
+      throw new Error("Cannot read multiple files")
+    }
+
+    const reader: FileReader = new FileReader()
+
+    reader.onload = (e: any) => {
+      const bstr: string = e.target.result
+      const wb:XLSX.WorkBook = XLSX.read(bstr, {type: 'binary'})
+      const wsname : string = wb.SheetNames[0]
+      const ws: XLSX.WorkSheet = wb.Sheets[wsname]
+      this.data = (XLSX.utils.sheet_to_json(ws,{header: 1}))
+    }
+    reader.readAsBinaryString(target.files[0])
+
+    alert("File Uploaded")
+  }
+
+  importExcelFile(){
+    let importedNames: string[] = []
+    let excelData = this.data
+    let x = 0
+
+    for(let i = 1; i < excelData.length; i++){
+      importedNames.push(excelData[i][x])
+    }
+    this.waybillService.addImportedFile(importedNames)
+
   }
 }

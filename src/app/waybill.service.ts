@@ -163,6 +163,22 @@ export class WaybillService {
     return this.afs.collection("orders").doc(parcelId).collection("parcels").valueChanges()
   }
   
+  addImportedFile(importedNames: string[]){
+    let newId = this.afs.createId()
+
+    for(let i = 0; i < importedNames.length; i++){
+      this.afs.collection("orders").doc(newId).collection("parcels").add({
+        customerName: importedNames[i]
+      })
+    }
+
+    this.afs.collection("orders").doc(newId).set({
+      id: newId,
+      orderId: Math.floor(Math.random() * 1000000)
+    })
+
+    alert("done")
+  }
 }
 
 export interface Parcel{

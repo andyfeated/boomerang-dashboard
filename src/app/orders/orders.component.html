@@ -249,6 +249,11 @@
                 <h1>{{weightNumber}}</h1>
             </div>
         </div>
+    
+        <div class="file-button">
+            <input (change)="onFileChange($event)" type="file" multiple="false">
+            <button (click)="importExcelFile()">Import</button>
+        </div>
 
         
     </div>
