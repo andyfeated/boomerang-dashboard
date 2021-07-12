@@ -187,24 +187,22 @@
     <div class="containers">
         <div class="waybill-query-table-create">
             
-            <!--Orders ID-->
-            <!--Takes a value from Waybill Service that creates a random 8 digit number and displays it-->
             <table id="customerss">
                 <tr>
                     <th>Order ID</th>
                     <th>Insert</th>
                 </tr>
 
-                <tr *ngFor="let item of orderObs$ | async">
+                <tr *ngFor="let item of orders$ | async">
                     <td (click)="getParcels(item)">{{item.orderId}}</td>
                     <td><button (click)="insertParcel(item,customerNameInput.value,mobileNumberInput.value,regionInput.value,shopRegionInput.value,provinceInput.value,municipalityInput.value,addressLineInput.value,barangayInput.value, productDescriptionInput.value,itemValueInt.value,codFeeInput.value,weightInput.value,insuranceFeeInput.value,shipmentFeeInput.value,remarksInput.value,sizeInput.value,weightInt.value,lengthInput.value, widthInput.value, heightInput.value)">Add Parcel into this Order</button></td>
                 </tr>
                 
             </table>
 
-            <!--Parcel in this bulk order table-->
+            <div class="button-container4"><button *ngIf="displayOrdersButton" (click)="displayOrders()">Display Orders</button></div>
+
             <table id="customerss">
-                <!--Table Header-->
                 <tr>            
                     <th>
                         <p>Waybill Number</p>

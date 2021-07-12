@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { Vip, WaybillService } from './waybill.service';
 
 @Component({
   selector: 'app-root',
@@ -46,6 +49,46 @@ export class AppComponent {
   recipientAddressActivate = ""; //My Recipient Location Icon
   accountActivate = ""; //My User Accounts Icon
   manifestoActivate = ""
+
+  vips$!: Observable<Vip[]>
+  vipId!: string
+
+  shops$?: Observable<any>
+  shopId!: string
+
+  orders$!: Observable<any>
+
+  constructor(private waybill:WaybillService){
+    this.vips$ = this.waybill.vips$
+    
+  }
+
+  onChangeVip(event: any){
+    this.vipId = event.target.value
+
+    this.shops$ = this.waybill.getShops(this.vipId)
+  }
+
+  onChangeShop(event: any){
+    this.shopId = event.target.value
+    
+    this.orders$ = this.waybill.getOrders(this.shopId, this.vipId)
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   //Displays Home Component and highlights its icon
   displayHome(){

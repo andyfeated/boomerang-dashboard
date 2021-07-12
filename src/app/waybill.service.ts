@@ -21,7 +21,15 @@ export class WaybillService {
   orderIDService = Math.floor(Math.random() * 100000000)
   docRef: any
 
+  vips$!: Observable<Vip[]>
+  shops$?: Observable<any>
+  orders$?: Observable<any>
+
   constructor(private afs:AngularFirestore) {
+    this.vips$ = afs.collection<Vip>("vips").valueChanges()
+    this.shops$ = afs.collection("shops").valueChanges()
+    this.orders$ = afs.collection("orders").valueChanges()
+
     this.parcelObs = afs.collection("parcels").valueChanges()
     this.orderObs$ = afs.collection("orders").valueChanges()
   }
@@ -36,14 +44,14 @@ export class WaybillService {
     })
   }
 
-  insertParcel(documentId: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string){
+  insertParcel(vipId: string, shopId: string, documentId: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string){
     let documentParcelId = this.afs.createId()
     let year: string = new Date().getFullYear().toString()
     let month: string = (new Date().getMonth()+1).toString()
     let day: string = new Date().getDate().toString()
     let date = year + "/" + month + "/" + day
 
-    this.afs.collection("orders").doc(documentId).collection("parcels").doc(documentParcelId).set({
+    this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(documentId).collection("parcels").doc(documentParcelId).set({
       id: documentParcelId,
       customerName: customerNameInput,
       awb: awbInput,
@@ -159,10 +167,18 @@ export class WaybillService {
     this.afs.collection("parcels").doc(id).delete()
   }
 
-  getParcels(parcelId: string){
-    return this.afs.collection("orders").doc(parcelId).collection("parcels").valueChanges()
+  getParcels(vipId: string, shopId: string, parcelId: string){
+    return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(parcelId).collection("parcels").valueChanges()
+  }
+
+  getShops(vipId: string){
+    return this.afs.collection("vips").doc(vipId).collection("shops").valueChanges()
   }
   
+  getOrders(vipId: string, shopId: string){
+    return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").valueChanges()
+  }
+
   addImportedFile(importedNames: string[]){
     let newId = this.afs.createId()
 
@@ -179,6 +195,11 @@ export class WaybillService {
 
     alert("done")
   }
+}
+
+export interface Vip{
+  id: string,
+  vipName: string
 }
 
 export interface Parcel{

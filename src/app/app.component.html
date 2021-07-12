@@ -213,11 +213,14 @@
             <img src="assets/images/a.jpg" width="30">
             <div>
                 <!--User Name-->
-                <h4>Andy Banua</h4>
+                <select (change)="onChangeVip($event)">
+                    <option disabled selected>Please Choose an Account First</option>
+                    <option [value]="vip.id" *ngFor="let vip of vips$ | async">{{vip.vipName}}</option>
+                </select>
 
                 <!--Shop Name-->
-                <select>
-                    <option value="">Shop Name</option>
+                <select (change)="onChangeShop($event)">
+                    <option [value]="shop.id" *ngFor="let shop of shops$ | async">{{shop.shopName}}</option>
                 </select>
 
             </div>
@@ -228,9 +231,9 @@
     <main>
         
         <app-home *ngIf="isHome"></app-home> <!--Displays Home Component if assigned boolean is true-->
-        <app-orders *ngIf="isOrders"></app-orders> <!--Displays Orders Component(Create Waybill Page) if assigned boolean is true-->
+        <app-orders [shopId]="shopId" [vipId]="vipId" *ngIf="isOrders"></app-orders> <!--Displays Orders Component(Create Waybill Page) if assigned boolean is true-->
         <app-waybill-bulk *ngIf=isWaybillBulk></app-waybill-bulk> <!--Displays Waybill Bulk Component if assigned boolan is true-->
-        <app-order-manage *ngIf=isOrderManage></app-order-manage> <!--Displays Order Manage Component if assigned boolan is true-->
+        <app-order-manage [shopId]="shopId" [vipId]="vipId" *ngIf=isOrderManage></app-order-manage> <!--Displays Order Manage Component if assigned boolan is true-->
         <app-manifesto *ngIf="isManifesto"></app-manifesto>
         <app-finance-summary *ngIf="isFinanceSummary"></app-finance-summary> <!--Displays Finance Summary Component if assigned boolean is true-->
         <app-finance-payables *ngIf="isFinancePayables"></app-finance-payables> <!--Displays Finance Payables Component if assigned boolean is true-->

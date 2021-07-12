@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Parcel, WaybillService } from '../waybill.service';
 import * as XLSX from 'xlsx'
@@ -11,23 +11,27 @@ import * as XLSX from 'xlsx'
 export class OrderManageComponent implements OnInit {
 
   orderObs$ = this.waybillService.orderObs$
+  orders$ = this.waybillService.orders$
   parcelObs$: any
   parcel?: Parcel
 
   itemOrderId = 0
+  @Input() public vipId: any
+  @Input() public shopId: any
 
   fileName = "dashboard-table.xlsx"
 
   constructor(private waybillService: WaybillService) { }
 
   ngOnInit(): void {
+    
   }
   
 
   details(item: Parcel){
     this.parcel = item
     this.itemOrderId = this.parcel.orderId
-    this.waybillService.getParcels(this.parcel.id).subscribe(val => {
+    this.waybillService.getParcels(this.vipId, this.shopId, this.parcel.id).subscribe(val => {
       this.parcelObs$ = val
     })
 

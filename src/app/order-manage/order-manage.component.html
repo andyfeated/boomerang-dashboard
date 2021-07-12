@@ -69,7 +69,7 @@
                   
                 </tr>
 
-                <tr (click)="details(item)" *ngFor="let item of orderObs$ | async">
+                <tr (click)="details(item)" *ngFor="let item of orders$ | async">
                     <td><button>Display Details</button></td>
                     <td>{{item.orderId}}</td> 
                     <td>{{item.itemValue}}</td>

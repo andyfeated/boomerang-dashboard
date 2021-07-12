@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WaybillService } from '../waybill.service';
 import { FormsModule } from '@angular/forms';
@@ -76,8 +76,22 @@ export class OrdersComponent implements OnInit {
 
   data!: [][]
 
+  orders$!: Observable<any>
+
+  @Input() public vipId: any
+  @Input() public shopId: any
+
+  displayOrdersButton= true
+
   constructor(private waybillService: WaybillService) { 
     
+  }
+
+  displayOrders(){
+    this.orders$ = this.waybillService.getOrders(this.vipId, this.shopId)
+    if(this.vipId && this.shopId != undefined){
+      this.displayOrdersButton = false
+    }
   }
 
   ngOnInit(): void {
@@ -223,7 +237,7 @@ export class OrdersComponent implements OnInit {
 
   getParcels(item: any){
     this.parcelId = item.id
-    this.waybillService.getParcels(this.parcelId).subscribe(val => {
+    this.waybillService.getParcels(this.vipId, this.shopId, this.parcelId).subscribe(val => {
       this.newParcelObs = val
       this.parcelsNumber = this.newParcelObs.length
 
@@ -274,7 +288,7 @@ export class OrdersComponent implements OnInit {
     this.insuranceFeeValue = this.insuranceFeeIntConvert            //returns the value of insuranceFee and stores it in a local variable
     this.shipmentFeeValue = this.shipmentFee
 
-    this.waybillService.insertParcel(this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, shopRegionInput)
+    this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, shopRegionInput)
   }
 
   onFileChange(eve: any){
