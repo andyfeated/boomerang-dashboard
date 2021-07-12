@@ -232,7 +232,7 @@ export class OrdersComponent implements OnInit {
   }
 
   createNewOrder(){
-    this.waybillService.addNewOrder()
+    this.waybillService.addNewOrder(this.vipId, this.shopId)
   }
 
   getParcels(item: any){
@@ -247,19 +247,19 @@ export class OrdersComponent implements OnInit {
       let overallInsuranceFee = 0
 
       for(let i = 0; i < this.newParcelObs.length; i++){
-         overallWeight += this.newParcelObs[i].weight
+         overallWeight += this.newParcelObs[i].orderInformation.weight
       }
 
       for(let i = 0; i < this.newParcelObs.length; i++){
-        overallSales += this.newParcelObs[i].itemValue
+        overallSales += this.newParcelObs[i].orderInformation.itemValue
       }
 
       for(let i = 0; i < this.newParcelObs.length; i++){
-        overallCodFee += this.newParcelObs[i].codFee
+        overallCodFee += this.newParcelObs[i].orderInformation.codFee
       }
 
       for(let i = 0; i < this.newParcelObs.length; i++){
-        overallInsuranceFee += this.newParcelObs[i].insuranceFee
+        overallInsuranceFee += this.newParcelObs[i].orderInformation.insuranceFee
       }
 
       this.weightNumber = overallWeight.toFixed(2)

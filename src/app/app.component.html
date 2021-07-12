@@ -214,13 +214,14 @@
             <div>
                 <!--User Name-->
                 <select (change)="onChangeVip($event)">
-                    <option disabled selected>Please Choose an Account First</option>
-                    <option [value]="vip.id" *ngFor="let vip of vips$ | async">{{vip.vipName}}</option>
+                    <option disabled selected>Select an Account</option>
+                    <option [value]="vip.vipId" *ngFor="let vip of vips$ | async">{{vip.vipName}}</option>
                 </select>
 
                 <!--Shop Name-->
                 <select (change)="onChangeShop($event)">
-                    <option [value]="shop.id" *ngFor="let shop of shops$ | async">{{shop.shopName}}</option>
+                    <option selected disabled></option>
+                    <option [value]="shop.shopId" *ngFor="let shop of shops$ | async">{{shop.shopName}}</option>
                 </select>
 
             </div>

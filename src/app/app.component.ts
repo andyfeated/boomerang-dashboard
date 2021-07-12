@@ -50,7 +50,7 @@ export class AppComponent {
   accountActivate = ""; //My User Accounts Icon
   manifestoActivate = ""
 
-  vips$!: Observable<Vip[]>
+  vips$!: Observable<any>
   vipId!: string
 
   shops$?: Observable<any>

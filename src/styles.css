@@ -887,7 +887,7 @@ main{
 .customer-card-table{
     background-color: var(--main-color);
     display: inline-block;
-    width: 45%;
+    width: 40%;
     padding: 10px;
     margin-left: 15px;
     margin-top: 15px;

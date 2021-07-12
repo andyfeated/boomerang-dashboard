@@ -219,11 +219,11 @@
 
                     <!--Displays the awb values from the parcels array-->
                     <td>
-                       {{item.awb}}
+                       {{item.orderInformation.awb}}
                     </td>
                     <!--Displays the weight values from the parcels array-->
                     <td>
-                        {{item.weight}}
+                        {{item.orderInformation.weight}}
                     </td>
                 </tr>
                 
@@ -243,12 +243,12 @@
     
             <!--Total Weight Card-->
             <div class="customer-card-table">
-                <h5>Total Weight (KG)</h5>
+                <h5>Total Kilograms</h5>
                 <h1>{{weightNumber}}</h1>
             </div>
         </div>
     
-        <div class="file-button">
+        <div hidden class="file-button">
             <input (change)="onFileChange($event)" type="file" multiple="false">
             <button (click)="importExcelFile()">Import</button>
         </div>

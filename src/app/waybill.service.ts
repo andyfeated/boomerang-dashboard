@@ -34,9 +34,9 @@ export class WaybillService {
     this.orderObs$ = afs.collection("orders").valueChanges()
   }
 
-  addNewOrder(){
+  addNewOrder(vipId: string, shopId: string){
     let orderId = this.afs.createId()
-    this.afs.collection("orders").doc(orderId).set({
+    this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).set({
       orderId: Math.floor(Math.random() * 1000000),
       id: orderId
     }).then(() => {
@@ -53,25 +53,32 @@ export class WaybillService {
 
     this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(documentId).collection("parcels").doc(documentParcelId).set({
       id: documentParcelId,
-      customerName: customerNameInput,
-      awb: awbInput,
-      mobileNumber: mobileNumberInput,
-      region: regionInput,
-      shopRegion: shopRegionInput,
-      province: provinceInput,
-      municipality: municipalityInput,
-      addressLine: addressLineInput,
-      barangay: barangayInput,
-      productDescription: productDescriptionInput,
-      itemValue: itemValueInput,
-      codFee: codFeeInput,
-      weight: volumetricWeight,
-      insuranceFee: insuranceFeeInput,
-      shipmentFee: shipmentFee,
-      remarks: remarksInput,
-      size: sizeInput,
-      ordersId: this.orderIDService,
-      dateCreated: date
+      customerInformation: {
+        customerName: customerNameInput,
+        mobileNumber: mobileNumberInput,
+      },
+
+      customerAddress: {
+        region: regionInput,
+        province: provinceInput,
+        municipality: municipalityInput,
+        addressLine: addressLineInput,
+        barangay: barangayInput,
+      },
+
+      orderInformation: {
+        awb: awbInput,
+        dateCreated: date,
+        productDescription: productDescriptionInput,
+        itemValue: itemValueInput,
+        codFee: codFeeInput,
+        weight: volumetricWeight,
+        insuranceFee: insuranceFeeInput,
+        shipmentFee: shipmentFee,
+        remarks: remarksInput,
+        shipmentType: sizeInput,
+      },
+       shopRegion: shopRegionInput,
     }).then(() => {
       alert("Parcel added to Orders")
     })
