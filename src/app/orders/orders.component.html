@@ -20,6 +20,7 @@
             <div class="form-field">
                 <label for="">Region</label>
                 <select #regionInput (change)="onChange($event)">
+                    <option selected disabled>Please Select a Region</option>
                     <option *ngFor="let regionNew of regionsNew | keyvalue">{{regionNew.value}}</option>
                 </select>
             </div>
@@ -32,6 +33,7 @@
             <div class="form-field">
                 <label for="">Province</label>
                 <select #provinceInput (change)="onChangeProvince($event)">
+                    <option selected disabled>Please Select a Province</option>
                     <option *ngFor="let provinceNew of provincesNew.get(selectedRegion)" [value]="provinceNew">{{provinceNew}}</option>
                 </select>
             </div>
@@ -45,6 +47,7 @@
             <div class="form-field">
                 <label for="">Municipality</label>
                 <select #municipalityInput>
+                    <option selected disabled>Please Select a Municipality</option>
                     <option *ngFor="let municipalityNew of municipalitiesNew.get(selectedProvince)" >{{municipalityNew}}</option>
                 </select>
             </div>
@@ -54,7 +57,7 @@
     </div>
 
 
-    <div class="customer-information-bottomside">
+    <div hidden class="customer-information-bottomside">
         <div class="dasboard-bulk-orders-header">
             <h4><i class="las la-user-plus"></i> Shop Addrress</h4>
         </div>

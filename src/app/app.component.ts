@@ -51,26 +51,36 @@ export class AppComponent {
   manifestoActivate = ""
 
   vips$!: Observable<any>
+  vip?: any
   vipId!: string
 
   shops$?: Observable<any>
+  shop?: any
   shopId!: string
 
+  shopRegion?: string
+
   orders$!: Observable<any>
+
+  selectedValue: any
+  selectedShop: any
 
   constructor(private waybill:WaybillService){
     this.vips$ = this.waybill.vips$
     
   }
 
-  onChangeVip(event: any){
-    this.vipId = event.target.value
+  onChangeVip(){
+    this.vip = this.selectedValue
+    this.vipId = this.vip.vipId
 
     this.shops$ = this.waybill.getShops(this.vipId)
   }
 
-  onChangeShop(event: any){
-    this.shopId = event.target.value
+  onChangeShop(){
+    this.shop = this.selectedShop
+    this.shopId = this.shop.shopId
+    this.shopRegion = this.shop.shopAddress.shopRegion
     
     this.orders$ = this.waybill.getOrders(this.shopId, this.vipId)
   }
@@ -234,4 +244,16 @@ export class AppComponent {
     this.recipientAddressActivate = "";
     this.manifestoActivate = "";
   }
+}
+
+export interface Shop{
+  shopAddress: {
+    shopMunicipality:string,
+    shopProvince :string
+    shopRegion: string
+ },
+  shopContactNumber : string
+  shopId:string
+  shopName :string
+
 }

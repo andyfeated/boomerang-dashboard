@@ -80,18 +80,12 @@ export class OrdersComponent implements OnInit {
 
   @Input() public vipId: any
   @Input() public shopId: any
+  @Input() public shopRegion: any
 
   displayOrdersButton= true
 
   constructor(private waybillService: WaybillService) { 
     
-  }
-
-  displayOrders(){
-    this.orders$ = this.waybillService.getOrders(this.vipId, this.shopId)
-    if(this.vipId && this.shopId != undefined){
-      this.displayOrdersButton = false
-    }
   }
 
   ngOnInit(): void {
@@ -126,13 +120,13 @@ export class OrdersComponent implements OnInit {
       this.island = "NCR"
     }
 
-    if(this.regionLuzon.includes(shopRegionInput)){
+    if(this.regionLuzon.includes(this.shopRegion)){
       this.shopIsland = "Luzon"
-    }else if(this.regionVisayas.includes(shopRegionInput)){
+    }else if(this.regionVisayas.includes(this.shopRegion)){
       this.shopIsland = "Visayas"
-    }else if(this.regionMindanao.includes(shopRegionInput)){
+    }else if(this.regionMindanao.includes(this.shopRegion)){
       this.shopIsland = "Mindanao"
-    }else if(this.regionNCR.includes(shopRegionInput)){
+    }else if(this.regionNCR.includes(this.shopRegion)){
       this.shopIsland = "NCR"
     }
 
@@ -232,7 +226,22 @@ export class OrdersComponent implements OnInit {
   }
 
   createNewOrder(){
-    this.waybillService.addNewOrder(this.vipId, this.shopId)
+    if(this.vipId && this.shopId != undefined){
+      this.waybillService.addNewOrder(this.vipId, this.shopId)
+    }else{
+      alert("Please choose a User and a Shop first")
+    }
+
+  }
+
+  displayOrders(){
+    this.orders$ = this.waybillService.getOrders(this.vipId, this.shopId)
+    if(this.vipId && this.shopId != undefined){
+      this.displayOrdersButton = false
+    }else{
+      alert("Please choose a User and a Shop first")
+    }
+    
   }
 
   getParcels(item: any){
@@ -282,13 +291,13 @@ export class OrdersComponent implements OnInit {
     this.codFeeIntConvert = this.itemValueConvert * 0.02            //Takes the value of itemValue, multiplies it by 0.02, and stores it in a local variable
     this.insuranceFeeIntConvert = this.itemValueConvert * 0.01      //Takes the value of itemValue, multiplies it by 0.01, and stores it in a local variable
 
-    this.setShipmentFeeAndVolumetricWeight(regionInput, shopRegionInput, sizeInput, lengthInput, widthInput, heightInput)
+    this.setShipmentFeeAndVolumetricWeight(regionInput, this.shopRegion, sizeInput, lengthInput, widthInput, heightInput)
 
     this.codFeeValue = this.codFeeIntConvert                        //returns the value of codFee and stores it in a local variable
     this.insuranceFeeValue = this.insuranceFeeIntConvert            //returns the value of insuranceFee and stores it in a local variable
     this.shipmentFeeValue = this.shipmentFee
 
-    this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, shopRegionInput)
+    this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, this.shopRegion)
   }
 
   onFileChange(eve: any){

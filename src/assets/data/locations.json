@@ -1,8 +1,8 @@
 [
     ["NCR"],
     ["CAR","Ilocos Region","Cagayan Valley", "Central Luzon", "CALABARZON", "MIMAROPA", "Bicol Region"],
-    ["Eastern Visayas", "Central Visayas"],
-    ["SOCSARGEN", "Davao Region"],
+    ["Western Visayas","Eastern Visayas", "Central Visayas"],
+    ["Zamboanga Peninsula", "Northern Mindanao", "SOCCSKARGEN", "Davao Region", "Caraga Region", "BARMM"],
 
 
     [

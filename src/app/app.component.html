@@ -210,18 +210,18 @@
 
         <!--User Information-->
         <div class="user-wrapper">
-            <img src="assets/images/a.jpg" width="30">
+            <img src="assets/images/default.png" width="30">
             <div>
                 <!--User Name-->
-                <select (change)="onChangeVip($event)">
+                <select [(ngModel)]="selectedValue" (change)="onChangeVip()">
                     <option disabled selected>Select an Account</option>
-                    <option [value]="vip.vipId" *ngFor="let vip of vips$ | async">{{vip.vipName}}</option>
+                    <option [ngValue]="vip" *ngFor="let vip of vips$ | async">{{vip.vipName}}</option>
                 </select>
 
                 <!--Shop Name-->
-                <select (change)="onChangeShop($event)">
+                <select [(ngModel)]="selectedShop" (change)="onChangeShop()">
                     <option selected disabled></option>
-                    <option [value]="shop.shopId" *ngFor="let shop of shops$ | async">{{shop.shopName}}</option>
+                    <option [ngValue]="shop" *ngFor="let shop of shops$ | async">{{shop.shopName}}</option>
                 </select>
 
             </div>
@@ -232,7 +232,7 @@
     <main>
         
         <app-home *ngIf="isHome"></app-home> <!--Displays Home Component if assigned boolean is true-->
-        <app-orders [shopId]="shopId" [vipId]="vipId" *ngIf="isOrders"></app-orders> <!--Displays Orders Component(Create Waybill Page) if assigned boolean is true-->
+        <app-orders [shopRegion]="shopRegion" [shopId]="shopId" [vipId]="vipId" *ngIf="isOrders"></app-orders> <!--Displays Orders Component(Create Waybill Page) if assigned boolean is true-->
         <app-waybill-bulk *ngIf=isWaybillBulk></app-waybill-bulk> <!--Displays Waybill Bulk Component if assigned boolan is true-->
         <app-order-manage [shopId]="shopId" [vipId]="vipId" *ngIf=isOrderManage></app-order-manage> <!--Displays Order Manage Component if assigned boolan is true-->
         <app-manifesto *ngIf="isManifesto"></app-manifesto>

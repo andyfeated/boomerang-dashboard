@@ -28,6 +28,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
 import { ManifestoComponent } from './manifesto/manifesto.component';
+
  
 @NgModule({
   declarations: [
