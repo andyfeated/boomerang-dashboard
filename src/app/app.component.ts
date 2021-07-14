@@ -31,8 +31,8 @@ export class AppComponent {
   //String that is assigned to Icon's Class
   //If String's value is equal to "active", the icon's style will be highlighted
 
-  homeActivate = "active"; //Home Icon
-  ordersActivate = ""; //Orders Icon
+  homeActivate = ""; //Home Icon
+  ordersActivate = "active"; //Orders Icon
   createWaybillActivate = "";//Create Waybill Icon
   waybillBulkActivate = ""; //Create Waybills in Bulk Icon
   orderManageActivate = ""; //Order Management 
@@ -84,21 +84,6 @@ export class AppComponent {
     
     this.orders$ = this.waybill.getOrders(this.shopId, this.vipId)
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   //Displays Home Component and highlights its icon
   displayHome(){

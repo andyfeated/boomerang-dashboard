@@ -845,11 +845,16 @@ main{
     height: 35px;
 }
 
+button{
+    padding: 5px
+}
+
 .button-container2{
     width: 63%;
     float: right;
     margin-right: 30px;
     margin-top: 10px;
+    margin-bottom: 15px;
     padding: 5px;
 }
 
@@ -1825,3 +1830,4 @@ main{
 .file-button input{
     width: 100%;
 }
+

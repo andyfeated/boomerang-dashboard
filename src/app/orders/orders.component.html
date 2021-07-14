@@ -56,23 +56,6 @@
         </div>
     </div>
 
-
-    <div hidden class="customer-information-bottomside">
-        <div class="dasboard-bulk-orders-header">
-            <h4><i class="las la-user-plus"></i> Shop Addrress</h4>
-        </div>
-        
-        <div class="customer-information-label">
-            <label>Region</label>
-        </div>
-
-        <div class="customer-information-input">
-            <select #shopRegionInput>
-                <option *ngFor="let item of shopRegions">{{item}}</option>
-            </select>
-        </div>
-    </div>
-
     <div class="customer-information-bottom">
         <div class="dasboard-bulk-orders-header">
             <h4><i class="las la-inbox"></i> Order Information</h4>
@@ -189,8 +172,9 @@
 
     <div class="containers">
         <div class="waybill-query-table-create">
-            
+
             <table id="customerss">
+                
                 <tr>
                     <th>Order ID</th>
                     <th>Insert</th>
@@ -198,12 +182,15 @@
 
                 <tr *ngFor="let item of orders$ | async">
                     <td (click)="getParcels(item)">{{item.orderId}}</td>
-                    <td><button (click)="insertParcel(item,customerNameInput.value,mobileNumberInput.value,regionInput.value,shopRegionInput.value,provinceInput.value,municipalityInput.value,addressLineInput.value,barangayInput.value, productDescriptionInput.value,itemValueInt.value,codFeeInput.value,weightInput.value,insuranceFeeInput.value,shipmentFeeInput.value,remarksInput.value,sizeInput.value,weightInt.value,lengthInput.value, widthInput.value, heightInput.value)">Add Parcel into this Order</button></td>
+                    <td><button (click)="insertParcel(item,customerNameInput.value,mobileNumberInput.value,regionInput.value,provinceInput.value,municipalityInput.value,addressLineInput.value,barangayInput.value, productDescriptionInput.value,itemValueInt.value,codFeeInput.value,weightInput.value,insuranceFeeInput.value,shipmentFeeInput.value,remarksInput.value,sizeInput.value,weightInt.value,lengthInput.value, widthInput.value, heightInput.value)">Add Parcel into this Order</button></td>
                 </tr>
+
                 
             </table>
 
-            <div class="button-container4"><button *ngIf="displayOrdersButton" (click)="displayOrders()">Display Orders</button></div>
+            <div class="button-container2">
+                <button (click)="createNewOrder()">Create New Order</button>
+            </div>
 
             <table id="customerss">
                 <tr>            
@@ -232,9 +219,7 @@
                 
             </table>
             
-            <div class="button-container2">
-                <button (click)="createNewOrder()">Create New Order</button>
-            </div>
+            
         </div>
 
         <div class="card-table-margin">
@@ -249,11 +234,6 @@
                 <h5>Total Kilograms</h5>
                 <h1>{{weightNumber}}</h1>
             </div>
-        </div>
-    
-        <div hidden class="file-button">
-            <input (change)="onFileChange($event)" type="file" multiple="false">
-            <button (click)="importExcelFile()">Import</button>
         </div>
 
         

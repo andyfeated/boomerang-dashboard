@@ -16,7 +16,7 @@
         <ul>
             
             <!-- Home Icon, displays home component on main page -->
-            <li>
+            <li hidden>
                 <a href="#" (click)="displayHome()" [class]="homeActivate">
                     <span class="las la-home"></span>
                     <span> Home</span>
@@ -63,7 +63,7 @@
             </li>
 
             <!-- Finance Icon, displays finance summary component(Finance Summary Page) in main page -->
-            <li>
+            <li hidden>
                 <a href="#" [class]="financeActivate" (click)="displayFinanceSummary()">
                     <span class="las la-coins"> </span>
                     <span> Finance</span>
@@ -110,7 +110,7 @@
             </li>
 
             <!--Service Icon, displays service component(Express Tracking Page) in main page -->
-            <li>
+            <li hidden>
                 <a href="#" (click)="displayService()" [class]="serviceActivate">
                     <span class="las la-handshake"></span>
                     <span>Service</span>
@@ -141,7 +141,7 @@
             </li>
 
             <!--Account Management Icon, displays user component(My Pickup Location Page) in main page-->
-            <li>
+            <li hidden>
                 <a href="#" (click)="displayUser()" [class]="userActivate">
                     <span class="las la-user-cog"></span>
                     <span>Account Management</span>
@@ -179,7 +179,7 @@
             </li>
 
             
-            <li>
+            <li hidden>
                 <a (click)="displayManifesto()" [class]="manifestoActivate" href="#">
                     <span  class="las la-book"></span>
                     <span> Manifesto</span>
@@ -223,7 +223,6 @@
                     <option selected disabled></option>
                     <option [ngValue]="shop" *ngFor="let shop of shops$ | async">{{shop.shopName}}</option>
                 </select>
-
             </div>
         </div>
     </header>

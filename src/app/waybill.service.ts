@@ -84,80 +84,6 @@ export class WaybillService {
     })
   }
 
-  addToFirestore(customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string){
-    let documentId = this.afs.createId()
-    this.afs.collection("parcels").doc(documentId).set({
-      id: documentId,
-      customerName: customerNameInput,
-      awb: awbInput,
-      mobileNumber: mobileNumberInput,
-      region: regionInput,
-      shopRegion: shopRegionInput,
-      province: provinceInput,
-      municipality: municipalityInput,
-      addressLine: addressLineInput,
-      barangay: barangayInput,
-      productDescription: productDescriptionInput,
-      itemValue: itemValueInput,
-      codFee: codFeeInput,
-      weight: volumetricWeight,
-      insuranceFee: insuranceFeeInput,
-      shipmentFee: shipmentFee,
-      remarks: remarksInput,
-      size: sizeInput,
-      ordersId: this.orderIDService
-    }).then(() => {
-      alert("added to database")
-    })
-  }
-
-  getTotalWeight(): Observable<string> {
-    return this.afs.collection<Parcel>("parcels").valueChanges().pipe(
-      map(parcel => {
-       let totalWeight = 0;
-       for (let i = 0; i < parcel.length; i++) {
-          totalWeight += parcel[i].weight
-       }
-       return totalWeight.toFixed(2);       
-    }))
-  }
-
-  getTotalItemValue(): Observable<number> {
-    return this.afs.collection<Parcel>("parcels").valueChanges().pipe(
-      map(parcel => {
-        let totalValue = 0
-        for (let i = 0; i < parcel.length; i++){
-          totalValue += parcel[i].itemValue
-        }
-        return totalValue;
-      })
-    )
-  }
-
-  getTotalCodFee(): Observable<number> {
-    return this.afs.collection<Parcel>("parcels").valueChanges().pipe(
-      map(parcel => {
-        let totalCodFee = 0
-        for( let i = 0; i < parcel.length; i++){
-          totalCodFee += parcel[i].codFee
-        }
-        return totalCodFee
-      })
-    )
-  }
-  
-  getTotalInsuranceFee(): Observable<number> {
-    return this.afs.collection<Parcel>("parcels").valueChanges().pipe(
-      map(parcel => {
-        let totalInsuranceFee = 0
-        for(let i = 0; i < parcel.length; i++){
-          totalInsuranceFee += parcel[i].insuranceFee
-        }
-        return totalInsuranceFee
-      })
-    )
-  }
-
   getTotalParcels(): Observable<number> {
     return this.afs.collection<Parcel>("parcels").valueChanges().pipe(
       map(parcel => {
@@ -168,10 +94,6 @@ export class WaybillService {
         return totalSales
       })
     )
-  }
-
-  delete(id: string){
-    this.afs.collection("parcels").doc(id).delete()
   }
 
   getParcels(vipId: string, shopId: string, parcelId: string){

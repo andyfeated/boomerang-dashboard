@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WaybillService } from '../waybill.service';
 import { FormsModule } from '@angular/forms';
@@ -9,14 +9,12 @@ import waybillLocations from 'src/assets/data/waybill-locations.json'
 import waybillNumbers from 'src/assets/data/waybill-numbers.json'
 import waybills from 'src/assets/data/waybills.json'
 
-import * as XLSX from 'xlsx'
-
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnChanges {
 
   choice = ""
 
@@ -41,7 +39,7 @@ export class OrdersComponent implements OnInit {
   //OBSERVABLE
   parcelObs = this.waybillService.parcelObs
   newParcelObs: any
-  orderObs$ = this.waybillService.orderObs$
+
 
   //Template Values
   weightNumber = "0"
@@ -57,7 +55,6 @@ export class OrdersComponent implements OnInit {
   weightIntConvert = 0                                              //Stores the weight's value as an integer
   codFeeIntConvert = 0                                              //Stores the codFee's value as an integer
   insuranceFeeIntConvert = 0                                        //Stores the insuranceFee's value as an integer
-  ordersID = this.waybillService.orderIDService                    //returns a random 8 digit number from waybill.service.ts
 
   codFeeValue = 0                                                   
   insuranceFeeValue = 0   
@@ -72,20 +69,13 @@ export class OrdersComponent implements OnInit {
   selectedRegion!: string
   selectedProvince!: string
 
-  fileName = "dashboard-data.xlsx"
-
-  data!: [][]
-
   orders$!: Observable<any>
 
   @Input() public vipId: any
   @Input() public shopId: any
   @Input() public shopRegion: any
 
-  displayOrdersButton= true
-
   constructor(private waybillService: WaybillService) { 
-    
   }
 
   ngOnInit(): void {
@@ -105,8 +95,20 @@ export class OrdersComponent implements OnInit {
     }
 
     this.shopRegions.sort()
+
   }
 
+  ngOnChanges(changes: SimpleChanges){
+    const shopIdValue = changes['shopId']
+
+    if(changes['shopId'] != undefined){
+      if(shopIdValue.currentValue != shopIdValue.previousValue){
+        this.displayOrders()
+      }
+    }
+
+    
+  }
 
   setShipmentFeeAndVolumetricWeight(regionInput: string, shopRegionInput: string, sizeInput: string, lengthInput: string, widthInput: string, heightInput:string){
     //Sets the region depending on the region
@@ -237,7 +239,7 @@ export class OrdersComponent implements OnInit {
   displayOrders(){
     this.orders$ = this.waybillService.getOrders(this.vipId, this.shopId)
     if(this.vipId && this.shopId != undefined){
-      this.displayOrdersButton = false
+
     }else{
       alert("Please choose a User and a Shop first")
     }
@@ -282,7 +284,7 @@ export class OrdersComponent implements OnInit {
     
   }
 
-  insertParcel(item: any, customerNameInput: string, mobileNumberInput: string, regionInput: string, shopRegionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
+  insertParcel(item: any, customerNameInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
     this.documentId = item.id
     this.generateWaybill(municipalityInput)
 
@@ -300,35 +302,4 @@ export class OrdersComponent implements OnInit {
     this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, this.shopRegion)
   }
 
-  onFileChange(eve: any){
-    const target : DataTransfer = <DataTransfer>eve.target
-    if(target.files.length != 1){
-      throw new Error("Cannot read multiple files")
-    }
-
-    const reader: FileReader = new FileReader()
-
-    reader.onload = (e: any) => {
-      const bstr: string = e.target.result
-      const wb:XLSX.WorkBook = XLSX.read(bstr, {type: 'binary'})
-      const wsname : string = wb.SheetNames[0]
-      const ws: XLSX.WorkSheet = wb.Sheets[wsname]
-      this.data = (XLSX.utils.sheet_to_json(ws,{header: 1}))
-    }
-    reader.readAsBinaryString(target.files[0])
-
-    alert("File Uploaded")
-  }
-
-  importExcelFile(){
-    let importedNames: string[] = []
-    let excelData = this.data
-    let x = 0
-
-    for(let i = 1; i < excelData.length; i++){
-      importedNames.push(excelData[i][x])
-    }
-    this.waybillService.addImportedFile(importedNames)
-
-  }
 }
