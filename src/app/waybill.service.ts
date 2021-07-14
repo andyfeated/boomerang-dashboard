@@ -1,5 +1,6 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -25,7 +26,9 @@ export class WaybillService {
   shops$?: Observable<any>
   orders$?: Observable<any>
 
-  constructor(private afs:AngularFirestore) {
+  userCredentialsService: any
+
+  constructor(private afs:AngularFirestore, private auth: AngularFireAuth) {
     this.vips$ = afs.collection<Vip>("vips").valueChanges()
     this.shops$ = afs.collection("shops").valueChanges()
     this.orders$ = afs.collection("orders").valueChanges()
@@ -34,11 +37,24 @@ export class WaybillService {
     this.orderObs$ = afs.collection("orders").valueChanges()
   }
 
+  async registerAuth(email: string, password: string){
+    await this.auth.createUserWithEmailAndPassword(email, password).then(userCredentials => {
+      this.userCredentialsService = userCredentials
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  addToVip(email: string, uid: string){
+    
+  }
+
   addNewOrder(vipId: string, shopId: string){
     let orderId = this.afs.createId()
     this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).set({
       orderId: Math.floor(Math.random() * 1000000),
-      id: orderId
+      id: orderId,
+      status: "New Parcel"
     }).then(() => {
       alert("New Order Generated")
     })

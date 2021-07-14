@@ -10,6 +10,8 @@ import { Vip, WaybillService } from './waybill.service';
 })
 export class AppComponent {
 
+  loggedIn = false
+
   //Boolean that is assigned to every component
   //If Boolean's value is true, it will be shown in main page
 
@@ -33,7 +35,7 @@ export class AppComponent {
 
   homeActivate = ""; //Home Icon
   ordersActivate = "active"; //Orders Icon
-  createWaybillActivate = "";//Create Waybill Icon
+  createWaybillActivate = "active";//Create Waybill Icon
   waybillBulkActivate = ""; //Create Waybills in Bulk Icon
   orderManageActivate = ""; //Order Management 
   financeActivate = "" //Finance Icon
@@ -65,9 +67,22 @@ export class AppComponent {
   selectedValue: any
   selectedShop: any
 
+  pageTitle = "Orders"
+
+  userCredentials: any
+  userUid!: string
+  
+
   constructor(private waybill:WaybillService){
     this.vips$ = this.waybill.vips$
     
+  }
+
+  async register(email: string, password: string){
+    await this.waybill.registerAuth(email, password)
+    alert("Account Successfully Created")
+    this.userCredentials = this.waybill.userCredentialsService
+    this.userUid = this.userCredentials.user.uid
   }
 
   onChangeVip(){
@@ -97,6 +112,7 @@ export class AppComponent {
     this.checkComponent();
     this.ordersActivate = "active";
     this.isOrders = true;
+    this.pageTitle = "Orders"
     this.createWaybillActivate = "active";
   }
   

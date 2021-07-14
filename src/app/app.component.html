@@ -1,4 +1,19 @@
-<input type="checkbox" [checked]="true" id="nav-toggle"> <!-- If Checked, Opens the Side Bar -->
+<div *ngIf="false">
+    <label for="">Email:</label>
+    <input #emailRegister type="text">
+
+    <br>
+
+    <label for="">Password:</label>
+    <input #passwordRegister type="text">
+
+    <br>
+
+    <button (click)="register(emailRegister.value, passwordRegister.value)">Register</button>
+</div>
+
+<div>
+    <input type="checkbox" [checked]="true" id="nav-toggle"> <!-- If Checked, Opens the Side Bar -->
 
 <!-- Main Sidebar -->
 <div class="sidebar">
@@ -199,18 +214,18 @@
                 <span class="las la-bars"></span>
             </label>
 
-            Dashboard
+            {{pageTitle}}
         </h2>
 
         <!--Search Button-->
-        <div class="search-wrapper">
+        <div hidden><div  class="search-wrapper">
             <span class="las la-search"></span>
-            <input type="search" placeholder="Search Here">
-        </div>
+            <input  type="search" placeholder="Search Here">
+        </div></div>
 
         <!--User Information-->
         <div class="user-wrapper">
-            <img src="assets/images/default.png" width="30">
+            <img src="assets/images/default.jpg" width="30">
             <div>
                 <!--User Name-->
                 <select [(ngModel)]="selectedValue" (change)="onChangeVip()">
@@ -250,3 +265,4 @@
     </main>
 </div>
 <router-outlet></router-outlet>
+</div>

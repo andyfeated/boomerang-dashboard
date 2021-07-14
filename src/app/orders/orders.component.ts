@@ -75,6 +75,8 @@ export class OrdersComponent implements OnInit, OnChanges {
   @Input() public shopId: any
   @Input() public shopRegion: any
 
+  selectedOrder: any
+
   constructor(private waybillService: WaybillService) { 
   }
 
@@ -247,7 +249,9 @@ export class OrdersComponent implements OnInit, OnChanges {
   }
 
   getParcels(item: any){
-    this.parcelId = item.id
+    this.selectedOrder = item
+    this.parcelId = this.selectedOrder.id
+
     this.waybillService.getParcels(this.vipId, this.shopId, this.parcelId).subscribe(val => {
       this.newParcelObs = val
       this.parcelsNumber = this.newParcelObs.length
@@ -279,13 +283,12 @@ export class OrdersComponent implements OnInit, OnChanges {
       this.insuranceFeeNumber = overallInsuranceFee
 
       
-    })
-
-    
+    }) 
   }
 
-  insertParcel(item: any, customerNameInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
-    this.documentId = item.id
+  insertParcel(customerNameInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
+    
+    this.documentId = this.selectedOrder.id
     this.generateWaybill(municipalityInput)
 
     this.itemValueConvert = parseInt(itemValueInt)                  //Converts the "Item Value's" value to an integer and stores it in a local variable
