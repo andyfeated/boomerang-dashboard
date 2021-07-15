@@ -1,207 +1,224 @@
-<div *ngIf="false">
-    <label for="">Email:</label>
-    <input #emailRegister type="text">
+<div *ngIf="!loggedIn">
+    
+    <div class="login">
+        <label for="">Email:</label>
+        <input #emailLogin type="text">
 
-    <br>
+        <br>
 
-    <label for="">Password:</label>
-    <input #passwordRegister type="text">
+        <label for="">Password:</label>
+        <input #passwordLogin type="password">
 
-    <br>
+        <br>
+        <button (click)="login(emailLogin.value, passwordLogin.value)">Login</button>
+    </div>
 
-    <button (click)="register(emailRegister.value, passwordRegister.value)">Register</button>
+
+    <div class="register">
+        <label for="">Email:</label>
+        <input #emailRegister type="text">
+
+        <br>
+
+        <label for="">Password:</label>
+        <input #passwordRegister type="password">
+
+        <br>
+
+        <button (click)="register(emailRegister.value, passwordRegister.value)">Register</button>
+    </div>
 </div>
 
-<div>
+<div *ngIf="loggedIn">
     <input type="checkbox" [checked]="true" id="nav-toggle"> <!-- If Checked, Opens the Side Bar -->
 
 <!-- Main Sidebar -->
-<div class="sidebar">
+    <div class="sidebar">
 
-    <!-- Sidebar Logo Img -->
-    <div class="sidebar-small-logo">
-        <a href="#" (click)="displayHome()"><img src="assets/images/initial-logo.png" width="60px"></a>
-    </div>
-    <div class="sidebar-brand">
-        <img src="assets/images/logo.png.PNG" width="220px">
-    </div>
+        <!-- Sidebar Logo Img -->
+        <div class="sidebar-small-logo">
+            <a href="#" (click)="displayHome()"><img src="assets/images/initial-logo.png" width="60px"></a>
+        </div>
+        <div class="sidebar-brand">
+            <img src="assets/images/logo.png.PNG" width="220px">
+        </div>
 
-    <!-- Sidebar Links -->
-    <div class="sidebar-menu">
-        <ul>
-            
-            <!-- Home Icon, displays home component on main page -->
-            <li hidden>
-                <a href="#" (click)="displayHome()" [class]="homeActivate">
-                    <span class="las la-home"></span>
-                    <span> Home</span>
-                </a>
-            </li>
-
-            <!-- Orders Icon, displays orders component(Create Waybill Page)  on main page -->
-            <li>
-                <a href="#" (click)="displayOrders()" [class]="ordersActivate">
-                    <span class="las la-box-open"> </span>
-                    <span> Orders</span>
-                </a>
-
-                <!--Orders Icon Dropdown-->
-                <div class="dropdown">
-                    <ul>
-
-                        <!-- Create Waybill Icon, displays orders component(Create Waybill Page) on main page -->
-                        <li>
-                            <a href="#" (click)="displayOrders()" [class]="createWaybillActivate">
-                                <i class="las la-file-invoice"></i>
-                                <span> Create Waybill</span>
-                            </a>
-                        </li>
-
-                        <!-- Create Waybills in Bulk Icon, displays create waybills in bulk component in main page -->
-                        <li hidden>
-                            <a href="#" [class]="waybillBulkActivate" (click)="displayWaybillBulk()">
-                                <i class="las la-file-invoice-dollar"></i>
-                                <span> Create Waybills in Bulk</span>
-                            </a>
-                        </li>
-
-                        <!-- Order Management Icon, displays order management component in main page -->
-                        <li>
-                            <a href="#" [class]="orderManageActivate" (click)="displayOrderManage()">
-                                <i class="las la-tasks"></i>
-                                <span> Order Management</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-
-            <!-- Finance Icon, displays finance summary component(Finance Summary Page) in main page -->
-            <li hidden>
-                <a href="#" [class]="financeActivate" (click)="displayFinanceSummary()">
-                    <span class="las la-coins"> </span>
-                    <span> Finance</span>
-                </a>
+        <!-- Sidebar Links -->
+        <div class="sidebar-menu">
+            <ul>
                 
-                <!-- Finance Icon Dropdown -->
-                <div class="dropdown">
-                    <ul>
-                        
-                        <!--Finance Summary Icon, displays finance summary component in main page-->
-                        <li>
-                            <a href="#" [class]="financeSummaryActivate" (click)="displayFinanceSummary()">
-                                <i class="lar la-chart-bar"></i>
-                                <span> Finance Summary</span>
-                            </a>
-                        </li>
-    
-                        <!--Account Payables Icon, displays finance payables component in main page-->
-                        <li>
-                            <a href="#" [class]="financePayablesActivate" (click)="displayFinancePayables()">
-                                <i class="las la-credit-card"></i>
-                                <span> Account Payables</span>
-                            </a>
-                        </li>
-                        
-                        <!--Account Receivables Icon, displays finance receivables component in main page-->
-                        <li>
-                            <a href="#" [class]="financeReceivablesActivate" (click)="displayFinanceReceivables()">
-                                <i class="las la-money-check"></i>
-                                <span> Account Receivables</span>
-                            </a>
-                        </li>
-                        
-                        <!--Statement of Account Icon, displays finance statement component in main page-->
-                        <li>
-                            <a href="#" [class]="financeStatementActivate" (click)="displayFinanceStatement()">
-                                <i class="las la-newspaper"></i>
-                                <span> Statement of Account</span>
-                            </a>
-                        </li>
+                <!-- Home Icon, displays home component on main page -->
+                <li hidden>
+                    <a href="#" (click)="displayHome()" [class]="homeActivate">
+                        <span class="las la-home"></span>
+                        <span> Home</span>
+                    </a>
+                </li>
 
-                    </ul>
-                </div>
-            </li>
+                <!-- Orders Icon, displays orders component(Create Waybill Page)  on main page -->
+                <li>
+                    <a href="#" (click)="displayOrders()" [class]="ordersActivate">
+                        <span class="las la-box-open"> </span>
+                        <span> Orders</span>
+                    </a>
 
-            <!--Service Icon, displays service component(Express Tracking Page) in main page -->
-            <li hidden>
-                <a href="#" (click)="displayService()" [class]="serviceActivate">
-                    <span class="las la-handshake"></span>
-                    <span>Service</span>
-                </a>
+                    <!--Orders Icon Dropdown-->
+                    <div class="dropdown">
+                        <ul>
 
-                <!--Service Icon Dropdown-->
-                <div class="dropdown">
-                    <ul>
+                            <!-- Create Waybill Icon, displays orders component(Create Waybill Page) on main page -->
+                            <li>
+                                <a href="#" (click)="displayOrders()" [class]="createWaybillActivate">
+                                    <i class="las la-file-invoice"></i>
+                                    <span> Create Waybill</span>
+                                </a>
+                            </li>
 
-                        <!--Express Tracking Icon, displays service component(Express Tracking Page) in main page-->
-                        <li>
-                            <a href="#" [class]="expressTrackingActivate" (click)="displayService()">
-                                <i class="las la-truck"></i>
-                                <span>Express Tracking</span>
-                            </a>
-                        </li>
+                            <!-- Create Waybills in Bulk Icon, displays create waybills in bulk component in main page -->
+                            <li hidden>
+                                <a href="#" [class]="waybillBulkActivate" (click)="displayWaybillBulk()">
+                                    <i class="las la-file-invoice-dollar"></i>
+                                    <span> Create Waybills in Bulk</span>
+                                </a>
+                            </li>
 
-                        <!--Ticket Management Icon, displays problematic shipment component(Ticket Management Page) in main page-->
-                        <li>
-                            <a href="#" [class]="problematicShipmentActivate" (click)="displayProblematicShipment()">
-                                <i class="las la-exclamation-circle"></i>
-                                <span>Ticket Management</span>
-                            </a>
-                        </li>
+                            <!-- Order Management Icon, displays order management component in main page -->
+                            <li>
+                                <a href="#" [class]="orderManageActivate" (click)="displayOrderManage()">
+                                    <i class="las la-tasks"></i>
+                                    <span> Order Management</span>
+                                </a>
+                            </li>
 
-                    </ul>
-                </div>
-            </li>
+                        </ul>
+                    </div>
+                </li>
 
-            <!--Account Management Icon, displays user component(My Pickup Location Page) in main page-->
-            <li hidden>
-                <a href="#" (click)="displayUser()" [class]="userActivate">
-                    <span class="las la-user-cog"></span>
-                    <span>Account Management</span>
-                </a>
+                <!-- Finance Icon, displays finance summary component(Finance Summary Page) in main page -->
+                <li hidden>
+                    <a href="#" [class]="financeActivate" (click)="displayFinanceSummary()">
+                        <span class="las la-coins"> </span>
+                        <span> Finance</span>
+                    </a>
+                    
+                    <!-- Finance Icon Dropdown -->
+                    <div class="dropdown">
+                        <ul>
+                            
+                            <!--Finance Summary Icon, displays finance summary component in main page-->
+                            <li>
+                                <a href="#" [class]="financeSummaryActivate" (click)="displayFinanceSummary()">
+                                    <i class="lar la-chart-bar"></i>
+                                    <span> Finance Summary</span>
+                                </a>
+                            </li>
+        
+                            <!--Account Payables Icon, displays finance payables component in main page-->
+                            <li>
+                                <a href="#" [class]="financePayablesActivate" (click)="displayFinancePayables()">
+                                    <i class="las la-credit-card"></i>
+                                    <span> Account Payables</span>
+                                </a>
+                            </li>
+                            
+                            <!--Account Receivables Icon, displays finance receivables component in main page-->
+                            <li>
+                                <a href="#" [class]="financeReceivablesActivate" (click)="displayFinanceReceivables()">
+                                    <i class="las la-money-check"></i>
+                                    <span> Account Receivables</span>
+                                </a>
+                            </li>
+                            
+                            <!--Statement of Account Icon, displays finance statement component in main page-->
+                            <li>
+                                <a href="#" [class]="financeStatementActivate" (click)="displayFinanceStatement()">
+                                    <i class="las la-newspaper"></i>
+                                    <span> Statement of Account</span>
+                                </a>
+                            </li>
 
-                <!--Account Management Dropdown-->
-                <div class="dropdown">
-                    <ul>
-                        <!--My Pickup Location Icon, displays user component(My Pickup Location Page) in main page-->
-                        <li>
-                            <a href="#" [class]="pickupAddressActivate" (click)="displayUser()">
-                                <i class="las la-map-marker-alt"></i>
-                                <span> My Pickup Location</span>
-                            </a>
-                        </li>
+                        </ul>
+                    </div>
+                </li>
 
-                        <!--My Recipient Address Icon, displays recipient address component in main page-->
-                        <li>
-                            <a href="#" [class]="recipientAddressActivate" (click)="displayRecipientAddress()">
-                                <i class="las la-map-marked-alt"></i>
-                                <span> My Recipient Address</span>
-                            </a>
-                        </li>
+                <!--Service Icon, displays service component(Express Tracking Page) in main page -->
+                <li hidden>
+                    <a href="#" (click)="displayService()" [class]="serviceActivate">
+                        <span class="las la-handshake"></span>
+                        <span>Service</span>
+                    </a>
 
-                        <!--My User Accounts Icon, displays account component(My User Accounts Page) in main page-->
-                        <li>
-                            <a href="#" (click)="displayAccount()" [class]="accountActivate">
-                                <i class="las la-user-lock"></i>
-                                <span> My User Accounts</span>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </li>
+                    <!--Service Icon Dropdown-->
+                    <div class="dropdown">
+                        <ul>
 
-            
-            <li hidden>
-                <a (click)="displayManifesto()" [class]="manifestoActivate" href="#">
-                    <span  class="las la-book"></span>
-                    <span> Manifesto</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+                            <!--Express Tracking Icon, displays service component(Express Tracking Page) in main page-->
+                            <li>
+                                <a href="#" [class]="expressTrackingActivate" (click)="displayService()">
+                                    <i class="las la-truck"></i>
+                                    <span>Express Tracking</span>
+                                </a>
+                            </li>
+
+                            <!--Ticket Management Icon, displays problematic shipment component(Ticket Management Page) in main page-->
+                            <li>
+                                <a href="#" [class]="problematicShipmentActivate" (click)="displayProblematicShipment()">
+                                    <i class="las la-exclamation-circle"></i>
+                                    <span>Ticket Management</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <!--Account Management Icon, displays user component(My Pickup Location Page) in main page-->
+                <li hidden>
+                    <a href="#" (click)="displayUser()" [class]="userActivate">
+                        <span class="las la-user-cog"></span>
+                        <span>Account Management</span>
+                    </a>
+
+                    <!--Account Management Dropdown-->
+                    <div class="dropdown">
+                        <ul>
+                            <!--My Pickup Location Icon, displays user component(My Pickup Location Page) in main page-->
+                            <li>
+                                <a href="#" [class]="pickupAddressActivate" (click)="displayUser()">
+                                    <i class="las la-map-marker-alt"></i>
+                                    <span> My Pickup Location</span>
+                                </a>
+                            </li>
+
+                            <!--My Recipient Address Icon, displays recipient address component in main page-->
+                            <li>
+                                <a href="#" [class]="recipientAddressActivate" (click)="displayRecipientAddress()">
+                                    <i class="las la-map-marked-alt"></i>
+                                    <span> My Recipient Address</span>
+                                </a>
+                            </li>
+
+                            <!--My User Accounts Icon, displays account component(My User Accounts Page) in main page-->
+                            <li>
+                                <a href="#" (click)="displayAccount()" [class]="accountActivate">
+                                    <i class="las la-user-lock"></i>
+                                    <span> My User Accounts</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+
+                
+                <li hidden>
+                    <a (click)="displayManifesto()" [class]="manifestoActivate" href="#">
+                        <span  class="las la-book"></span>
+                        <span> Manifesto</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 </div>
 
 <!--Nav Bar and Main Content-->
@@ -239,6 +256,9 @@
                     <option [ngValue]="shop" *ngFor="let shop of shops$ | async">{{shop.shopName}}</option>
                 </select>
             </div>
+
+            <button (click)="logout()">Logout</button>
+
         </div>
     </header>
 

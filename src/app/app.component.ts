@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Vip, WaybillService } from './waybill.service';
@@ -8,9 +9,9 @@ import { Vip, WaybillService } from './waybill.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
-  loggedIn = false
+
 
   //Boolean that is assigned to every component
   //If Boolean's value is true, it will be shown in main page
@@ -70,12 +71,28 @@ export class AppComponent {
   pageTitle = "Orders"
 
   userCredentials: any
+  user: any
   userUid!: string
-  
 
-  constructor(private waybill:WaybillService){
+  sd = new Observable()
+  loggedIn =false
+
+  constructor(private waybill:WaybillService, private auth: AngularFireAuth){
     this.vips$ = this.waybill.vips$
-    
+
+  }
+
+  ngOnInit(): void {
+    if(localStorage.getItem('rows') !== null){
+      this.loggedIn = true
+    }else{
+      this.loggedIn = false
+    }
+  }
+  
+  logout(){
+    this.waybill.logoutAuth()
+    this.loggedIn = false
   }
 
   async register(email: string, password: string){
@@ -83,6 +100,18 @@ export class AppComponent {
     alert("Account Successfully Created")
     this.userCredentials = this.waybill.userCredentialsService
     this.userUid = this.userCredentials.user.uid
+
+    await this.waybill.addToVip(this.userUid)
+    alert("Added to Database")
+  }
+
+  async login(email: string, password: string){
+    await this.waybill.loginAuth(email, password)
+    if(this.waybill.isLoggedIn){
+      this.loggedIn = true
+      this.user = this.waybill.user
+    }
+    alert("Successfully Logged In")
   }
 
   onChangeVip(){

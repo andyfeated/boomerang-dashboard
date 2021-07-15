@@ -29,6 +29,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { ManifestoComponent } from './manifesto/manifesto.component';
+import { LoginComponent } from './login/login.component';
 
  
 @NgModule({
@@ -53,6 +54,7 @@ import { ManifestoComponent } from './manifesto/manifesto.component';
     TicketOrderComponent,
     TicketCaptainComponent,
     ManifestoComponent,
+    LoginComponent,
     
   ],
   imports: [

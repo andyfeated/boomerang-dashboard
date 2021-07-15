@@ -27,6 +27,9 @@ export class WaybillService {
   orders$?: Observable<any>
 
   userCredentialsService: any
+  user: any
+
+  isLoggedIn = false
 
   constructor(private afs:AngularFirestore, private auth: AngularFireAuth) {
     this.vips$ = afs.collection<Vip>("vips").valueChanges()
@@ -35,6 +38,18 @@ export class WaybillService {
 
     this.parcelObs = afs.collection("parcels").valueChanges()
     this.orderObs$ = afs.collection("orders").valueChanges()
+
+    
+  }
+
+  getIsLoggedIn(){
+    return this.auth.onAuthStateChanged(user => {
+      if(user){
+        this.isLoggedIn = true
+      }else{
+        this.isLoggedIn = false
+      }
+    })
   }
 
   async registerAuth(email: string, password: string){
@@ -45,8 +60,37 @@ export class WaybillService {
     })
   }
 
-  addToVip(email: string, uid: string){
-    
+  async addToVip(uid: string){
+    await this.afs.collection("vip").doc(uid).set({
+      bankDetails:{
+        accountName: "",
+        accountNumber: "",
+        bankBranch: "",
+        bankName: ""
+      },
+      vipAddress:{
+        vipAddressField: "",
+        vipMunicipality: "",
+        vipProvince: "",
+        vipRegion: ""
+      },
+      vipUid: uid,
+      vipMobileNumber: "",
+      vipName: ""
+    })
+  }
+
+  async loginAuth(email: string, password: string){
+    await this.auth.signInWithEmailAndPassword(email, password)
+    .then(res => {
+      this.isLoggedIn = true
+      localStorage.setItem('rows', JSON.stringify(res.user))
+    })
+  }
+
+  logoutAuth(){
+    this.auth.signOut()
+    localStorage.removeItem('rows');
   }
 
   addNewOrder(vipId: string, shopId: string){

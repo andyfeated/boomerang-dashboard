@@ -74,6 +74,7 @@ export class OrdersComponent implements OnInit, OnChanges {
   @Input() public vipId: any
   @Input() public shopId: any
   @Input() public shopRegion: any
+  @Input() public user: any
 
   selectedOrder: any
 
@@ -81,7 +82,6 @@ export class OrdersComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
     for(let i = 0; i < waybillLocations[0].length; i++){
       this.regionsNew.set(waybillLocations[0][i].toString(), waybillLocations[0][i].toString())
     }
@@ -249,8 +249,10 @@ export class OrdersComponent implements OnInit, OnChanges {
   }
 
   getParcels(item: any){
+
     this.selectedOrder = item
     this.parcelId = this.selectedOrder.id
+
 
     this.waybillService.getParcels(this.vipId, this.shopId, this.parcelId).subscribe(val => {
       this.newParcelObs = val
@@ -287,7 +289,9 @@ export class OrdersComponent implements OnInit, OnChanges {
   }
 
   insertParcel(customerNameInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
-    
+    if(this.selectedOrder == undefined){
+      alert("Please Select an Order ID First Before Saving a Waybill")
+    }
     this.documentId = this.selectedOrder.id
     this.generateWaybill(municipalityInput)
 
@@ -303,6 +307,7 @@ export class OrdersComponent implements OnInit, OnChanges {
     this.shipmentFeeValue = this.shipmentFee
 
     this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, this.shopRegion)
+
   }
 
 }

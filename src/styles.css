@@ -1807,6 +1807,10 @@ button{
     margin-bottom: 10px;
 }
 
+.login{
+    margin-bottom: 20px;
+}
+
 .info-label{
     display: inline-block;
     font-size: 17px;
