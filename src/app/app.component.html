@@ -294,7 +294,7 @@
         <app-home *ngIf="isHome"></app-home> <!--Displays Home Component if assigned boolean is true-->
         <app-orders [shopRegion]="shopRegion" [shopId]="shopId" [vipId]="vipId" *ngIf="isOrders"></app-orders> <!--Displays Orders Component(Create Waybill Page) if assigned boolean is true-->
         <app-waybill-bulk *ngIf=isWaybillBulk></app-waybill-bulk> <!--Displays Waybill Bulk Component if assigned boolan is true-->
-        <app-order-manage [shopId]="shopId" [vipId]="vipId" *ngIf=isOrderManage></app-order-manage> <!--Displays Order Manage Component if assigned boolan is true-->
+        <app-order-manage [vip]="vip" [shop]="shop" *ngIf=isOrderManage></app-order-manage> <!--Displays Order Manage Component if assigned boolan is true-->
         <app-manifesto *ngIf="isManifesto"></app-manifesto>
         <app-finance-summary *ngIf="isFinanceSummary"></app-finance-summary> <!--Displays Finance Summary Component if assigned boolean is true-->
         <app-finance-payables *ngIf="isFinancePayables"></app-finance-payables> <!--Displays Finance Payables Component if assigned boolean is true-->

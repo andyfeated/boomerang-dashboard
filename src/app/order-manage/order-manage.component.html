@@ -1,84 +1,51 @@
 <div class="main-waybill">
-    <div class="query-table-orders">
-        <table id="customerss-parcel">
-            <tr>
-                <th>Order ID</th>
-                <th>Waybill Number</th>
-                <th>Date Ordered</th>
-                <th>Shop Location</th>
-                <th>Buyer's Name</th>
-                <th>Buyer's Phone</th>
-                <th>Region</th>
-                <th>Province</th>
-                <th>Municipality</th>
-                <th>Barangay</th>
-                <th>Product Description</th>
-                <th>Parcel Type</th>
-                <th>Product Fee</th>
-                <th>Shipment Fee</th>
-                <th>COD Fee</th>
-                <th>Insurance Fee</th>
-                <th>Payment Method</th>
-                <th>Payment Status</th>
-                <th>VIP ID</th>
-                <th>Shop ID</th>
-                <th>Status</th>
-            </tr>
+    <div>
+        <div class="waybill-left">
+            <h3>Parcels</h3>
+            <div class="table-container">
+                <table id="customers">
+                    <tr>
+                        <th>Waybill Number</th>
+                        <th>Date Created</th>
+                    </tr>
+                    
+                    <tr (click)="getParcel(parcel)" *ngFor="let parcel of parcelObs$">
+                        <td>{{parcel.orderInformation.awb}}</td>
+                        <td>{{parcel.orderInformation.dateCreated}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
-            <tr *ngFor="let item of parcelObs$">
-                <td>{{itemOrderId}}</td>
-                <td>{{item.awb}}</td>
-                <td>{{item.dateCreated}}</td>
-                <td>{{item.shopRegion}}</td>
-                <td>{{item.customerName}}</td>
-                <td>{{item.mobileNumber}}</td>
-                <td>{{item.region}}</td>
-                <td>{{item.province}}</td>
-                <td>{{item.municipality}}</td>
-                <td>{{item.barangay}}</td>
-                <td>{{item.productDescription}}</td>
-                <td>{{item.size}}</td>
-                <td>{{item.itemValue}}</td>
-                <td>{{item.shipmentFee}}</td>
-                <td>{{item.codFee}}</td>
-                <td>{{item.insuranceFee}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
+        <div class="waybill-right">
+            <h1>asdsad</h1>
+        </div>
     </div>
-
-    <div class="button-container3">
-        <button (click)="toExcelFile()">Print Table</button>
-    </div>
-
+    <button (click)="showVip()">Show</button>
     <div class="container">
         <div class="waybill-query-table">
             <table id="customers">
                 <tr>
-                  <th>Display</th>
-                  <th>OrdersID</th>
-                  <th>Item Value</th>
-                  <th>COD Fee</th>
-                  <th>Insurance Fee</th>
-                  <th>Weight</th>
-                  <th>Shipment Fee</th>
-                  
+                    <th>Date Created</th>
+                    <th>OrdersID</th>
+                    <th>Item Value</th>
+                    <th>COD Fee</th>
+                    <th>Insurance Fee</th>
+                    <th>Weight</th>
+                    <th>Shipment Fee</th>
+
                 </tr>
 
                 <tr (click)="details(item)" *ngFor="let item of orders$ | async">
-                    <td><button>Display Details</button></td>
-                    <td>{{item.orderId}}</td> 
+                    <td>{{item.dateCreated}}</td>
+                    <td>{{item.orderId}}</td>
                     <td>{{item.itemValue}}</td>
                     <td>{{item.codFee}}</td>
                     <td>{{item.insuranceFee}}</td>
                     <td>{{item.weight}}</td>
                     <td>{{item.shipmentFee}}</td>
                 </tr>
-              </table>
+            </table>
         </div>
     </div>
 </div>

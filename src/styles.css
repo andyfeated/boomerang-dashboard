@@ -1280,7 +1280,7 @@ button{
 }
 
 .container{
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .query-table-orders{
@@ -1881,6 +1881,23 @@ button{
     display: inline-block;
     width: 43%;
     margin-right: 10px;
+}
+
+.waybill-left{
+    width: 40%;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.waybill-right{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.table-container{
+    height: 200px;
+    overflow-y: scroll;
+    border: solid black 1px;
 }
 
 html, body { height: 100%; }

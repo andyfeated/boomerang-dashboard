@@ -95,10 +95,15 @@ export class WaybillService {
 
   addNewOrder(vipId: string, shopId: string){
     let orderId = this.afs.createId()
+    let year: string = new Date().getFullYear().toString()
+    let month: string = (new Date().getMonth()+1).toString()
+    let day: string = new Date().getDate().toString()
+    let date = year + "/" + month + "/" + day
     this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).set({
       orderId: Math.floor(Math.random() * 1000000),
       id: orderId,
-      status: "New Parcel"
+      status: "New Parcel",
+      dateCreated: date
     }).then(() => {
       alert("New Order Generated")
     })

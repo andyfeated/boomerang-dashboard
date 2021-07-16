@@ -252,6 +252,7 @@ export class OrdersComponent implements OnInit, OnChanges {
 
     this.selectedOrder = item
     this.parcelId = this.selectedOrder.id
+    console.log(this.selectedOrder)
 
 
     this.waybillService.getParcels(this.vipId, this.shopId, this.parcelId).subscribe(val => {
