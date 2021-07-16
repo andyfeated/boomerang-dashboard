@@ -30,6 +30,12 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { ManifestoComponent } from './manifesto/manifesto.component';
 import { LoginComponent } from './login/login.component';
+import { NgxPrintModule } from 'ngx-print';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatButtonModule } from '@angular/material/button'
 
  
 @NgModule({
@@ -63,7 +69,12 @@ import { LoginComponent } from './login/login.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    NgxPrintModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   providers: [WaybillService],
   bootstrap: [AppComponent]

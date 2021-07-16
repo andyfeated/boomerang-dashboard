@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 :root {
     --main-color: #09acfd;
     --color-dark: #1d2231;
@@ -1807,9 +1809,6 @@ button{
     margin-bottom: 10px;
 }
 
-.login{
-    margin-bottom: 20px;
-}
 
 .info-label{
     display: inline-block;
@@ -1849,3 +1848,40 @@ button{
 .selectedOrder{
     background-color: #ddd;
 }
+
+.login-page{
+    background-image: url("./assets/images/login-background2.jpeg") ;
+    background-size:cover;
+    height: 720px;
+}
+
+
+.login{
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 20%;
+    margin-top: 300px;
+    float: right;
+    font-size: 12px;
+}
+
+.login h3{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.login button{
+    background-color: var(--main-color);
+    width: 100%;
+    color: white;
+}
+
+.mat-buttons{
+    display: inline-block;
+    width: 43%;
+    margin-right: 10px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

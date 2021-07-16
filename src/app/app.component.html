@@ -1,31 +1,57 @@
-<div *ngIf="!loggedIn">
+<div class="login-page" *ngIf="!loggedIn">
+
+    <div class="sidebar-brand2">
+        <img src="assets/images/logo.png.PNG" width="220px">
+    </div>
     
-    <div class="login">
-        <label for="">Email:</label>
-        <input #emailLogin type="text">
+    <div class="login" *ngIf="!registerForm">
+        <h3>Login</h3>
+        <mat-form-field [style.width.px]=210>
+            <mat-label>Email</mat-label>
+            <input #emailLogin type="text" matInput>
+        </mat-form-field>
+
+        <mat-form-field [style.width.px]=210>
+            <mat-label>Password</mat-label>
+            <input #passwordLogin type="password" matInput>
+        </mat-form-field>
 
         <br>
-
-        <label for="">Password:</label>
-        <input #passwordLogin type="password">
-
-        <br>
-        <button (click)="login(emailLogin.value, passwordLogin.value)">Login</button>
+        
+        <div class="mat-buttons">
+            <button mat-button (click)="login(emailLogin.value, passwordLogin.value)">Login</button>
+        </div>
+        <div class="mat-buttons">
+            <button mat-button (click)="displayRegisterForm()">Sign Up</button>
+        </div>
     </div>
 
 
-    <div class="register">
-        <label for="">Email:</label>
-        <input #emailRegister type="text">
+    <div class="login" *ngIf="registerForm">
+        <h3>Register</h3>
+
+        <mat-form-field [style.width.px]=210>
+            <mat-label>Email</mat-label>
+            <input #emailRegister type="text" matInput>
+        </mat-form-field>
 
         <br>
 
-        <label for="">Password:</label>
-        <input #passwordRegister type="password">
+        <mat-form-field [style.width.px]=210>
+            <mat-label>Password</mat-label>
+            <input #passwordRegister type="password" matInput>
+        </mat-form-field>
 
         <br>
 
-        <button (click)="register(emailRegister.value, passwordRegister.value)">Register</button>
+        <div class="mat-buttons">
+            <button mat-button (click)="register(emailRegister.value, passwordRegister.value)">Register</button>
+        </div>
+        <div class="mat-buttons">
+            <button mat-button (click)="backToLogIn()">
+                <i class="las la-hand-point-left"></i> Log In
+            </button>
+        </div>
     </div>
 </div>
 

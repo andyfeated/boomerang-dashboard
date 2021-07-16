@@ -76,6 +76,7 @@ export class AppComponent implements OnInit{
 
   sd = new Observable()
   loggedIn =false
+  registerForm = false
 
   constructor(private waybill:WaybillService, private auth: AngularFireAuth){
     this.vips$ = this.waybill.vips$
@@ -273,6 +274,14 @@ export class AppComponent implements OnInit{
     this.pickupAddressActivate = "";
     this.recipientAddressActivate = "";
     this.manifestoActivate = "";
+  }
+
+  displayRegisterForm(){
+    this.registerForm =true
+  }
+
+  backToLogIn(){
+    this.registerForm = false
   }
 }
 
