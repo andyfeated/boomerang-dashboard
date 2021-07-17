@@ -1,0 +1,199 @@
+.waybill-left{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
+    height: 280px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+
+
+.wp1 p{
+    margin-top: 15px;
+    margin-left: 15px;
+    font-size: 8px;
+}
+
+.wp2{
+    margin-top: 2px;
+}
+
+.wp3 p{
+    margin-left: 25px;
+    font-size: 8px;
+}
+
+.wp4 p{
+    margin-left: 15px;
+    margin-top: 10px;
+    font-size: 8;
+}
+
+.waybill-right{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+}
+
+#waybillPrint{
+    border: 1px solid black;
+    width: 300px;
+    height:400px;
+    font-size: 9px;
+}
+
+.waybill-header-print{
+    height: 16%;
+}
+
+.waybill-header-print img{
+    width: 100%;
+}
+
+
+.waybill-awb{
+    height: 15%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+    text-align: center;
+
+}
+
+.waybill-awb h1{
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.waybill-awb p{
+    font-family: 'Libre Barcode 39', cursive;
+    font-size: px;
+}
+
+.table-container{
+    height: 250px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.parcel-info{
+    padding: 10px;
+    height: 280px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.parcel-info p{
+    font-size: 14px;
+}
+
+.parcel-info-label{
+    padding-top: 7px;
+    padding-left: 5px;
+    padding-bottom: 7px;
+    vertical-align: top;
+
+}
+
+.parcel-info-left{
+    width: 16%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.mid{
+    width: 70%;
+    display: inline-block;
+}
+
+.mid-right{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wp5{
+    margin-top: 15px;
+    margin-left: 5px;
+    font-size: 7px;
+}
+
+.wp5 p:last-child{
+    margin-left: 5px;
+}
+
+.wp6{
+    margin-top: 20px;
+    margin-left: 5px;
+    font-size: 8px;
+}
+
+.wp6 p:last-child{
+    font-size: 10px;
+}
+
+<div>
+                <div id="waybillPrint" class="waybill-right">
+                    <div class="waybill-header-print">
+                        <img src="assets/images/waybill-header.jpg" width="298px">
+                    </div>
+    
+                    <div class="waybill-awb">
+                        <h1>{{parcelWaybillNumber}}</h1>
+                        <p>{{parcelWaybillNumber}}</p>
+                    </div>
+    
+                    <div class="mid">
+                        <div class="wp1">
+                            <p>Ship From:</p>
+                        </div>
+        
+                        <div class="wp2">
+                            <div class="wp3">
+                                <p>Shop Name: {{shopNameWaybill}}</p>
+                                <p>Shop Contact Number: {{shopContactNumberWaybill}}</p>
+                                <p>Shop Address Line: {{shopAddressLineWaybill}}</p>
+                            </div>
+                        </div>
+        
+                        <div class="wp1">
+                            <p>Ship To:</p>
+                        </div>
+        
+                        <div class="wp2">
+                            <div class="wp3">
+                                <p>Buyer's Name: {{buyerNameWaybill}}</p>
+                                <p>Buyer's Contact Number: {{buyerContactNumber}}</p>
+                                <p>Buyser's Address Line: {{buyerCompleteAddressLineWaybill}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mid-right">
+                        <div class="wp5">
+                            <p>Payment Method:</p>
+                            <p>COD or Non-COD</p>
+                        </div>
+
+                        <div class="wp6">
+                            <p>COD:</p>
+                            <p>Php {{productFeeWaybill}}</p>
+                        </div>
+                    </div>
+    
+                    <div class="waybill-awb">
+                        <h1>{{parcelWaybillNumber}}</h1>
+                        <p>{{parcelWaybillNumber}}</p>
+                    </div>
+    
+                    <div class="wp4">
+                        <p>Product Description: {{productDescriptionWaybill}}</p>
+                        <p>Follow us on our Social Media: facebook.com/BoomerangXpressPhilippines</p>
+                    </div>
+                    
+                    
+                </div>
+            </div>

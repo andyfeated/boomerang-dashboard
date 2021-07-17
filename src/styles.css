@@ -1958,12 +1958,20 @@ button{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     margin-top: 10px;
+    text-align: center;
+
 }
 
 .waybill-awb h1{
-    text-align: center;
     font-size: 20px;
     margin-top: 15px;
+}
+
+.waybill-awb p{
+    font-family: 'Libre Barcode 39 Extended', cursive;
+    font-size: 28px;
+    transform: scaleY(2);
+  transform-origin: 0 0;
 }
 
 .table-container{
@@ -1998,4 +2006,34 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 16%;
     display: inline-block;
     vertical-align: top;
+}
+
+.mid{
+    width: 70%;
+    display: inline-block;
+}
+
+.mid-right{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wp5{
+    margin-top: 15px;
+    margin-left: 5px;
+    font-size: 7px;
+}
+
+.wp5 p:last-child{
+    margin-left: 5px;
+}
+
+.wp6{
+    margin-top: 20px;
+    margin-left: 5px;
+    font-size: 8px;
+}
+
+.wp6 p:last-child{
+    font-size: 10px;
 }

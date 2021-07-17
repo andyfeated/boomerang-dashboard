@@ -37,7 +37,7 @@ export class OrdersComponent implements OnInit, OnChanges {
   shopIsland = ""
 
   //OBSERVABLE
-  parcelObs = this.waybillService.parcelObs
+  parcelObs? = this.waybillService.parcelObs
   newParcelObs: any
 
 
@@ -73,6 +73,8 @@ export class OrdersComponent implements OnInit, OnChanges {
 
   @Input() public vipId: any
   @Input() public shopId: any
+  @Input() public vip: any
+  @Input() public shop: any
   @Input() public shopRegion: any
   @Input() public user: any
 
@@ -101,16 +103,32 @@ export class OrdersComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges){
-    const shopIdValue = changes['shopId']
+    const shopValue = changes['shop']
+    const vipValue = changes['vip']
 
-    if(changes['shopId'] != undefined){
-      if(shopIdValue.currentValue != shopIdValue.previousValue){
+    if(changes['vip'] != undefined){
+      if(vipValue.currentValue != vipValue.previousValue){
+        this.shopId = this.shop.shopId
+        this.vipId = this.vip.vipId
         this.displayOrders()
+        this.displayParcels()
       }
     }
 
-    
+    if(changes['shop'] != undefined){
+      if(shopValue.currentValue != shopValue.previousValue){
+        this.shopId = this.shop.shopId
+        this.vipId = this.vip.vipId
+        this.displayOrders()
+        this.displayParcels()
+      }
+    }
   }
+
+  displayParcels(){
+    this.newParcelObs = undefined
+  }
+
 
   setShipmentFeeAndVolumetricWeight(regionInput: string, shopRegionInput: string, sizeInput: string, lengthInput: string, widthInput: string, heightInput:string){
     //Sets the region depending on the region
