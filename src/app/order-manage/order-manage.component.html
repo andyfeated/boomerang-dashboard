@@ -1,88 +1,290 @@
-<div class="main-waybill">
-    <button [useExistingCss]="true" printSectionId="waybillPrint" ngxPrint>Print Waybill</button>
+<div class="parcel-info-container">
+    <div class="dasboard-bulk-orders-header">
+        <h4><i class="las la-user-plus"></i>Waybill Information</h4>
+    </div>
+    <div class="parcel-info">
 
-    <div>
-        
-        <div hidden>
-            <div id="waybillPrint" class="waybill-right">
-                <div class="waybill-header-print">
-                    <img src="assets/images/waybill-header.jpg" width="298px">
-                </div>
+        <div class="parcel-info-left">
+            
 
-                <div class="waybill-awb">
-                    <h1>{{parcelWaybillNumber}}</h1>
-                </div>
+            <div class="parcel-info-label">
+                <h5>Waybill Number:</h5>
+            </div>
 
-                <div class="wp1">
-                    <p>Ship From:</p>
-                </div>
+            <div class="parcel-info-label">
+                <h5>Product Description:</h5>
+            </div>
 
-                <div class="wp2">
-                    <div class="wp3">
-                        <p>Shop Name: {{shopNameWaybill}}</p>
-                        <p>Shop Contact Number: {{shopContactNumberWaybill}}</p>
-                        <p>Shop Address Line: {{shopAddressLineWaybill}}</p>
-                    </div>
-                </div>
+            <div class="parcel-info-label">
+                <h5>Weight:</h5>
+            </div>
 
-                <div class="wp1">
-                    <p>Ship To:</p>
-                </div>
+            <div class="parcel-info-label">
+                <h5>Product Fee:</h5>
+            </div>
+            
+            <div class="parcel-info-label">
+                <h5>COD Fee:</h5>
+            </div>
 
-                <div class="wp2">
-                    <div class="wp3">
-                        <p>Buyer's Name: {{buyerNameWaybill}}</p>
-                        <p>Buyer's Contact Number: {{buyerContactNumber}}</p>
-                        <p>Buyser's Address Line: {{buyerAddressLineWaybill}}</p>
-                    </div>
-                </div>
+            <div class="parcel-info-label">
+                <h5>Insurance Fee:</h5>
+            </div>
 
-                <div class="waybill-awb">
-                    <h1>{{parcelWaybillNumber}}</h1>
-                </div>
+            <div class="parcel-info-label">
+                <h5>Shipment Fee:</h5>
+            </div>
 
-                <div class="wp4">
-                    <p>Product Description: {{productDescriptionWaybill}}</p>
-                    <p>Follow us on our Social Media: facebook.com/BoomerangXpressPhilippines</p>
-                </div>
-                
-                
+        </div>
+
+        <div class="parcel-info-left">
+            <div class="parcel-info-label">
+                <p>{{parcelWaybillNumber}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{productDescriptionWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{weightWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{productFeeWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{codFeeWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{insuranceFeeWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{shipmentFeeWaybill}}</p>
             </div>
         </div>
-        
-    </div>
-    <div class="container">
-        <h3>Orders</h3>
-        <div class="waybill-query-table">
-            <table id="customers">
-                <tr>
-                    <th>Date Created</th>
-                    <th>OrdersID</th>
 
-                </tr>
+        <div class="parcel-info-left">
+            <div class="parcel-info-label">
+                <h5>Shop Name:</h5>
+            </div>
 
-                <tr (click)="details(item)" *ngFor="let item of orders$ | async">
-                    <td [class.selectedOrder]="item === selectedItem">{{item.dateCreated}}</td>
-                    <td [class.selectedOrder]="item === selectedItem">{{item.orderId}}</td>
-                </tr>
-            </table>
+            <div class="parcel-info-label">
+                <h5>Shop ID:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Shop Contact Number:</h5>
+            </div>
+            
+            <div class="parcel-info-label">
+                <h5>Shop Region:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Shop Province:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Shop Municipality:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Order ID:</h5>
+            </div>
         </div>
-    </div>
 
-    <div class="waybill-left">
-        <h3>Parcels</h3>
-        <div class="table-container">
-            <table id="customers">
-                <tr>
-                    <th>Waybill Number</th>
-                    <th>Date Created</th>
-                </tr>
-                
-                <tr (click)="getParcel(parcel)" *ngFor="let parcel of parcelObs$">
-                    <td [class.selectedOrder]="parcel === selectedParcel">{{parcel.orderInformation.awb}}</td>
-                    <td [class.selectedOrder]="parcel === selectedParcel">{{parcel.orderInformation.dateCreated}}</td>
-                </tr>
-            </table>
+        <div class="parcel-info-left">
+            <div class="parcel-info-label">
+                <p>{{shopNameWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{shopIdWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{shopContactNumberWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{shopRegionWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{shopProvinceWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{shopMunicipalityWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{orderIdWaybill}}</p>
+            </div>
+
+        </div>
+
+        <div class="parcel-info-left">
+            <div class="parcel-info-label">
+                <h5>Customer Name:</h5>
+            </div>
+            
+            <div class="parcel-info-label">
+                <h5>Customer Mobile Number:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Customer Region:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Customer Province:</h5>
+            </div>
+            
+            <div class="parcel-info-label">
+                <h5>Customer Municipality:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Customer Barangay</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Customer Address Line</h5>
+            </div>
+        </div>
+
+        <div class="parcel-info-left">
+            <div class="parcel-info-label">
+                <p>{{buyerNameWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{buyerContactNumber}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{buyerRegionWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{buyerProvinceWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{buyerMunicipalityWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{buyerBarangayWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{buyerAddressLineWaybill}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="main-waybill2-container">
+    <div class="dasboard-bulk-orders-header">
+        <h4><i class="las la-user-plus"></i> Order and Parcel List</h4>
+    </div>
+    
+    <div class="main-waybill2">
+        
+        
+        
+        <button [useExistingCss]="true" printSectionId="waybillPrint" ngxPrint>Print Waybill</button>
+    
+        <div>
+            
+            <div hidden>
+                <div id="waybillPrint" class="waybill-right">
+                    <div class="waybill-header-print">
+                        <img src="assets/images/waybill-header.jpg" width="298px">
+                    </div>
+    
+                    <div class="waybill-awb">
+                        <h1>{{parcelWaybillNumber}}</h1>
+                    </div>
+    
+                    <div class="wp1">
+                        <p>Ship From:</p>
+                    </div>
+    
+                    <div class="wp2">
+                        <div class="wp3">
+                            <p>Shop Name: {{shopNameWaybill}}</p>
+                            <p>Shop Contact Number: {{shopContactNumberWaybill}}</p>
+                            <p>Shop Address Line: {{shopAddressLineWaybill}}</p>
+                        </div>
+                    </div>
+    
+                    <div class="wp1">
+                        <p>Ship To:</p>
+                    </div>
+    
+                    <div class="wp2">
+                        <div class="wp3">
+                            <p>Buyer's Name: {{buyerNameWaybill}}</p>
+                            <p>Buyer's Contact Number: {{buyerContactNumber}}</p>
+                            <p>Buyser's Address Line: {{buyerCompleteAddressLineWaybill}}</p>
+                        </div>
+                    </div>
+    
+                    <div class="waybill-awb">
+                        <h1>{{parcelWaybillNumber}}</h1>
+                    </div>
+    
+                    <div class="wp4">
+                        <p>Product Description: {{productDescriptionWaybill}}</p>
+                        <p>Follow us on our Social Media: facebook.com/BoomerangXpressPhilippines</p>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+        </div>
+        <div class="container">
+            <h3>Orders</h3>
+            <div class="waybill-query-table">
+                <table id="customers">
+                    <tr>
+                        <th>Date Created</th>
+                        <th>OrdersID</th>
+    
+                    </tr>
+    
+                    <tr (click)="details(item)" *ngFor="let item of orders$ | async">
+                        <td [class.selectedOrder]="item === selectedItem">{{item.dateCreated}}</td>
+                        <td [class.selectedOrder]="item === selectedItem">{{item.orderId}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    
+        <div class="waybill-left">
+            <h3>Parcels</h3>
+            <div class="table-container">
+                <table id="customers">
+                    <tr>
+                        <th>Waybill Number</th>
+                        <th>Date Created</th>
+                    </tr>
+                    
+                    <tr (click)="getParcel(parcel)" *ngFor="let parcel of parcelObs$">
+                        <td [class.selectedOrder]="parcel === selectedParcel">{{parcel.orderInformation.awb}}</td>
+                        <td [class.selectedOrder]="parcel === selectedParcel">{{parcel.orderInformation.dateCreated}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@ import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
@@ -30,6 +30,7 @@ export class WaybillService {
   user: any
 
   isLoggedIn = false
+  isLoggedInObs?: Observable<boolean>
 
   constructor(private afs:AngularFirestore, private auth: AngularFireAuth) {
     this.vips$ = afs.collection<Vip>("vips").valueChanges()
@@ -45,9 +46,11 @@ export class WaybillService {
   getIsLoggedIn(){
     return this.auth.onAuthStateChanged(user => {
       if(user){
-        this.isLoggedIn = true
+        this.isLoggedInObs = of(true)
+        console.log("yes")
       }else{
-        this.isLoggedIn = false
+        this.isLoggedInObs = of(false)
+        console.log("no")
       }
     })
   }
