@@ -17,9 +17,9 @@ export class AppComponent implements OnInit{
   //If Boolean's value is true, it will be shown in main page
 
   isHome = false; //Home Page
-  isOrders = false; //Create Waybill Page
+  isOrders = true; //Create Waybill Page
   isWaybillBulk = false; //Create Waybills in Bulk Page
-  isOrderManage = true; //Order Management Page 
+  isOrderManage = false; //Order Management Page 
   isManifesto = false 
   isFinanceSummary = false; //Finance Summary Page
   isFinancePayables = false; //Account Payables Page
@@ -36,9 +36,9 @@ export class AppComponent implements OnInit{
 
   homeActivate = ""; //Home Icon
   ordersActivate = "active"; //Orders Icon
-  createWaybillActivate = "";//Create Waybill Icon
+  createWaybillActivate = "active";//Create Waybill Icon
   waybillBulkActivate = ""; //Create Waybills in Bulk Icon
-  orderManageActivate = "active"; //Order Management 
+  orderManageActivate = ""; //Order Management 
   financeActivate = "" //Finance Icon
   financeSummaryActivate = ""; //Finance Summary Icon
   financePayablesActivate = ""; //Account Payables Icon
