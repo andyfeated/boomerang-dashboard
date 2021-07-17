@@ -82,7 +82,6 @@ export class OrderManageComponent implements OnInit {
     this.waybillService.getParcelDetails(this.vipId, this.shopId, this.parcelId, this.waybillId).subscribe(val => {
       this.waybillObs$ = val
     })
-    
   }
 
   details(item: any){

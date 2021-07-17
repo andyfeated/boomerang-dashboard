@@ -92,6 +92,7 @@ export class AppComponent implements OnInit{
   }
   
   logout(){
+    
     this.waybill.logoutAuth()
     this.loggedIn = false
   }
