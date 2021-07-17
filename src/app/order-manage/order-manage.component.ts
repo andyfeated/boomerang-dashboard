@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Parcel, WaybillService } from '../waybill.service';
-import * as XLSX from 'xlsx'
+
 
 @Component({
   selector: 'app-order-manage',
@@ -14,6 +14,7 @@ export class OrderManageComponent implements OnInit {
   orders$ = this.waybillService.orders$
   parcelObs$: any
   parcel?: Parcel
+  waybillObs$: any
 
   itemOrderId = 0
   @Input() public vip: any
@@ -25,8 +26,20 @@ export class OrderManageComponent implements OnInit {
   shopId!: string
   orderId!: string
   parcelId!: string
+  waybillId!: string
 
 
+  //waybill values
+  parcelWaybillNumber = ""
+  shopNameWaybill = ""
+  shopContactNumberWaybill = ""
+  shopAddressLineWaybill = ""
+
+  buyerNameWaybill = ""
+  buyerContactNumber = ""
+  buyerAddressLineWaybill = ""
+
+  productDescriptionWaybill = ""
 
   constructor(private waybillService: WaybillService) { }
 
@@ -49,25 +62,42 @@ export class OrderManageComponent implements OnInit {
     this.orders$ = this.waybillService.getOrders(this.vipId, this.shopId)
   }
 
-
-  showVip(){
-    console.log(this.vip.vipId)
-    console.log(this.shop.shopId)
-  }
   
   getParcel(parcel: any){
     this.selectedParcel = parcel
-    console.log(this.selectedParcel)
+    this.parcelWaybillNumber = this.selectedParcel.orderInformation.awb
+
+    this.shopNameWaybill = this.shop.shopName
+    this.shopContactNumberWaybill = this.shop.shopContactNumber
+    this.shopAddressLineWaybill = this.shop.shopAddress.shopRegion + ", " + this.shop.shopAddress.shopProvince + ", " + this.shop.shopAddress.shopMunicipality
+
+    this.buyerNameWaybill = this.selectedParcel.customerInformation.customerName
+    this.buyerContactNumber = this.selectedParcel.customerInformation.mobileNumber
+    this.buyerAddressLineWaybill = this.selectedParcel.customerAddress.province + ", " + this.selectedParcel.customerAddress.municipality + ", " + this.selectedParcel.customerAddress.addressLine
+
+    this.productDescriptionWaybill = this.selectedParcel.orderInformation.productDescription
+
+    this.waybillId = this.selectedParcel.id
+    
+    this.waybillService.getParcelDetails(this.vipId, this.shopId, this.parcelId, this.waybillId).subscribe(val => {
+      this.waybillObs$ = val
+    })
+    
   }
 
   details(item: any){
     this.selectedItem = item
+
     this.parcelId = this.selectedItem.id
     
     this.waybillService.getParcels(this.vipId, this.shopId, this.parcelId).subscribe(val => {
       this.parcelObs$ = val
     })
 
+  }
+
+  printWaybill(){
+    console.log("hihi")
   }
 
   // toExcelFile(){

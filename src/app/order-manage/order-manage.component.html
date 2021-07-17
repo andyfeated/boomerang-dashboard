@@ -1,49 +1,86 @@
 <div class="main-waybill">
+    <button [useExistingCss]="true" printSectionId="waybillPrint" ngxPrint>Print Waybill</button>
+
     <div>
-        <div class="waybill-left">
-            <h3>Parcels</h3>
-            <div class="table-container">
-                <table id="customers">
-                    <tr>
-                        <th>Waybill Number</th>
-                        <th>Date Created</th>
-                    </tr>
-                    
-                    <tr (click)="getParcel(parcel)" *ngFor="let parcel of parcelObs$">
-                        <td>{{parcel.orderInformation.awb}}</td>
-                        <td>{{parcel.orderInformation.dateCreated}}</td>
-                    </tr>
-                </table>
+        
+        <div hidden>
+            <div id="waybillPrint" class="waybill-right">
+                <div class="waybill-header-print">
+                    <img src="assets/images/waybill-header.jpg" width="298px">
+                </div>
+
+                <div class="waybill-awb">
+                    <h1>{{parcelWaybillNumber}}</h1>
+                </div>
+
+                <div class="wp1">
+                    <p>Ship From:</p>
+                </div>
+
+                <div class="wp2">
+                    <div class="wp3">
+                        <p>Shop Name: {{shopNameWaybill}}</p>
+                        <p>Shop Contact Number: {{shopContactNumberWaybill}}</p>
+                        <p>Shop Address Line: {{shopAddressLineWaybill}}</p>
+                    </div>
+                </div>
+
+                <div class="wp1">
+                    <p>Ship To:</p>
+                </div>
+
+                <div class="wp2">
+                    <div class="wp3">
+                        <p>Buyer's Name: {{buyerNameWaybill}}</p>
+                        <p>Buyer's Contact Number: {{buyerContactNumber}}</p>
+                        <p>Buyser's Address Line: {{buyerAddressLineWaybill}}</p>
+                    </div>
+                </div>
+
+                <div class="waybill-awb">
+                    <h1>{{parcelWaybillNumber}}</h1>
+                </div>
+
+                <div class="wp4">
+                    <p>Product Description: {{productDescriptionWaybill}}</p>
+                    <p>Follow us on our Social Media: facebook.com/BoomerangXpressPhilippines</p>
+                </div>
+                
+                
             </div>
         </div>
-
-        <div class="waybill-right">
-            <h1>asdsad</h1>
-        </div>
+        
     </div>
-    <button (click)="showVip()">Show</button>
     <div class="container">
+        <h3>Orders</h3>
         <div class="waybill-query-table">
             <table id="customers">
                 <tr>
                     <th>Date Created</th>
                     <th>OrdersID</th>
-                    <th>Item Value</th>
-                    <th>COD Fee</th>
-                    <th>Insurance Fee</th>
-                    <th>Weight</th>
-                    <th>Shipment Fee</th>
 
                 </tr>
 
                 <tr (click)="details(item)" *ngFor="let item of orders$ | async">
-                    <td>{{item.dateCreated}}</td>
-                    <td>{{item.orderId}}</td>
-                    <td>{{item.itemValue}}</td>
-                    <td>{{item.codFee}}</td>
-                    <td>{{item.insuranceFee}}</td>
-                    <td>{{item.weight}}</td>
-                    <td>{{item.shipmentFee}}</td>
+                    <td [class.selectedOrder]="item === selectedItem">{{item.dateCreated}}</td>
+                    <td [class.selectedOrder]="item === selectedItem">{{item.orderId}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="waybill-left">
+        <h3>Parcels</h3>
+        <div class="table-container">
+            <table id="customers">
+                <tr>
+                    <th>Waybill Number</th>
+                    <th>Date Created</th>
+                </tr>
+                
+                <tr (click)="getParcel(parcel)" *ngFor="let parcel of parcelObs$">
+                    <td [class.selectedOrder]="parcel === selectedParcel">{{parcel.orderInformation.awb}}</td>
+                    <td [class.selectedOrder]="parcel === selectedParcel">{{parcel.orderInformation.dateCreated}}</td>
                 </tr>
             </table>
         </div>

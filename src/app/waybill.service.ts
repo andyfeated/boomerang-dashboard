@@ -165,6 +165,10 @@ export class WaybillService {
     return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(parcelId).collection("parcels").valueChanges()
   }
 
+  getParcelDetails(vipId: string, shopId: string, parcelId: string, waybillId: string){
+    return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(parcelId).collection("parcels").doc(waybillId).valueChanges()
+  }
+
   getShops(vipId: string){
     return this.afs.collection("vips").doc(vipId).collection("shops").valueChanges()
   }
