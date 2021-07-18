@@ -1994,6 +1994,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: white;
 }
 
+.parcel-info-container{
+    margin-top: 20px;
+}
+
 
 .parcel-info p{
     font-size: 14px;
@@ -2041,4 +2045,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .wp6 p:last-child{
     font-size: 10px;
+}
+
+.user-info{
+    margin-right: 10px;
+}
+
+.user-info select{
+    margin-top: 5px;
+    float: right;
 }

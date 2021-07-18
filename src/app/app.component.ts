@@ -11,11 +11,6 @@ import { Vip, WaybillService } from './waybill.service';
 })
 export class AppComponent implements OnInit{
 
-
-
-  //Boolean that is assigned to every component
-  //If Boolean's value is true, it will be shown in main page
-
   isHome = false; //Home Page
   isOrders = true; //Create Waybill Page
   isWaybillBulk = false; //Create Waybills in Bulk Page
@@ -30,9 +25,6 @@ export class AppComponent implements OnInit{
   isUser = false; //My Pickup Location Page
   isrecipientAddress = false; //My Recipient Address Page
   isAccount = false; //My User Account Page
-
-  //String that is assigned to Icon's Class
-  //If String's value is equal to "active", the icon's style will be highlighted
 
   homeActivate = ""; //Home Icon
   ordersActivate = "active"; //Orders Icon
@@ -53,9 +45,6 @@ export class AppComponent implements OnInit{
   accountActivate = ""; //My User Accounts Icon
   manifestoActivate = ""
 
-  vips$!: Observable<any>
-  vip?: any
-  vipId!: string
 
   shops$?: Observable<any>
   shop?: any
@@ -74,25 +63,52 @@ export class AppComponent implements OnInit{
   user: any
   userUid!: string
 
-  sd = new Observable()
   loggedIn =false
   registerForm = false
 
+  newUser: any
+  newUserEmail!: string
+
+  newVip: any
+  newVipId!: string
+  newVipName!: string
+
+  newShops: any
+  newShopId!: string
+
+  newOrders: any
+
   constructor(private waybill:WaybillService, private auth: AngularFireAuth){
-    this.vips$ = this.waybill.vips$
 
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('rows') !== null){
-      this.loggedIn = true
-    }else{
-      this.loggedIn = false
-    }
+    this.waybill.getAuthState().subscribe(user => {
+      if(user != null){
+        this.loggedIn = true
+        console.log(user)
+        this.newUser = user
+        this.newUserEmail = this.newUser.email
+
+        this.waybill.getCurrentUser(this.newUserEmail).subscribe(val => {
+          this.newVip = val
+          this.newVipName = this.newVip.vipName
+          this.newVipId = this.newVip.vipEmail
+
+          this.waybill.getShops(this.newVipId).subscribe(shops => {
+          this.newShops = shops
+
+        })
+      })
+      }else{
+        this.loggedIn = false
+        console.log(user)
+      }
+    })
+
   }
   
   logout(){
-    
     this.waybill.logoutAuth()
     this.loggedIn = false
   }
@@ -116,19 +132,9 @@ export class AppComponent implements OnInit{
     alert("Successfully Logged In")
   }
 
-  onChangeVip(){
-    this.vip = this.selectedValue
-    this.vipId = this.vip.vipId
-
-    this.shops$ = this.waybill.getShops(this.vipId)
-  }
-
   onChangeShop(){
     this.shop = this.selectedShop
-    this.shopId = this.shop.shopId
-    this.shopRegion = this.shop.shopAddress.shopRegion
-    
-    this.orders$ = this.waybill.getOrders(this.shopId, this.vipId)
+    this.shopId = this.shop.shopI
   }
   
   //Displays Home Component and highlights its icon

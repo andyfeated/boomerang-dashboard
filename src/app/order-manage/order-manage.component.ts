@@ -17,7 +17,7 @@ export class OrderManageComponent implements OnInit {
   waybillObs$: any
 
   itemOrderId = 0
-  @Input() public vip: any
+  @Input() public newVip: any
   @Input() public shop: any
   @Input() public isChecked: any
   selectedItem: any
@@ -66,14 +66,11 @@ export class OrderManageComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges){
     const shopValue = changes['shop']
     const vipValue = changes['vip']
-    const isCheckedValue = changes['isChecked']
-
-    
 
     if(changes['vip'] != undefined){
       if(vipValue.currentValue != vipValue.previousValue){
         this.shopId = this.shop.shopId
-        this.vipId = this.vip.vipId
+        this.vipId = this.newVip.vipEmail
         this.displayOrders()
         this.displayParcels()
         this.resetValues()
@@ -83,7 +80,7 @@ export class OrderManageComponent implements OnInit {
     if(changes['shop'] != undefined){
       if(shopValue.currentValue != shopValue.previousValue){
         this.shopId = this.shop.shopId
-        this.vipId = this.vip.vipId
+        this.vipId = this.newVip.vipEmail
         this.displayOrders()
         this.displayParcels()
         this.resetValues()

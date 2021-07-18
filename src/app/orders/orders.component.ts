@@ -71,12 +71,14 @@ export class OrdersComponent implements OnInit, OnChanges {
 
   orders$!: Observable<any>
 
-  @Input() public vipId: any
-  @Input() public shopId: any
-  @Input() public vip: any
+
   @Input() public shop: any
-  @Input() public shopRegion: any
   @Input() public user: any
+  @Input() public newVip: any
+
+  vipId: any
+  shopId: any
+  shopRegion: any
 
   selectedOrder: any
 
@@ -104,21 +106,14 @@ export class OrdersComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges){
     const shopValue = changes['shop']
-    const vipValue = changes['vip']
-
-    if(changes['vip'] != undefined){
-      if(vipValue.currentValue != vipValue.previousValue){
-        this.shopId = this.shop.shopId
-        this.vipId = this.vip.vipId
-        this.displayOrders()
-        this.displayParcels()
-      }
-    }
 
     if(changes['shop'] != undefined){
       if(shopValue.currentValue != shopValue.previousValue){
+
         this.shopId = this.shop.shopId
-        this.vipId = this.vip.vipId
+        this.shopRegion = this.shop.shopAddress.shopRegion
+        this.vipId = this.newVip.vipEmail
+
         this.displayOrders()
         this.displayParcels()
       }
@@ -270,8 +265,6 @@ export class OrdersComponent implements OnInit, OnChanges {
 
     this.selectedOrder = item
     this.parcelId = this.selectedOrder.id
-    console.log(this.selectedOrder)
-
 
     this.waybillService.getParcels(this.vipId, this.shopId, this.parcelId).subscribe(val => {
       this.newParcelObs = val

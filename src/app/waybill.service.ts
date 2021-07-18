@@ -34,21 +34,16 @@ export class WaybillService {
 
   constructor(private afs:AngularFirestore, private auth: AngularFireAuth) {
     this.vips$ = afs.collection<Vip>("vips").valueChanges()
-
-    
   }
 
-  getIsLoggedIn(){
-    return this.auth.onAuthStateChanged(user => {
-      if(user){
-        this.isLoggedInObs = of(true)
-        console.log("yes")
-      }else{
-        this.isLoggedInObs = of(false)
-        console.log("no")
-      }
-    })
+  getAuthState(){
+    return this.auth.authState
   }
+
+  getCurrentUser(email: string){
+    return this.afs.collection("vips").doc(email).valueChanges()
+  }
+
 
   async registerAuth(email: string, password: string){
     await this.auth.createUserWithEmailAndPassword(email, password).then(userCredentials => {
