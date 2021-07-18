@@ -96,7 +96,7 @@ header{
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     position: fixed;
     left: 310px;
-    width: calc(100% - 345px);
+    width: calc(100% - 310px);
     top: 0;
     z-index: 100;
     transition: left 500ms;
@@ -220,10 +220,13 @@ main{
     left: 70px;
 }
 
+
+
 #nav-toggle:checked + .sidebar .sidebar-menu ul li .active{
     border-radius: 10px 0px 0px 10px;
     margin-left: -10px;
 }
+
 
 #nav-toggle:checked + .sidebar li a{
     padding-left: 0rem;
@@ -262,6 +265,7 @@ main{
 #nav-toggle:checked + .sidebar .dropdown .active{
    padding-left: 20px;
 }
+
 
 .dashboard-data-viewer{
     background-color: white;
@@ -1029,7 +1033,7 @@ button{
 
 .main-waybill2{
     background-color: white;
-    height: 370px;
+    height: 400px;
     padding: 20px;
     border-radius: 10px;
 
@@ -1985,10 +1989,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .parcel-info{
     padding: 10px;
-    height: 280px;
+    height: 310px;
     margin-bottom: 15px;
     background-color: white;
 }
+
 
 .parcel-info p{
     font-size: 14px;

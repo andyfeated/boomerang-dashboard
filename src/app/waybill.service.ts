@@ -34,11 +34,6 @@ export class WaybillService {
 
   constructor(private afs:AngularFirestore, private auth: AngularFireAuth) {
     this.vips$ = afs.collection<Vip>("vips").valueChanges()
-    this.shops$ = afs.collection("shops").valueChanges()
-    this.orders$ = afs.collection("orders").valueChanges()
-
-    this.parcelObs = afs.collection("parcels").valueChanges()
-    this.orderObs$ = afs.collection("orders").valueChanges()
 
     
   }

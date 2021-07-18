@@ -19,6 +19,7 @@ export class OrderManageComponent implements OnInit {
   itemOrderId = 0
   @Input() public vip: any
   @Input() public shop: any
+  @Input() public isChecked: any
   selectedItem: any
   selectedParcel: any
 
@@ -65,6 +66,9 @@ export class OrderManageComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges){
     const shopValue = changes['shop']
     const vipValue = changes['vip']
+    const isCheckedValue = changes['isChecked']
+
+    
 
     if(changes['vip'] != undefined){
       if(vipValue.currentValue != vipValue.previousValue){
