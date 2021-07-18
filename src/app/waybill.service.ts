@@ -187,6 +187,10 @@ export class WaybillService {
     alert("done")
   }
   
+  deleteParcel(vipId: string, shopId: string, orderId:string, parcelId:string){
+    this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).collection("parcels").doc(parcelId).delete()
+  }
+
 }
 
 export interface Vip{

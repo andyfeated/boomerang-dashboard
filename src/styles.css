@@ -1039,6 +1039,10 @@ button{
 
 }
 
+.main-waybill2 button{
+    margin-right: 10px;
+}
+
 .main-waybill2-container{
     margin-top: 20px;
 }

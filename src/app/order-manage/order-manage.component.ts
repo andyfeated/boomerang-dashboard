@@ -175,8 +175,13 @@ export class OrderManageComponent implements OnInit {
 
   }
 
-  printWaybill(){
-    console.log("hihi")
+  deleteWaybill(){
+    if(this.newVip == undefined || this.shop == undefined || this.selectedItem == undefined || this.selectedParcel == undefined){
+      alert("Please Select a Waybill First")
+    }else{
+      this.waybillService.deleteParcel(this.vipId, this.shopId, this.selectedItem.id.toString(), this.selectedParcel.id)
+      alert("Waybill Deleted")
+    }
   }
 
   // toExcelFile(){
