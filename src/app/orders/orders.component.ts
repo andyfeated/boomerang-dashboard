@@ -16,6 +16,8 @@ import waybills from 'src/assets/data/waybills.json'
 })
 export class OrdersComponent implements OnInit, OnChanges {
 
+  
+
   choice = ""
 
   documentId!: string
@@ -318,7 +320,9 @@ export class OrdersComponent implements OnInit, OnChanges {
     this.insuranceFeeValue = this.insuranceFeeIntConvert            //returns the value of insuranceFee and stores it in a local variable
     this.shipmentFeeValue = this.shipmentFee
 
-    this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, this.shopRegion)
+    let fullAddress = regionInput + ", " + provinceInput + ", " + municipalityInput + ", " + barangayInput + ", " + addressLineInput
+
+    this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, this.shopRegion, fullAddress)
 
   }
 

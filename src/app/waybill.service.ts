@@ -78,6 +78,9 @@ export class WaybillService {
     .then(res => {
       this.isLoggedIn = true
       localStorage.setItem('rows', JSON.stringify(res.user))
+      alert("Successfully Logged In")
+    }).catch(err => {
+      alert("The email or password that you entered is incorrect")
     })
   }
 
@@ -102,7 +105,7 @@ export class WaybillService {
     })
   }
 
-  insertParcel(vipId: string, shopId: string, documentId: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string){
+  insertParcel(vipId: string, shopId: string, documentId: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string, fullAddressInput: string){
     let documentParcelId = this.afs.createId()
     let year: string = new Date().getFullYear().toString()
     let month: string = (new Date().getMonth()+1).toString()
@@ -122,6 +125,7 @@ export class WaybillService {
         municipality: municipalityInput,
         addressLine: addressLineInput,
         barangay: barangayInput,
+        fullAddress: fullAddressInput
       },
 
       orderInformation: {
@@ -191,6 +195,35 @@ export class WaybillService {
     this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).collection("parcels").doc(parcelId).delete()
   }
 
+  updateCustomerName(vipId: string, shopId: string, orderId:string, parcelId:string, updateValue: string){
+    return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).collection("parcels").doc(parcelId).update({
+      "customerInformation.customerName": updateValue
+    })
+  }
+
+  updateCustomerMobileNumber(vipId: string, shopId: string, orderId:string, parcelId:string, updateValue: string){
+    return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).collection("parcels").doc(parcelId).update({
+      "customerInformation.mobileNumber": updateValue
+    })
+  }
+
+  updateCustomerBarangay(vipId: string, shopId: string, orderId:string, parcelId:string, updateValue: string){
+    return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).collection("parcels").doc(parcelId).update({
+      "customerAddress.barangay": updateValue
+    })
+  }
+
+  updateCustomerAddressLine(vipId: string, shopId: string, orderId:string, parcelId:string, updateValue: string){
+    return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).collection("parcels").doc(parcelId).update({
+      "customerAddress.addressLine": updateValue
+    })
+  }
+
+  updateProductDescription(vipId: string, shopId: string, orderId:string, parcelId:string, updateValue: string){
+    return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).collection("parcels").doc(parcelId).update({
+      "orderInformation.productDescription": updateValue
+    })
+  }
 }
 
 export interface Vip{

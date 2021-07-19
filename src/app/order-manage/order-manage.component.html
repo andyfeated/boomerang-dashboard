@@ -6,13 +6,12 @@
 
         <div class="parcel-info-left">
             
-
             <div class="parcel-info-label">
-                <h5>Waybill Number:</h5>
+                <h5>Product Description:</h5>
             </div>
 
             <div class="parcel-info-label">
-                <h5>Product Description:</h5>
+                <h5>Waybill Number:</h5>
             </div>
 
             <div class="parcel-info-label">
@@ -39,11 +38,11 @@
 
         <div class="parcel-info-left">
             <div class="parcel-info-label">
-                <p>{{parcelWaybillNumber}}</p>
+                <p>{{productDescriptionWaybill}}</p>
             </div>
 
             <div class="parcel-info-label">
-                <p>{{productDescriptionWaybill}}</p>
+                <p>{{parcelWaybillNumber}}</p>
             </div>
 
             <div class="parcel-info-label">
@@ -65,6 +64,14 @@
             <div class="parcel-info-label">
                 <p>{{shipmentFeeWaybill}}</p>
             </div>
+        </div>
+
+        <div class="parcel-edit2">
+            <div class="edit-buttons3">
+                <a href="#"><i class="las la-edit" (click)="editProductDescription()"></i></a>
+            </div>
+
+            
         </div>
 
         <div class="parcel-info-left">
@@ -134,6 +141,7 @@
             </div>
             
             <div class="parcel-info-label">
+                
                 <h5>Customer Mobile Number:</h5>
             </div>
 
@@ -161,6 +169,7 @@
         <div class="parcel-info-left">
             <div class="parcel-info-label">
                 <p>{{buyerNameWaybill}}</p>
+                
             </div>
 
             <div class="parcel-info-label">
@@ -169,6 +178,7 @@
 
             <div class="parcel-info-label">
                 <p>{{buyerRegionWaybill}}</p>
+                
             </div>
 
             <div class="parcel-info-label">
@@ -188,6 +198,26 @@
             </div>
         </div>
 
+        <div class="parcel-edit">
+            <div class="edit-buttons">
+                <a href="#"><i class="las la-edit" (click)="editCustomerName()"></i></a>
+            </div>
+
+            <div class="edit-buttons">
+                <a href="#"><i class="las la-edit" (click)="editMobileNumber()"></i></a>
+            </div>
+
+
+            <div class="edit-buttons-bottom">
+                <div class="edit-buttons">
+                    <a href="#"><i class="las la-edit" (click)="editBarangay()"></i></a>
+                </div>
+                <div class="edit-buttons">
+                    <a href="#"><i class="las la-edit" (click)="editAddressLine()" ></i></a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -197,71 +227,80 @@
     </div>
     
     <div class="main-waybill2">
-        
-        
-        
         <button [useExistingCss]="true" printSectionId="waybillPrint" ngxPrint>Print Waybill</button>
         <button (click)="deleteWaybill()">Delete Waybill</button>
+        <button (click)="updateWaybill(updateValue.value)">Update Waybill</button>
+        <h5 *ngIf="!isEditing"> Please Enter New Value: </h5>
+        <input [hidden]="isEditing" #updateValue type="text" name="" id="">
+
     
         <div>
             
             <div hidden>
                 <div id="waybillPrint" class="waybill-right">
-                    <div class="waybill-header-print">
-                        <img src="assets/images/waybill-header.jpg" width="298px">
-                    </div>
-    
-                    <div class="waybill-awb">
-                        <h1>{{parcelWaybillNumber}}</h1>
-                        <p>{{parcelWaybillNumber}}</p>
-                    </div>
-    
-                    <div class="mid">
-                        <div class="wp1">
-                            <p>Ship From:</p>
-                        </div>
-        
-                        <div class="wp2">
-                            <div class="wp3">
-                                <p>Shop Name: {{shopNameWaybill}}</p>
-                                <p>Shop Contact Number: {{shopContactNumberWaybill}}</p>
-                                <p>Shop Address Line: {{shopAddressLineWaybill}}</p>
-                            </div>
-                        </div>
-        
-                        <div class="wp1">
-                            <p>Ship To:</p>
-                        </div>
-        
-                        <div class="wp2">
-                            <div class="wp3">
-                                <p>Buyer's Name: {{buyerNameWaybill}}</p>
-                                <p>Buyer's Contact Number: {{buyerContactNumber}}</p>
-                                <p>Buyser's Address Line: {{buyerCompleteAddressLineWaybill}}</p>
-                            </div>
-                        </div>
-                    </div>
+                    
 
-                    <div class="mid-right">
-                        <div class="wp5">
-                            <p>Payment Method:</p>
-                            <p>COD or Non-COD</p>
+                    <div *ngFor="let waybill of parcelObs$">
+                        <div class="printing-template">
+                            <div class="waybill-header-print">
+                                <img src="assets/images/waybill-header.jpg" width="298px">
+                            </div>
+            
+                            <div class="waybill-awb">
+                                <h1>{{waybill.orderInformation.awb}}</h1>
+                                <p>{{waybill.orderInformation.awb}}</p>
+                            </div>
+            
+                            <div class="mid">
+                                <div class="wp1">
+                                    <p>Ship From:</p>
+                                </div>
+                
+                                <div class="wp2">
+                                    <div class="wp3">
+                                        <p>Shop Name: {{shopNameWaybill}}</p>
+                                        <p>Shop Contact Number: {{shopContactNumberWaybill}}</p>
+                                        <p>Shop Address Line: {{shopAddressLineWaybill}}</p>
+                                    </div>
+                                </div>
+                
+                                <div class="wp1">
+                                    <p>Ship To:</p>
+                                </div>
+                
+                                <div class="wp2">
+                                    <div class="wp3">
+                                        <p>Buyer's Name: {{waybill.customerInformation.customerName}}</p>
+                                        <p>Buyer's Contact Number: {{waybill.customerInformation.mobileNumber}}</p>
+                                        <p>Buyser's Address Line: {{waybill.customerAddress.fullAddress}}</p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="mid-right">
+                                <div class="wp5">
+                                    <p>Payment Method:</p>
+                                    <p>COD or Non-COD</p>
+                                </div>
+        
+                                <div class="wp6">
+                                    <p>COD:</p>
+                                    <p>Php {{waybill.orderInformation.itemValue}}</p>
+                                </div>
+                            </div>
+            
+                            <div class="waybill-awb">
+                                <h1>{{waybill.orderInformation.awb}}</h1>
+                                <p>{{waybill.orderInformation.awb}}</p>
+                            </div>
+            
+                            <div class="wp4">
+                                <p>Product Description: {{waybill.orderInformation.productDescription}}</p>
+                                <p>Follow us on our Social Media: facebook.com/BoomerangXpressPhilippines</p>
+                            </div>
+                            <p style="page-break-after: always;"></p>
+                            <!-- Line Break -->
                         </div>
-
-                        <div class="wp6">
-                            <p>COD:</p>
-                            <p>Php {{productFeeWaybill}}</p>
-                        </div>
-                    </div>
-    
-                    <div class="waybill-awb">
-                        <h1>{{parcelWaybillNumber}}</h1>
-                        <p>{{parcelWaybillNumber}}</p>
-                    </div>
-    
-                    <div class="wp4">
-                        <p>Product Description: {{productDescriptionWaybill}}</p>
-                        <p>Follow us on our Social Media: facebook.com/BoomerangXpressPhilippines</p>
                     </div>
                     
                     

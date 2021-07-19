@@ -32,6 +32,7 @@ import { ManifestoComponent } from './manifesto/manifesto.component';
 import { LoginComponent } from './login/login.component';
 import { NgxPrintModule } from 'ngx-print';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -74,7 +75,8 @@ import { MatButtonModule } from '@angular/material/button'
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   providers: [WaybillService],
   bootstrap: [AppComponent]

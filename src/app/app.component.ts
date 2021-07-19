@@ -129,7 +129,7 @@ export class AppComponent implements OnInit{
       this.loggedIn = true
       this.user = this.waybill.user
     }
-    alert("Successfully Logged In")
+
   }
 
   onChangeShop(){

@@ -29,7 +29,7 @@ body{
     margin-top: -50px;
     left: 0;
     right: 0;
-    height: 100%;
+    height: 104%;
     background: var(--main-color);
     z-index: 100;
     transition: width 500ms;
@@ -154,8 +154,7 @@ header label span{
 main{
     margin-top: 50px;
     padding: 2rem 1.5rem;
-    height: 525px;
-    background: #f1f5f9;
+    height: 550px;
     min-height: calc(100vh - 90px);
     overflow-x: hidden;
 }
@@ -1037,6 +1036,11 @@ button{
     padding: 20px;
     border-radius: 10px;
 
+}
+
+.main-waybill2 h5{
+    display: inline-block;
+    margin-right: 10px;
 }
 
 .main-waybill2 button{
@@ -1921,7 +1925,7 @@ button{
 .wp1 p{
     margin-top: 15px;
     margin-left: 15px;
-    font-size: 8px;
+    font-size: 10px;
 }
 
 .wp2{
@@ -1930,14 +1934,19 @@ button{
 
 .wp3 p{
     margin-left: 25px;
-    font-size: 8px;
+    font-size: 10px;
 }
 
 .wp4 p{
     margin-left: 15px;
     margin-top: 10px;
-    font-size: 8;
+    font-size: 10px;
 }
+
+.wp10{
+    margin-top: 1000px;
+}
+
 
 .waybill-right{
     display: inline-block;
@@ -1946,7 +1955,6 @@ button{
 }
 
 #waybillPrint{
-    border: 1px solid black;
     width: 300px;
     height:400px;
     font-size: 9px;
@@ -1963,8 +1971,6 @@ button{
 
 .waybill-awb{
     height: 15%;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
     margin-top: 10px;
     text-align: center;
 
@@ -1988,12 +1994,12 @@ button{
     overflow-x: scroll;
 }
 
-html, body { height: 100%; }
+html, body { height: 90%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .parcel-info{
     padding: 10px;
-    height: 310px;
+    height: 340px;
     margin-bottom: 15px;
     background-color: white;
 }
@@ -2012,13 +2018,45 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding-left: 5px;
     padding-bottom: 7px;
     vertical-align: top;
+    width: 100%;
+    height: 45px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.parcel-info-label i{
+    float: right;
+    vertical-align: top;
+}
+
+.parcel-info-label h5{
+    display: inline-block;
+
+}
+
+.parcel-info-label p{
+    display: inline-block;
+    overflow-x: hidden;
+
+}
+.parcel-info-i{
+    vertical-align: top;
+    display: inline-block;
 
 }
 
 .parcel-info-left{
-    width: 16%;
+    width: 15%;
     display: inline-block;
     vertical-align: top;
+}
+
+.parcel-info-left input{
+    width: 50%;
+}
+
+.aa{
+    display: inline-block;
 }
 
 .mid{
@@ -2034,7 +2072,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .wp5{
     margin-top: 15px;
     margin-left: 5px;
-    font-size: 7px;
+    font-size: 10;
 }
 
 .wp5 p:last-child{
@@ -2044,11 +2082,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .wp6{
     margin-top: 20px;
     margin-left: 5px;
-    font-size: 8px;
+    font-size: 10px;
 }
 
 .wp6 p:last-child{
-    font-size: 10px;
+    font-size: 14px;
 }
 
 .user-info{
@@ -2059,3 +2097,31 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-top: 5px;
     float: right;
 }
+
+.parcel-edit{
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 400px;
+}
+
+.parcel-edit2{
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+
+
+.edit-buttons{
+    height: 45px;
+}
+
+.edit-buttons-bottom{
+    margin-top: 140px;
+}
+
+.edit-buttons3{
+    height: 45px;
+    vertical-align: top;
+    
+}
+
