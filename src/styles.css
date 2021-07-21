@@ -922,7 +922,7 @@ button{
 }
 
 .change-pass-form label{
-    font-size: 12px;
+    font-size: 1px;
 }
 
 .button-order-manage button{
@@ -1278,11 +1278,6 @@ button{
     margin-top: 130px;
 }
 
-.express-tracking-right span{
-    font-size: 100px;
-    margin-left: 60px;
-    color: var(--main-color);
-}
 
 .user-div{
     background-color: white;
