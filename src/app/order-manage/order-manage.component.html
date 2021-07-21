@@ -229,9 +229,11 @@
     </div>
     
     <div class="main-waybill2">
-        <button [useExistingCss]="true" printSectionId="waybillPrint" ngxPrint>Print Waybill</button>
-        <button (click)="deleteWaybill()">Delete Waybill</button>
-        <button (click)="updateWaybill(updateValue.value)">Update Waybill</button>
+        <div class="button-order-manage">
+            <button mat-button [useExistingCss]="true" printSectionId="waybillPrint" ngxPrint>Print Waybill</button>
+            <button mat-button (click)="deleteWaybill()">Delete Waybill</button>
+            <button mat-button (click)="updateWaybill(updateValue.value)">Update Waybill</button>
+        </div>
         <h5 *ngIf="!isEditing"> Please Enter New Value: </h5>
         <input [hidden]="isEditing" #updateValue type="text" name="" id="">
 

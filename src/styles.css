@@ -921,12 +921,18 @@ button{
 
 }
 
+.button-order-manage button{
+    background-color: var(--main-color);
+    color: white;
+    margin-bottom: 10px;
+}
 
 .button-container button{
     width: 100%;
     background-color: var(--main-color);
     color: white;
     height: 35px;
+    font-size: 12px;
     border-radius: 5px;
     border: white 5px #fafafa;
 }
