@@ -5,83 +5,11 @@
     <div class="parcel-info">
 
         <div class="parcel-info-left">
-            
-            <div class="parcel-info-label">
-                <h5>Product Description:</h5>
-            </div>
-
-            <div class="parcel-info-label">
-                <h5>Waybill Number:</h5>
-            </div>
-
-            <div class="parcel-info-label">
-                <h5>Weight:</h5>
-            </div>
-
-            <div class="parcel-info-label">
-                <h5>Product Fee:</h5>
-            </div>
-            
-            <div class="parcel-info-label">
-                <h5>COD Fee:</h5>
-            </div>
-
-            <div class="parcel-info-label">
-                <h5>Insurance Fee:</h5>
-            </div>
-
-            <div class="parcel-info-label">
-                <h5>Shipment Fee:</h5>
-            </div>
-
-        </div>
-
-        <div class="parcel-info-left">
-            <div class="parcel-info-label">
-                <p>{{productDescriptionWaybill}}</p>
-            </div>
-
-            <div class="parcel-info-label">
-                <p>{{parcelWaybillNumber}}</p>
-            </div>
-
-            <div class="parcel-info-label">
-                <p>{{weightWaybill}}</p>
-            </div>
-
-            <div class="parcel-info-label">
-                <p>{{productFeeWaybill}}</p>
-            </div>
-
-            <div class="parcel-info-label">
-                <p>{{codFeeWaybill}}</p>
-            </div>
-
-            <div class="parcel-info-label">
-                <p>{{insuranceFeeWaybill}}</p>
-            </div>
-
-            <div class="parcel-info-label">
-                <p>{{shipmentFeeWaybill}}</p>
-            </div>
-        </div>
-
-        <div class="parcel-edit2">
-            <div class="edit-buttons3">
-                <a href="#"><i class="las la-edit" (click)="editProductDescription()"></i></a>
-            </div>
-
-            
-        </div>
-
-        <div class="parcel-info-left">
             <div class="parcel-info-label">
                 <h5>Shop Name:</h5>
             </div>
 
-            <div class="parcel-info-label">
-                <h5>Shop ID:</h5>
-            </div>
+
 
             <div class="parcel-info-label">
                 <h5>Shop Contact Number:</h5>
@@ -102,15 +30,15 @@
             <div class="parcel-info-label">
                 <h5>Order ID:</h5>
             </div>
+
+            <div class="parcel-info-label">
+                <h5>Payment Method:</h5>
+            </div>
         </div>
 
         <div class="parcel-info-left">
             <div class="parcel-info-label">
                 <p>{{shopNameWaybill}}</p>
-            </div>
-
-            <div class="parcel-info-label">
-                <p>{{shopIdWaybill}}</p>
             </div>
 
             <div class="parcel-info-label">
@@ -131,6 +59,10 @@
 
             <div class="parcel-info-label">
                 <p>{{orderIdWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{paymentMethodWaybill}}</p>
             </div>
 
         </div>
@@ -198,6 +130,8 @@
             </div>
         </div>
 
+        
+
         <div class="parcel-edit">
             <div class="edit-buttons">
                 <a href="#"><i class="las la-edit" (click)="editCustomerName()"></i></a>
@@ -218,6 +152,74 @@
             </div>
         </div>
 
+        <div class="parcel-info-left">
+            
+            <div class="parcel-info-label">
+                <h5>Product Description:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Waybill Number:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Weight:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Product Fee:</h5>
+            </div>
+            
+            <div class="parcel-info-label">
+                <h5>COD Fee:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Insurance Fee:</h5>
+            </div>
+
+            <div class="parcel-info-label">
+                <h5>Shipment Fee:</h5>
+            </div>
+
+        </div>
+
+        <div class="parcel-info-left">
+            <div class="parcel-info-label">
+                <p>{{productDescriptionWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{parcelWaybillNumber}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{weightWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{productFeeWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{codFeeWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{insuranceFeeWaybill}}</p>
+            </div>
+
+            <div class="parcel-info-label">
+                <p>{{shipmentFeeWaybill}}</p>
+            </div>
+        </div>
+
+        <div class="parcel-edit2">
+            <div class="edit-buttons3">
+                <a href="#"><i class="las la-edit" (click)="editProductDescription()"></i></a>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -235,7 +237,6 @@
 
     
         <div>
-            
             <div hidden>
                 <div id="waybillPrint" class="waybill-right">
                     

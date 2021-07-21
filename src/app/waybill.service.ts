@@ -105,7 +105,7 @@ export class WaybillService {
     })
   }
 
-  insertParcel(vipId: string, shopId: string, documentId: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string, fullAddressInput: string){
+  insertParcel(vipId: string, shopId: string, documentId: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, paymentMethod: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string, fullAddressInput: string){
     let documentParcelId = this.afs.createId()
     let year: string = new Date().getFullYear().toString()
     let month: string = (new Date().getMonth()+1).toString()
@@ -139,6 +139,7 @@ export class WaybillService {
         shipmentFee: shipmentFee,
         remarks: remarksInput,
         shipmentType: sizeInput,
+        paymentMethod: paymentMethod
       },
        shopRegion: shopRegionInput,
     }).then(() => {

@@ -52,6 +52,7 @@ export class OrderManageComponent implements OnInit {
 
 
   productDescriptionWaybill?: string
+  paymentMethodWaybill?: string
   weightWaybill?: number
   productFeeWaybill?: number
   codFeeWaybill?: number
@@ -132,6 +133,7 @@ export class OrderManageComponent implements OnInit {
     this.buyerCompleteAddressLineWaybill = this.selectedParcel.customerAddress.province + ", " + this.selectedParcel.customerAddress.municipality + ", " + this.selectedParcel.customerAddress.addressLine
 
     this.productDescriptionWaybill = this.selectedParcel.orderInformation.productDescription
+    this.paymentMethodWaybill = this.selectedParcel.orderInformation.paymentMethod
     this.weightWaybill = this.selectedParcel.orderInformation.weight
     this.productFeeWaybill = this.selectedParcel.orderInformation.itemValue
     this.codFeeWaybill = this.selectedParcel.orderInformation.codFee

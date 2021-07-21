@@ -46,8 +46,13 @@ export class OrdersComponent implements OnInit, OnChanges {
   //Template Values
   weightNumber = "0"
   itemValueNumber = 0
+
   codFeeNumber = 0
+  codFeeRoundOff = "0"
+  
   insuranceFeeNumber = 0
+  insuranceFeeRoundOff = "0"
+
   parcelsNumber = 0
 
   //Input Values
@@ -88,6 +93,7 @@ export class OrdersComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    
     for(let i = 0; i < waybillLocations[0].length; i++){
       this.regionsNew.set(waybillLocations[0][i].toString(), waybillLocations[0][i].toString())
     }
@@ -296,13 +302,15 @@ export class OrdersComponent implements OnInit, OnChanges {
       this.weightNumber = overallWeight.toFixed(2)
       this.itemValueNumber = overallSales
       this.codFeeNumber = overallCodFee
+      this.codFeeRoundOff = this.codFeeNumber.toFixed(2)
       this.insuranceFeeNumber = overallInsuranceFee
+      this.insuranceFeeRoundOff = this.insuranceFeeNumber.toFixed(2)
 
       
     }) 
   }
 
-  insertParcel(customerNameInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
+  insertParcel(customerNameInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, paymentMethodInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
     if(this.selectedOrder == undefined){
       alert("Please Select an Order ID First Before Saving a Waybill")
     }
@@ -322,7 +330,7 @@ export class OrdersComponent implements OnInit, OnChanges {
 
     let fullAddress = regionInput + ", " + provinceInput + ", " + municipalityInput + ", " + barangayInput + ", " + addressLineInput
 
-    this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, this.shipmentFee, this.volumetricWeight, this.shopRegion, fullAddress)
+    this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, paymentMethodInput, this.shipmentFee, this.volumetricWeight, this.shopRegion, fullAddress)
 
   }
 

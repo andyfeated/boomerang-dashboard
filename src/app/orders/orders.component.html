@@ -57,7 +57,7 @@
             </div>
 
             <div class="button-container">
-                <button (click)="insertParcel(customerNameInput.value,mobileNumberInput.value,regionInput.value,provinceInput.value,municipalityInput.value,addressLineInput.value,barangayInput.value, productDescriptionInput.value,itemValueInt.value,codFeeInput.value,weightInput.value,insuranceFeeInput.value,shipmentFeeInput.value,remarksInput.value,sizeInput.value,weightInt.value,lengthInput.value, widthInput.value, heightInput.value)">Save and Add New</button>
+                <button (click)="insertParcel(customerNameInput.value,mobileNumberInput.value,regionInput.value,provinceInput.value,municipalityInput.value,addressLineInput.value,barangayInput.value, productDescriptionInput.value,itemValueInt.value,codFeeInput.value,weightInput.value,insuranceFeeInput.value,shipmentFeeInput.value,remarksInput.value,sizeInput.value, paymentMethod.value, weightInt.value,lengthInput.value, widthInput.value, heightInput.value)">Save and Add New</button>
             </div>
         </div>
     </div>
@@ -77,6 +77,7 @@
                 <label for="">Item Value</label>
                 <input #itemValueInt type="number" placeholder="0">
             </div>
+            
     
             <div hidden>
                 <div class="customer-information-bottom-label">
@@ -89,7 +90,7 @@
                 </div>
             </div>
     
-            <div class="form-field-medium">
+            <div class="form-field-small2">
                 <label for="">Shipment Type</label>
                 <select [(ngModel)]="choice" #sizeInput>
                     <option value="" disabled selected>Shipment Type</option>
@@ -97,6 +98,15 @@
                     <option>Small</option>
                     <option>Medium</option>
                     <option>Large</option>
+                </select>
+            </div>
+
+            <div class="form-field-small2">
+                <label for="">Payment Method</label>
+                <select #paymentMethod>
+                    <option value="" disabled selected>Payment Method</option>
+                    <option>COD</option>
+                    <option>Non-COD</option>
                 </select>
             </div>
     
@@ -148,13 +158,13 @@
             <!--Total Cod Fee Card-->
             <div class="customer-card">
                 <h5>Total COD Fee</h5>
-                <h1>{{codFeeNumber}}</h1>
+                <h1>{{codFeeRoundOff}}</h1>
             </div>
 
             <!--Total Insurance Fee Card-->
             <div class="customer-card">
                 <h5>Total Insurance Fee</h5>
-                <h1>{{insuranceFeeNumber}}</h1>
+                <h1>{{insuranceFeeRoundOff}}</h1>
             </div>
 
             <!--Create Waybill Bulk Button-->
