@@ -921,6 +921,10 @@ button{
 
 }
 
+.change-pass-form label{
+    font-size: 12px;
+}
+
 .button-order-manage button{
     background-color: var(--main-color);
     color: white;
