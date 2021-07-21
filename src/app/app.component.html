@@ -280,8 +280,10 @@
                 </select>
             </div>
 
-            <button (click)="logout()">Logout</button>
-            <button>Change Password</button>
+            <div class="menu-buttons">
+                <button mat-button (click)="logout()">Logout</button>
+                <button mat-button (click)="openDialog()">Change Password</button>
+            </div>
         </div>
     </header>
 

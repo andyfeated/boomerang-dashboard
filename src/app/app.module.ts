@@ -36,8 +36,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatButtonModule } from '@angular/material/button'
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ChangePasswordComponent } from './change-password/change-password.component';
  
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { MatButtonModule } from '@angular/material/button'
     TicketCaptainComponent,
     ManifestoComponent,
     LoginComponent,
+    ChangePasswordComponent,
     
   ],
   imports: [
@@ -76,7 +79,8 @@ import { MatButtonModule } from '@angular/material/button'
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    ReactiveFormsModule
+    MatDialogModule,
+    ReactiveFormsModule,
   ],
   providers: [WaybillService],
   bootstrap: [AppComponent]

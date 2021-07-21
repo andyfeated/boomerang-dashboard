@@ -1950,6 +1950,13 @@ button{
     margin-right: 10px;
 }
 
+.menu-buttons button{
+    background-color: white;
+    margin-right: 5px;
+    color: var(--main-color);
+    border: var(--main-color) 1px solid;
+}
+
 .waybill-left{
     width: 40%;
     margin-top: 10px;

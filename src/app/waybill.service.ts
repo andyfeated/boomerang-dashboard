@@ -1,4 +1,4 @@
-import { stringify } from '@angular/compiler/src/util';
+import { error, stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -31,6 +31,9 @@ export class WaybillService {
 
   isLoggedIn = false
   isLoggedInObs?: Observable<boolean>
+
+  userEmail!: string
+  userPassword!: string
 
   constructor(private afs:AngularFirestore, private auth: AngularFireAuth) {
     this.vips$ = afs.collection<Vip>("vips").valueChanges()
@@ -74,6 +77,9 @@ export class WaybillService {
   }
 
   async loginAuth(email: string, password: string){
+    this.userEmail = email
+    this.userPassword = password
+
     await this.auth.signInWithEmailAndPassword(email, password)
     .then(res => {
       this.isLoggedIn = true
@@ -87,6 +93,25 @@ export class WaybillService {
   logoutAuth(){
     this.auth.signOut()
     localStorage.removeItem('rows');
+  }
+
+  changePassword(email: string, oldPassword: string, newPassword: string){
+    this.auth.signInWithEmailAndPassword(email, oldPassword).then((userCredentials) => {
+      userCredentials.user?.updatePassword(newPassword).then(() => {
+        alert("Password Successfully Changed")
+      }).catch(err => {
+        alert(err)
+      })
+    }).catch(err => {
+      alert("The email or password that you entered is incorrect")
+    })
+
+    // newUser.
+    // updatePassword("mitchaybanua30").then(() => {
+    //   alert("Password Updated Successfully")
+    // }).catch(() => {
+    //   alert("Please Re-Login Before Changing your Password")
+    // })
   }
 
   addNewOrder(vipId: string, shopId: string){

@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Vip, WaybillService } from './waybill.service';
+import {MatDialog} from '@angular/material/dialog'
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @Component({
   selector: 'app-root',
@@ -78,7 +80,7 @@ export class AppComponent implements OnInit{
 
   newOrders: any
 
-  constructor(private waybill:WaybillService, private auth: AngularFireAuth){
+  constructor(private waybill:WaybillService, private dialog:MatDialog){
 
   }
 
@@ -130,6 +132,10 @@ export class AppComponent implements OnInit{
       this.user = this.waybill.user
     }
 
+  }
+
+  openDialog(){
+    this.dialog.open(ChangePasswordComponent)
   }
 
   onChangeShop(){
