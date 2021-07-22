@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Create New Shop</h2>
+
+<mat-dialog-content>
+    
+    <mat-form-field [style.width.px]=310>
+        <mat-label>Shop Name:</mat-label>
+        <input #shopNameInput type="text" matInput>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field [style.width.px]=310>
+        <mat-label>Shop Contact Number:</mat-label>
+        <input #shopContactNumberInput type="text" matInput>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field [style.width.px]=310>
+        <mat-label>Shop Region:</mat-label>
+        <input #shopRegionInput type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field [style.width.px]=310>
+        <mat-label>Shop Province:</mat-label>
+        <input #shopProvinceInput type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field [style.width.px]=310>
+        <mat-label>Shop Municipality:</mat-label>
+        <input #shopMunicipalityInput type="text" matInput>
+    </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <div class="menu-buttons">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button mat-dialog-close (click)="createNewShop(shopNameInput.value, shopContactNumberInput.value, shopRegionInput.value, shopProvinceInput.value, shopMunicipalityInput.value)">Submit</button>
+
+    </div>
+</mat-dialog-actions>
+
+

@@ -683,6 +683,13 @@ main{
     height: 340px;
 }
 
+.customer-information-top2{
+    background-color: white;
+    border-radius: 10px;
+    height: 440px;
+    margin-top: 20px;
+}
+
 .customer-information-bottom{
     background-color: white;
     margin-top: 30px;
@@ -1161,6 +1168,25 @@ button{
     padding: 20px 0px 5px 0px;
 }
 
+.waybill-buttons2{
+    height: 40%;
+    margin-left: 15px;
+    padding: 20px 0px 5px 0px;
+}
+
+.shop-table-container{
+    width: 95%;
+    height: 400px;
+    margin-left: 15px;
+    margin-top: -100px;
+}
+
+.waybill-buttons2 button{
+    background-color: var(--main-color);
+    color: white;
+    margin-right: 10px;
+}
+
 
 .wb{
     width: 100px;
@@ -1192,8 +1218,7 @@ button{
 .waybill-query-table-user{
     overflow-x: scroll;
     overflow-y: scroll;
-    margin-top: 20px;
-    height: 150px;
+    height: 300px;
 }
 
 #customers {

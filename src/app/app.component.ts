@@ -88,7 +88,6 @@ export class AppComponent implements OnInit{
     this.waybill.getAuthState().subscribe(user => {
       if(user != null){
         this.loggedIn = true
-        console.log(user)
         this.newUser = user
         this.newUserEmail = this.newUser.email
 
@@ -242,6 +241,7 @@ export class AppComponent implements OnInit{
   //Displays My User Account Component and Highlights its icon and the Account Management's
   displayAccount(){
     this.checkComponent();
+    this.userActivate = "active"
     this.accountActivate = "active";
     this.isAccount = true;
   } 

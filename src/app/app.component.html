@@ -199,8 +199,8 @@
                 </li>
 
                 <!--Account Management Icon, displays user component(My Pickup Location Page) in main page-->
-                <li hidden>
-                    <a href="#" (click)="displayUser()" [class]="userActivate">
+                <li>
+                    <a href="#" (click)="displayAccount()" [class]="userActivate">
                         <span class="las la-user-cog"></span>
                         <span>Account Management</span>
                     </a>
@@ -209,7 +209,7 @@
                     <div class="dropdown">
                         <ul>
                             <!--My Pickup Location Icon, displays user component(My Pickup Location Page) in main page-->
-                            <li>
+                            <li hidden>
                                 <a href="#" [class]="pickupAddressActivate" (click)="displayUser()">
                                     <i class="las la-map-marker-alt"></i>
                                     <span> My Pickup Location</span>
@@ -217,7 +217,7 @@
                             </li>
 
                             <!--My Recipient Address Icon, displays recipient address component in main page-->
-                            <li>
+                            <li hidden>
                                 <a href="#" [class]="recipientAddressActivate" (click)="displayRecipientAddress()">
                                     <i class="las la-map-marked-alt"></i>
                                     <span> My Recipient Address</span>
@@ -304,7 +304,7 @@
         <app-problematic-shipment *ngIf=isProblematicShipment></app-problematic-shipment> <!--Displays problematic shipment component(Ticket Management Page) if assgined boolean is true-->
         <app-user *ngIf="isUser"></app-user> <!--Displays User Component(My Pickup Location Page) if assigned boolean is true-->
         <app-recipient-address *ngIf=isrecipientAddress></app-recipient-address> <!--Displays Recipient Address Component if assigned boolean is true-->
-        <app-account *ngIf="isAccount"></app-account> <!--Displays Account Component(My User Accounts Page) if assigned component is true-->
+        <app-account [newVip]="newVip" *ngIf="isAccount"></app-account> <!--Displays Account Component(My User Accounts Page) if assigned component is true-->
         <!--<app-shipping-fee *ngIf=isShippingFee></app-shipping-fee>   Hidden Shipping Fee Component-->
         <!--<app-waybill *ngIf="isWaybill"></app-waybill>   Old Create Waybill Component-->
 

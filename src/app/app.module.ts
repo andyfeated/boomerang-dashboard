@@ -40,6 +40,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { CreateShopComponent } from './create-shop/create-shop.component';
  
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ManifestoComponent,
     LoginComponent,
     ChangePasswordComponent,
+    CreateShopComponent,
     
   ],
   imports: [

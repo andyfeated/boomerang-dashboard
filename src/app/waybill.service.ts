@@ -35,6 +35,8 @@ export class WaybillService {
   userEmail!: string
   userPassword!: string
 
+  vipEmail!: string
+
   constructor(private afs:AngularFirestore, private auth: AngularFireAuth) {
     this.vips$ = afs.collection<Vip>("vips").valueChanges()
   }
@@ -47,6 +49,11 @@ export class WaybillService {
     return this.afs.collection("vips").doc(email).valueChanges()
   }
 
+  getCurrentVip(){
+    return this.auth.authState.subscribe(val => {
+      this.vipEmail = val!.email!.toString()
+    })
+  }
 
   async registerAuth(email: string, password: string){
     await this.auth.createUserWithEmailAndPassword(email, password).then(userCredentials => {
@@ -127,6 +134,21 @@ export class WaybillService {
       dateCreated: date
     }).then(() => {
       alert("New Order Generated")
+    })
+  }
+
+  addShop(vipId: string, shopId: string, shopName: string, shopContactNumber: string, shopRegion: string, shopProvince: string, shopMunicipality: string){
+    this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).set({
+      shopName: shopName,
+      shopId: shopId,
+      shopContactNumber: shopContactNumber,
+      shopAddress: {
+        shopRegion: shopRegion,
+        shopProvince: shopProvince,
+        shopMunicipality: shopMunicipality
+      }
+    }).then(() => {
+      alert("Shop Successfully Created")
     })
   }
 
