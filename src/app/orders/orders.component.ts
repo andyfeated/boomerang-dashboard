@@ -42,6 +42,14 @@ export class OrdersComponent implements OnInit, OnChanges {
   parcelObs? = this.waybillService.parcelObs
   newParcelObs: any
 
+  customerNameForm = ""
+  mobileNumberForm = ""
+  barangayForm = ""
+  addressLineForm = ""
+  productDescriptionForm = ""
+  itemValueForm = ""
+  remarksForm =""
+
 
   //Template Values
   weightNumber = "0"
@@ -132,6 +140,15 @@ export class OrdersComponent implements OnInit, OnChanges {
     this.newParcelObs = undefined
   }
 
+  clear(){
+    this.customerNameForm = ""
+    this.mobileNumberForm = ""
+    this.barangayForm = ""
+    this.addressLineForm = ""
+    this.productDescriptionForm = ""
+    this.itemValueForm = ""
+    this.remarksForm =""
+  }
 
   setShipmentFeeAndVolumetricWeight(regionInput: string, shopRegionInput: string, sizeInput: string, lengthInput: string, widthInput: string, heightInput:string){
     //Sets the region depending on the region
@@ -331,7 +348,7 @@ export class OrdersComponent implements OnInit, OnChanges {
     let fullAddress = regionInput + ", " + provinceInput + ", " + municipalityInput + ", " + barangayInput + ", " + addressLineInput
 
     this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, paymentMethodInput, this.shipmentFee, this.volumetricWeight, this.shopRegion, fullAddress)
-
+    this.clear()
   }
 
 }

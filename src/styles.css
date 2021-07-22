@@ -2147,6 +2147,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .user-info select{
     margin-top: 5px;
     float: right;
+    width: 100px;
 }
 
 .parcel-edit{

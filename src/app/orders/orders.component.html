@@ -9,12 +9,12 @@
     
             <div class="form-field">
                 <label for="">Customer Name</label>
-                <input #customerNameInput type="text" placeholder="Cutomer Name">
+                <input [(ngModel)]="customerNameForm"  #customerNameInput type="text" placeholder="Cutomer Name">
             </div>
     
             <div class="form-field">
                 <label for="">Mobile Number</label>
-                <input #mobileNumberInput type="text" placeholder="Mobile Number">
+                <input [(ngModel)]="mobileNumberForm" #mobileNumberInput type="text" placeholder="Mobile Number">
             </div>
 
             <div class="form-field">
@@ -27,7 +27,7 @@
 
             <div class="form-field">
                 <label for="">Barangay</label>
-                <input #barangayInput type="text" placeholder="Barangay">
+                <input [(ngModel)]="barangayForm" #barangayInput type="text" placeholder="Barangay">
             </div>
 
             <div class="form-field">
@@ -40,7 +40,7 @@
 
             <div class="form-field">
                 <label for="">Address Line</label>
-                <input #addressLineInput type="text" placeholder="Address Line">
+                <input [(ngModel)]="addressLineForm" #addressLineInput type="text" placeholder="Address Line">
             </div>
 
             <div class="form-field">
@@ -59,6 +59,7 @@
             <div class="button-container">
                 <button mat-button (click)="insertParcel(customerNameInput.value,mobileNumberInput.value,regionInput.value,provinceInput.value,municipalityInput.value,addressLineInput.value,barangayInput.value, productDescriptionInput.value,itemValueInt.value,codFeeInput.value,weightInput.value,insuranceFeeInput.value,shipmentFeeInput.value,remarksInput.value,sizeInput.value, paymentMethod.value, weightInt.value,lengthInput.value, widthInput.value, heightInput.value)">Save and Add New</button>
             </div>
+
         </div>
     </div>
 
@@ -70,12 +71,12 @@
         <div class="order-information-container">
             <div class="form-field-long">
                 <Label>Product Description</Label>
-                <input #productDescriptionInput placeholder="Product Description">
+                <input [(ngModel)]="productDescriptionForm" #productDescriptionInput placeholder="Product Description">
             </div>
     
             <div class="form-field-medium">
                 <label for="">Item Value</label>
-                <input #itemValueInt type="number" placeholder="0">
+                <input [(ngModel)]="itemValueForm" #itemValueInt type="number" placeholder="0">
             </div>
             
     
@@ -144,7 +145,7 @@
     
             <div class="form-field-long">
                 <Label>Remarks</Label>
-                <input #remarksInput placeholder="Sample">
+                <input [(ngModel)]="remarksForm" #remarksInput placeholder="Sample">
             </div>
         </div>
 
