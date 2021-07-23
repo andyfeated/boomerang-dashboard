@@ -17,7 +17,8 @@ import waybills from 'src/assets/data/waybills.json'
 export class OrdersComponent implements OnInit, OnChanges {
 
   
-
+  newOrderCreated = false
+  isVolumetric = true
   choice = ""
 
   documentId!: string
@@ -49,7 +50,10 @@ export class OrdersComponent implements OnInit, OnChanges {
   productDescriptionForm = ""
   itemValueForm = ""
   remarksForm =""
-
+  regionForm = "Please Select a Region"
+  provinceForm = "Please Select a Province"
+  municipalityForm = "Please Select a Municipality"
+  paymentMethodForm = ""
 
   //Template Values
   weightNumber = "0"
@@ -92,16 +96,28 @@ export class OrdersComponent implements OnInit, OnChanges {
   @Input() public newVip: any
 
   vipId: any
+  vipRealId: any
   shopId: any
+  shopLocation: any
   shopRegion: any
 
   selectedOrder: any
+  orderId: any
+
+  insuranceFeeForm = ""
+  codFeeForm = ""
+  shipmentFeeForm = ""
+  widthForm = ""
+  lengthForm =""
+  heightForm =""
+
+  noShopChosen = true
 
   constructor(private waybillService: WaybillService) { 
   }
 
   ngOnInit(): void {
-    
+
     for(let i = 0; i < waybillLocations[0].length; i++){
       this.regionsNew.set(waybillLocations[0][i].toString(), waybillLocations[0][i].toString())
     }
@@ -126,9 +142,12 @@ export class OrdersComponent implements OnInit, OnChanges {
     if(changes['shop'] != undefined){
       if(shopValue.currentValue != shopValue.previousValue){
 
+        this.noShopChosen = false
         this.shopId = this.shop.shopId
         this.shopRegion = this.shop.shopAddress.shopRegion
+        this.shopLocation = this.shop.shopAddress.shopMunicipality
         this.vipId = this.newVip.vipEmail
+        this.vipRealId = this.newVip.vipId
 
         this.displayOrders()
         this.displayParcels()
@@ -143,15 +162,32 @@ export class OrdersComponent implements OnInit, OnChanges {
   clear(){
     this.customerNameForm = ""
     this.mobileNumberForm = ""
+    this.regionForm = "Please Select a Region"
+    this.provinceForm = "Please Select a Province"
+    this.municipalityForm = "Please Select a Municipality"
+
+    this.choice = "Shipment Type"
+    this.paymentMethodForm = "Payment Method"
+
+    this.widthForm = "0"
+    this.lengthForm = "0"
+    this.heightForm = "0"
+
+    this.codFeeForm = "0"
+    this.shipmentFeeForm = "0"
+    this.insuranceFeeForm = "0"
+  
     this.barangayForm = ""
     this.addressLineForm = ""
     this.productDescriptionForm = ""
     this.itemValueForm = ""
     this.remarksForm =""
+
   }
 
-  setShipmentFeeAndVolumetricWeight(regionInput: string, shopRegionInput: string, sizeInput: string, lengthInput: string, widthInput: string, heightInput:string){
+  setShipmentFeeAndVolumetricWeight(regionInput: string, sizeInput: string, lengthInput: string, widthInput: string, heightInput:string){
     //Sets the region depending on the region
+    
     if(this.regionLuzon.includes(regionInput)){
       this.island = "Luzon"
     }else if(this.regionVisayas.includes(regionInput)){
@@ -173,6 +209,7 @@ export class OrdersComponent implements OnInit, OnChanges {
     }
 
     if(this.island == "NCR" && this.shopIsland == "NCR" || this.island == "Luzon" && this.shopIsland == "Luzon"){
+      
       if(sizeInput == "Small"){
         this.shipmentFee = this.sameRegionPrices[0]
         this.volumetricWeight = 0.5
@@ -187,6 +224,7 @@ export class OrdersComponent implements OnInit, OnChanges {
       }
 
     }else if(this.island == "NCR" && this.shopIsland == "Luzon" || this.island =="Luzon" && this.shopIsland == "NCR"){
+      
       if(sizeInput == "Small"){
         this.shipmentFee = this.nearbyRegionPrices[0]
         this.volumetricWeight = 0.5
@@ -201,6 +239,8 @@ export class OrdersComponent implements OnInit, OnChanges {
       }
 
     }else if(this.island == "Visayas" && this.shopIsland == "NCR" || this.island == "Visayas" && this.shopIsland == "Luzon"){
+      
+      
       if(sizeInput == "Small"){
         this.shipmentFee = this.farRegionPrices[0]
         this.volumetricWeight = 0.5
@@ -215,6 +255,7 @@ export class OrdersComponent implements OnInit, OnChanges {
       }
 
     }else if(this.island == "Mindanao" && this.shopIsland == "NCR" || this.island == "Mindanao" && this.shopIsland == "Luzon"){
+
       if(sizeInput == "Small"){
         this.shipmentFee = this.veryFarRegionPrices[0]
         this.volumetricWeight = 0.5
@@ -259,9 +300,7 @@ export class OrdersComponent implements OnInit, OnChanges {
     for(let k = 0; k < waybillLocations[4].length; k++){
       if(municipalityInput == waybillLocations[4][k]){
         waybillNumber = waybills[k]
-        console.log(waybillNumber)
-        this.awbInput = waybillNumber + "-"+ Math.floor(Math.random()*100000+1)
-        console.log(this.awbInput)
+        this.awbInput = waybillNumber + "-"+ Math.floor(Math.random()*1000000+1)
       }
     }
     
@@ -270,6 +309,7 @@ export class OrdersComponent implements OnInit, OnChanges {
   createNewOrder(){
     if(this.vipId && this.shopId != undefined){
       this.waybillService.addNewOrder(this.vipId, this.shopId)
+      this.newOrderCreated = true
     }else{
       alert("Please choose a User and a Shop first")
     }
@@ -289,6 +329,8 @@ export class OrdersComponent implements OnInit, OnChanges {
   getParcels(item: any){
 
     this.selectedOrder = item
+    this.orderId = this.selectedOrder.orderId
+
     this.parcelId = this.selectedOrder.id
 
     this.waybillService.getParcels(this.vipId, this.shopId, this.parcelId).subscribe(val => {
@@ -327,28 +369,58 @@ export class OrdersComponent implements OnInit, OnChanges {
     }) 
   }
 
+  calculateFees(eve: any){
+    this.itemValueConvert = parseInt(this.itemValueForm)
+    
+    this.insuranceFeeIntConvert = Math.ceil(this.itemValueConvert * 0.01)
+    this.codFeeIntConvert = Math.ceil(this.itemValueConvert * 0.02)
+    
+    this.insuranceFeeForm = this.insuranceFeeIntConvert.toString()
+    this.codFeeForm = this.codFeeIntConvert.toString()
+
+    this.setShipmentFeeAndVolumetricWeight(this.regionForm, this.choice, this.lengthForm, this.widthForm, this.heightForm)
+
+    this.shipmentFeeForm = this.shipmentFee.toString()
+
+    console.log(this.shipmentFee)
+
+  }
+
   insertParcel(customerNameInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string,itemValueInt: string, codFeeInput: string,  weightInput: string, insuranceFeeInput: string, shipmentFeeInput: string, remarksInput: string, sizeInput: string, paymentMethodInput: string, weightInt: string, lengthInput: string, widthInput:string, heightInput: string){
     if(this.selectedOrder == undefined){
       alert("Please Select an Order ID First Before Saving a Waybill")
     }
-    this.documentId = this.selectedOrder.id
-    this.generateWaybill(municipalityInput)
+    if(this.customerNameForm != "" && this.mobileNumberForm != "" && this.regionForm != "Please Select a Region" && this.provinceForm != "Please Select a Province" && this.municipalityForm != "Please Select a Municipality" && this.barangayForm != "" && this.addressLineForm != "" && this.productDescriptionForm != "" && this.itemValueForm != "" && this.choice != "" && this.paymentMethodForm != "" && this.remarksForm != ""){
+      this.documentId = this.selectedOrder.id
+      this.generateWaybill(municipalityInput)
 
-    this.itemValueConvert = parseInt(itemValueInt)                  //Converts the "Item Value's" value to an integer and stores it in a local variable
-    this.weightIntConvert = parseInt(weightInt) / 1000              //Converts the weight's value to an integer, divides it into 1000, and stores it in a local variable
-    this.codFeeIntConvert = this.itemValueConvert * 0.02            //Takes the value of itemValue, multiplies it by 0.02, and stores it in a local variable
-    this.insuranceFeeIntConvert = this.itemValueConvert * 0.01      //Takes the value of itemValue, multiplies it by 0.01, and stores it in a local variable
+      this.shipmentFeeValue = this.shipmentFee
 
-    this.setShipmentFeeAndVolumetricWeight(regionInput, this.shopRegion, sizeInput, lengthInput, widthInput, heightInput)
+      let fullAddress = regionInput + ", " + provinceInput + ", " + municipalityInput + ", " + barangayInput + ", " + addressLineInput
 
-    this.codFeeValue = this.codFeeIntConvert                        //returns the value of codFee and stores it in a local variable
-    this.insuranceFeeValue = this.insuranceFeeIntConvert            //returns the value of insuranceFee and stores it in a local variable
-    this.shipmentFeeValue = this.shipmentFee
-
-    let fullAddress = regionInput + ", " + provinceInput + ", " + municipalityInput + ", " + barangayInput + ", " + addressLineInput
-
-    this.waybillService.insertParcel(this.vipId, this.shopId, this.documentId, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, paymentMethodInput, this.shipmentFee, this.volumetricWeight, this.shopRegion, fullAddress)
-    this.clear()
+      this.waybillService.insertParcel(this.vipId, this.vipRealId, this.shopId, this.orderId, this.documentId, this.shopLocation, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, paymentMethodInput, this.shipmentFee, this.volumetricWeight, this.shopRegion, fullAddress)
+      this.clear()
+   
+    }else{
+      alert("Please Input the Required Information")
+    }
   }
 
+  onShipmentTypeChange(){
+    if(this.choice == "Volumetric"){
+      this.isVolumetric = true
+    }else{
+      this.isVolumetric = false
+    }
+  }
+
+  enablePaymentMethod(){
+    let widthNum = parseInt(this.widthForm)
+    let lengthNum = parseInt(this.lengthForm)
+    let heightNum = parseInt(this.heightForm)
+
+    if(widthNum != 0 && lengthNum != 0 && heightNum != 0){
+      this.isVolumetric = false
+    }
+  }
 }

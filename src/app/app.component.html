@@ -187,7 +187,7 @@
                             </li>
 
                             <!--Ticket Management Icon, displays problematic shipment component(Ticket Management Page) in main page-->
-                            <li>
+                            <li hidden>
                                 <a href="#" [class]="problematicShipmentActivate" (click)="displayProblematicShipment()">
                                     <i class="las la-exclamation-circle"></i>
                                     <span>Ticket Management</span>
@@ -237,10 +237,10 @@
                 </li>
 
                 
-                <li hidden>
+                <li *ngIf="isAdmin">
                     <a (click)="displayManifesto()" [class]="manifestoActivate" href="#">
                         <span  class="las la-book"></span>
-                        <span> Manifesto</span>
+                        <span>Import/Export Data</span>
                     </a>
                 </li>
             </ul>

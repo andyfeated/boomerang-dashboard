@@ -79,6 +79,7 @@ export class AppComponent implements OnInit{
   newShopId!: string
 
   newOrders: any
+  isAdmin!: boolean
 
   constructor(private waybill:WaybillService, private dialog:MatDialog){
 
@@ -93,12 +94,12 @@ export class AppComponent implements OnInit{
 
         this.waybill.getCurrentUser(this.newUserEmail).subscribe(val => {
           this.newVip = val
+          this.isAdmin = this.newVip.isAdmin
           this.newVipName = this.newVip.vipName
           this.newVipId = this.newVip.vipEmail
 
           this.waybill.getShops(this.newVipId).subscribe(shops => {
           this.newShops = shops
-
         })
       })
       }else{

@@ -6,6 +6,10 @@
     --text-grey: #555;
 }
 
+@media print {
+    .page-break{ page-break-before: always; }
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -1209,10 +1213,18 @@ button{
     float: right;
 }
 
-.waybill-query-table{
+.waybill-query-table2{
     overflow-x: scroll;
     overflow-y: scroll;
     height: 250px;
+    margin-top: 15px;
+}
+
+.waybill-query-table2{
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: 250px;
+    margin-top: 15px;
 }
 
 .waybill-query-table-user{
@@ -1244,6 +1256,30 @@ button{
     color: white;
 }
 
+
+#customers2 {
+    border-collapse: collapse;
+    width: 500%;
+}
+  
+#customers2 td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+#customers2 tr:nth-child(even){background-color: #f2f2f2;}
+  
+#customers2 tr:hover {background-color: #ddd;}
+
+#customers2 th {
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    text-align: left;
+    background-color: var(--main-color);
+    color: white;
+}
 
 
 .express-tracking{
@@ -2200,5 +2236,28 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 45px;
     vertical-align: top;
     
+}
+
+.download-container{
+    margin-top: 5px;
+}
+
+.download-container button{
+    background-color: var(--main-color);
+    color: white;
+    margin-right: 10px;
+}
+
+.from-date{
+    margin-top: 25px;
+    margin-bottom: 5px;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.date-table{
+    width: 50%;
+    margin-top: 10px;
+    height: 200px;
 }
 

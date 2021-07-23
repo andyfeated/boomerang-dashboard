@@ -9,17 +9,17 @@
     
             <div class="form-field">
                 <label for="">Customer Name</label>
-                <input [(ngModel)]="customerNameForm"  #customerNameInput type="text" placeholder="Cutomer Name">
+                <input [disabled]="noShopChosen" [(ngModel)]="customerNameForm"  #customerNameInput type="text" placeholder="Cutomer Name">
             </div>
     
             <div class="form-field">
                 <label for="">Mobile Number</label>
-                <input [(ngModel)]="mobileNumberForm" #mobileNumberInput type="text" placeholder="Mobile Number">
+                <input [disabled]="noShopChosen"  [(ngModel)]="mobileNumberForm" #mobileNumberInput type="text" placeholder="Mobile Number">
             </div>
 
             <div class="form-field">
                 <label for="">Region</label>
-                <select #regionInput (change)="onChange($event)">
+                <select [disabled]="noShopChosen"  [(ngModel)]="regionForm" #regionInput (change)="onChange($event)">
                     <option selected disabled>Please Select a Region</option>
                     <option *ngFor="let regionNew of regionsNew | keyvalue">{{regionNew.value}}</option>
                 </select>
@@ -27,12 +27,12 @@
 
             <div class="form-field">
                 <label for="">Barangay</label>
-                <input [(ngModel)]="barangayForm" #barangayInput type="text" placeholder="Barangay">
+                <input [disabled]="noShopChosen"  [(ngModel)]="barangayForm" #barangayInput type="text" placeholder="Barangay">
             </div>
 
             <div class="form-field">
                 <label for="">Province</label>
-                <select #provinceInput (change)="onChangeProvince($event)">
+                <select [disabled]="noShopChosen"  [(ngModel)]="provinceForm" #provinceInput (change)="onChangeProvince($event)">
                     <option selected disabled>Please Select a Province</option>
                     <option *ngFor="let provinceNew of provincesNew.get(selectedRegion)" [value]="provinceNew">{{provinceNew}}</option>
                 </select>
@@ -40,12 +40,12 @@
 
             <div class="form-field">
                 <label for="">Address Line</label>
-                <input [(ngModel)]="addressLineForm" #addressLineInput type="text" placeholder="Address Line">
+                <input [disabled]="noShopChosen"  [(ngModel)]="addressLineForm" #addressLineInput type="text" placeholder="Address Line">
             </div>
 
             <div class="form-field">
                 <label for="">Municipality</label>
-                <select #municipalityInput>
+                <select [disabled]="noShopChosen"  [(ngModel)]="municipalityForm" #municipalityInput>
                     <option selected disabled>Please Select a Municipality</option>
                     <option *ngFor="let municipalityNew of municipalitiesNew.get(selectedProvince)" >{{municipalityNew}}</option>
                 </select>
@@ -53,7 +53,7 @@
     
             <div class="button-container">
                     
-                <button mat-button (click)="createNewOrder()">New Order</button>
+                <button mat-button [disabled]="newOrderCreated" (click)="createNewOrder()">New Order</button>
             </div>
 
             <div class="button-container">
@@ -71,12 +71,12 @@
         <div class="order-information-container">
             <div class="form-field-long">
                 <Label>Product Description</Label>
-                <input [(ngModel)]="productDescriptionForm" #productDescriptionInput placeholder="Product Description">
+                <input [disabled]="noShopChosen"  [(ngModel)]="productDescriptionForm" #productDescriptionInput placeholder="Product Description">
             </div>
     
             <div class="form-field-medium">
                 <label for="">Item Value</label>
-                <input [(ngModel)]="itemValueForm" #itemValueInt type="number" placeholder="0">
+                <input [disabled]="noShopChosen"  [(ngModel)]="itemValueForm" #itemValueInt type="number" placeholder="0">
             </div>
             
     
@@ -93,7 +93,7 @@
     
             <div class="form-field-small2">
                 <label for="">Shipment Type</label>
-                <select [(ngModel)]="choice" #sizeInput>
+                <select [disabled]="noShopChosen"  (change)="onShipmentTypeChange()" [(ngModel)]="choice" #sizeInput>
                     <option value="" disabled selected>Shipment Type</option>
                     <option value="Volumetric">Volumetric</option>
                     <option>Small</option>
@@ -104,7 +104,7 @@
 
             <div class="form-field-small2">
                 <label for="">Payment Method</label>
-                <select #paymentMethod>
+                <select [(ngModel)]="paymentMethodForm" [disabled]="isVolumetric" (change)="calculateFees($event)" #paymentMethod>
                     <option value="" disabled selected>Payment Method</option>
                     <option>COD</option>
                     <option>Non-COD</option>
@@ -114,38 +114,38 @@
             <div [hidden]="choice !== 'Volumetric'">
                 <div class="form-field-small">
                     <label for="">Length</label>
-                    <input #lengthInput placeholder="0">
+                    <input  [(ngModel)]="lengthForm" #lengthInput placeholder="0">
                 </div>
         
                 <div class="form-field-small">
                     <label for="">Width</label>
-                    <input #widthInput placeholder="0">
+                    <input [(ngModel)]="widthForm" #widthInput placeholder="0">
                 </div>
         
                 <div class="form-field-small">
                     <label for="">Height</label>
-                    <input #heightInput placeholder="0">
+                    <input (input)="enablePaymentMethod()" [(ngModel)]="heightForm" #heightInput placeholder="0">
                 </div>
             </div>
     
             <div class="form-field-small">
                 <label for="">Insurance Fee</label>
-                <input disabled [value]="insuranceFeeValue" #insuranceFeeInput placeholder="Sample">
+                <input [(ngModel)]="insuranceFeeForm" disabled [value]="insuranceFeeValue" #insuranceFeeInput placeholder="0">
             </div>
     
             <div class="form-field-small">
                 <label for="">Shipment Fee</label>
-                <input disabled [value]="shipmentFeeValue" #shipmentFeeInput>
+                <input [(ngModel)]="shipmentFeeForm" disabled [value]="shipmentFeeValue" #shipmentFeeInput placeholder="0">
             </div>
     
             <div class="form-field-small">
                 <label for="">COD Fee</label>
-                <input disabled [value]="codFeeValue" #codFeeInput>
+                <input [(ngModel)]="codFeeForm" disabled [value]="codFeeValue" #codFeeInput placeholder="0">
             </div>
     
             <div class="form-field-long">
                 <Label>Remarks</Label>
-                <input [(ngModel)]="remarksForm" #remarksInput placeholder="Sample">
+                <input [disabled]="noShopChosen"  [(ngModel)]="remarksForm" #remarksInput placeholder="Sample">
             </div>
         </div>
 

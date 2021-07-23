@@ -122,13 +122,16 @@ export class WaybillService {
   }
 
   addNewOrder(vipId: string, shopId: string){
-    let orderId = this.afs.createId()
+    let randomNum = Math.floor(Math.random() * 1000000)
+
+    let orderId = randomNum.toString()
+
     let year: string = new Date().getFullYear().toString()
     let month: string = (new Date().getMonth()+1).toString()
     let day: string = new Date().getDate().toString()
     let date = year + "/" + month + "/" + day
     this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).set({
-      orderId: Math.floor(Math.random() * 1000000),
+      orderId: orderId,
       id: orderId,
       status: "New Parcel",
       dateCreated: date
@@ -152,15 +155,18 @@ export class WaybillService {
     })
   }
 
-  insertParcel(vipId: string, shopId: string, documentId: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, paymentMethod: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string, fullAddressInput: string){
+  insertParcel(vipId: string, vipRealId: string, shopId: string, orderId: string, documentId: string, shopLocation: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, paymentMethod: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string, fullAddressInput: string){
     let documentParcelId = this.afs.createId()
     let year: string = new Date().getFullYear().toString()
     let month: string = (new Date().getMonth()+1).toString()
     let day: string = new Date().getDate().toString()
-    let date = year + "/" + month + "/" + day
+    let date = month + "-" + day + "-" + year
+    let parcelStatus = "New Parcel"
+    let paymentStatus = "Not yet paid"
+    let totalFees = shipmentFee + insuranceFeeInput + codFeeInput
 
-    this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(documentId).collection("parcels").doc(documentParcelId).set({
-      id: documentParcelId,
+    this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(documentId).collection("parcels").doc(awbInput).set({
+      id: awbInput,
       customerInformation: {
         customerName: customerNameInput,
         mobileNumber: mobileNumberInput,
@@ -186,13 +192,51 @@ export class WaybillService {
         shipmentFee: shipmentFee,
         remarks: remarksInput,
         shipmentType: sizeInput,
-        paymentMethod: paymentMethod
+        paymentMethod: paymentMethod,
+        parcelStatus: parcelStatus
       },
        shopRegion: shopRegionInput,
     }).then(() => {
       alert("Parcel added to Orders")
     })
+
+    this.afs.collection("prodDB").doc("wayBillList").collection("wayBills").doc(awbInput).set({
+      orderId: orderId,
+      waybillNumber: awbInput,
+      dateOrdered: date,
+      vipId: vipRealId,
+      shopId: shopId,
+      shopLocation: shopLocation,
+      parcelStatus: parcelStatus,
+      buyerName: customerNameInput,
+      buyerPhone: mobileNumberInput,
+      buyerProvince: provinceInput,
+      buyerMunicipality: municipalityInput,
+      buyerBarangay: barangayInput,
+      buyerAddressLine: addressLineInput,
+      buyerFullAddress: provinceInput + ", " + municipalityInput + ", " + barangayInput + ", " + addressLineInput,
+      productDescription: productDescriptionInput,
+      parcelType: sizeInput,
+      productFee: itemValueInput,
+      shipmentFee: shipmentFee,
+      insuranceFee: insuranceFeeInput,
+      codFee: codFeeInput,
+      totalFees: totalFees,
+      netAmount: itemValueInput - totalFees,
+      paymentMethod: paymentMethod,
+      paymentStatus: paymentStatus,
+      dateCreated: Date.now() / 1000
+    })
   }
+
+  getWaybillList(){
+    return this.afs.collection("prodDB").doc("wayBillList").collection("wayBills").valueChanges()
+  }
+
+  queryWaybillList(fromDate: number, toDate: number){
+    return this.afs.collection("prodDB").doc("wayBillList").collection("wayBills", ref => ref.where('dateCreated', '>=', fromDate).where('dateCreated', '<=', toDate)).valueChanges()
+  }
+
 
   getTotalParcels(): Observable<number> {
     return this.afs.collection<Parcel>("parcels").valueChanges().pipe(
@@ -241,6 +285,8 @@ export class WaybillService {
   
   deleteParcel(vipId: string, shopId: string, orderId:string, parcelId:string){
     this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).collection("parcels").doc(parcelId).delete()
+
+    this.afs.collection("prodDB").doc("wayBillList").collection("wayBills").doc(parcelId).delete()
   }
 
   updateCustomerName(vipId: string, shopId: string, orderId:string, parcelId:string, updateValue: string){

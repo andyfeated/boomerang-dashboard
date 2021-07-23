@@ -1,1 +1,83 @@
-<p>manifesto works!</p>
+<div class="main-waybill">
+    <h3>Import/Export Data</h3>
+
+    <div class="waybill-query-table2">
+        <table id="customers2">
+            <tr>
+                <th>Order ID</th>
+                <th>Waybill Number</th>
+                <th>Date Ordered</th>
+                <th>VIP ID</th>
+                <th>Shop ID</th>
+                <th>Shop Location</th>
+                <th>Status</th>
+                <th>Buyer Name</th>
+                <th>Buyer Phone</th>
+                <th>Area</th>
+                <th>Municipality</th>
+                <th>Barangay</th>
+                <th>Address Line</th>
+                <th>Full Address</th>
+                <th>Product Description</th>
+                <th>Parcel Type</th>
+                <th>Product Fee</th>
+                <th>Shipment Fee</th>
+                <th>Insurance Fee</th>
+                <th>COD Fee</th>
+                <th>Total Fees</th>
+                <th>Net Amount - VIP</th>
+                <th>Payment Method</th>
+                <th>Payment Status</th>
+                <th>Date</th>
+                
+                
+            </tr>
+            <tr *ngFor="let item of dateList">
+                <td>{{item.orderId}}</td>
+                <td>{{item.waybillNumber}}</td>
+                <td>{{item.dateOrdered}}</td>
+                <td>{{item.vipId}}</td>
+                <td>{{item.shopId}}</td>
+                <td>{{item.shopLocation}}</td>
+                <td>{{item.parcelStatus}}</td>
+                <td>{{item.buyerName}}</td>
+                <td>{{item.buyerPhone}}</td>
+                <td>{{item.buyerProvince}}</td>
+                <td>{{item.buyerMunicipality}}</td>
+                <td>{{item.buyerBarangay}}</td>
+                <td>{{item.buyerAddressLine}}</td>
+                <td>{{item.buyerFullAddress}}</td>
+                <td>{{item.productDescription}}</td>
+                <td>{{item.parcelType}}</td>
+                <td>{{item.productFee}}</td>
+                <td>{{item.shipmentFee}}</td>
+                <td>{{item.insuranceFee}}</td>
+                <td>{{item.codFee}}</td>
+                <td>{{item.totalFees}}</td>
+                <td>{{item.netAmount}}</td>
+                <td>{{item.paymentMethod}}</td>
+                <td>{{item.paymentStatus}}</td>
+                <td>{{item.dateCreated}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="from-date">
+        <mat-form-field>
+            <mat-label>From:</mat-label>
+            <input [(ngModel)]="fromDateInput" type="datetime-local" matInput>
+        </mat-form-field>
+    </div>
+
+    <div class="from-date">
+        <mat-form-field>
+            <mat-label>To:</mat-label>
+            <input (change)="enableDownload()" [(ngModel)]="toDateInput" type="datetime-local" matInput>
+        </mat-form-field>
+    </div>
+
+    <div class="download-container">
+        <button [disabled]="isInputNotComplete" (click)="downloadSheet()" mat-button>Search</button>
+        <button [disabled]="isInputNotComplete" (click)="exportExcel()" mat-button>Download</button>
+    </div>
+</div>
