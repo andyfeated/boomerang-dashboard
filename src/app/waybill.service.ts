@@ -155,7 +155,7 @@ export class WaybillService {
     })
   }
 
-  insertParcel(vipId: string, vipRealId: string, shopId: string, orderId: string, documentId: string, shopLocation: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, paymentMethod: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string, fullAddressInput: string){
+  insertParcel(vipId: string, vipRealId: string, vipName: string, shopId: string, shopName: string, orderId: string, documentId: string, shopLocation: string, customerNameInput: string, awbInput: string, mobileNumberInput: string, regionInput: string, provinceInput: string, municipalityInput: string, addressLineInput: string, barangayInput: string, productDescriptionInput: string, itemValueInput: number, codFeeInput: number, weightInput: number, insuranceFeeInput: number, shipmentFeeInput: string, remarksInput: string, sizeInput: string, paymentMethod: string, shipmentFee: number, volumetricWeight: number, shopRegionInput: string, fullAddressInput: string){
     let documentParcelId = this.afs.createId()
     let year: string = new Date().getFullYear().toString()
     let month: string = (new Date().getMonth()+1).toString()
@@ -204,7 +204,9 @@ export class WaybillService {
       orderId: orderId,
       waybillNumber: awbInput,
       dateOrdered: date,
+      vipName: vipName,
       vipId: vipRealId,
+      shopName: shopName,
       shopId: shopId,
       shopLocation: shopLocation,
       parcelStatus: parcelStatus,

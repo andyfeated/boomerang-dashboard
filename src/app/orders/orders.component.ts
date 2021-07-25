@@ -95,8 +95,10 @@ export class OrdersComponent implements OnInit, OnChanges {
   @Input() public user: any
   @Input() public newVip: any
 
+  vipName: any
   vipId: any
   vipRealId: any
+  shopName: any
   shopId: any
   shopLocation: any
   shopRegion: any
@@ -140,6 +142,7 @@ export class OrdersComponent implements OnInit, OnChanges {
     const shopValue = changes['shop']
 
     if(changes['shop'] != undefined){
+
       if(shopValue.currentValue != shopValue.previousValue){
 
         this.noShopChosen = false
@@ -148,6 +151,8 @@ export class OrdersComponent implements OnInit, OnChanges {
         this.shopLocation = this.shop.shopAddress.shopMunicipality
         this.vipId = this.newVip.vipEmail
         this.vipRealId = this.newVip.vipId
+        this.vipName = this.newVip.vipName
+        this.shopName = this.shop.shopName
 
         this.displayOrders()
         this.displayParcels()
@@ -317,8 +322,8 @@ export class OrdersComponent implements OnInit, OnChanges {
   }
 
   displayOrders(){
-    this.orders$ = this.waybillService.getOrders(this.vipId, this.shopId)
     if(this.vipId && this.shopId != undefined){
+      this.orders$ = this.waybillService.getOrders(this.vipId, this.shopId)
 
     }else{
       alert("Please choose a User and a Shop first")
@@ -398,9 +403,9 @@ export class OrdersComponent implements OnInit, OnChanges {
 
       let fullAddress = regionInput + ", " + provinceInput + ", " + municipalityInput + ", " + barangayInput + ", " + addressLineInput
 
-      this.waybillService.insertParcel(this.vipId, this.vipRealId, this.shopId, this.orderId, this.documentId, this.shopLocation, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, paymentMethodInput, this.shipmentFee, this.volumetricWeight, this.shopRegion, fullAddress)
+      this.waybillService.insertParcel(this.vipId, this.vipRealId, this.vipName, this.shopId, this.shopName, this.orderId, this.documentId, this.shopLocation, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, paymentMethodInput, this.shipmentFee, this.volumetricWeight, this.shopRegion, fullAddress)
       this.clear()
-   
+      this.isVolumetric = true
     }else{
       alert("Please Input the Required Information")
     }

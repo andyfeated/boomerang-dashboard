@@ -100,6 +100,7 @@ export class AppComponent implements OnInit{
 
           this.waybill.getShops(this.newVipId).subscribe(shops => {
           this.newShops = shops
+          this.selectedShop = ""
         })
       })
       }else{
@@ -113,6 +114,8 @@ export class AppComponent implements OnInit{
   logout(){
     this.waybill.logoutAuth()
     this.loggedIn = false
+    this.shop = undefined
+    this.displayOrders()
   }
 
   async register(email: string, password: string){

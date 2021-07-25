@@ -620,6 +620,8 @@ main{
     color: black;
 }
 
+.wa
+
 .array{
     background-color: orange;
     display: inline-block;
@@ -1213,11 +1215,11 @@ button{
     float: right;
 }
 
-.waybill-query-table2{
+.waybill-query-table{
     overflow-x: scroll;
     overflow-y: scroll;
     height: 250px;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 .waybill-query-table2{
@@ -2104,6 +2106,7 @@ button{
     height: 250px;
     overflow-y: scroll;
     overflow-x: scroll;
+    margin-top: 5px;
 }
 
 html, body { height: 90%; }
