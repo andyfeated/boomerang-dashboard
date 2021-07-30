@@ -76,7 +76,7 @@
     
             <div class="form-field-medium">
                 <label for="">Item Value</label>
-                <input [disabled]="noShopChosen"  [(ngModel)]="itemValueForm" #itemValueInt type="number" placeholder="0">
+                <input [disabled]="noShopChosen" (input)="itemValueOnInput()"  [(ngModel)]="itemValueForm" #itemValueInt type="number" placeholder="0">
             </div>
             
     

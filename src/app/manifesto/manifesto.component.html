@@ -31,8 +31,11 @@
                 <th>Payment Method</th>
                 <th>Payment Status</th>
                 <th>Date</th>
-                
-                
+                <th>Captain's ID</th>
+                <th>Captain's Name</th>
+                <th>Captain's Mobile Number</th>
+                <th>Route ID</th>
+
             </tr>
             <tr *ngFor="let item of dateList">
                 <td>{{item.orderId}}</td>
@@ -62,6 +65,10 @@
                 <td>{{item.paymentMethod}}</td>
                 <td>{{item.paymentStatus}}</td>
                 <td>{{item.dateCreated}}</td>
+                <td>{{item.captainId}}</td>
+                <td>{{item.captainName}}</td>
+                <td>{{item.captainMobileNumber}}</td>
+                <td>{{item.routeId}}</td>
             </tr>
         </table>
     </div>
@@ -78,10 +85,18 @@
             <mat-label>To:</mat-label>
             <input (change)="enableDownload()" [(ngModel)]="toDateInput" type="datetime-local" matInput>
         </mat-form-field>
+        
+    </div>
+
+    <div class="from-date">
+        <input (change)="onUpload($event)" type="file" multiple="false">
     </div>
 
     <div class="download-container">
         <button [disabled]="isInputNotComplete" (click)="downloadSheet()" mat-button>Search</button>
-        <button [disabled]="isInputNotComplete" (click)="exportExcel()" mat-button>Download</button>
+        <button [disabled]="noFileImported" mat-button (click)="importData()">Import Data</button>
+        <button (click)="exportExcel()" mat-button>Download</button>
+        
     </div>
+
 </div>

@@ -206,6 +206,7 @@ export class WaybillService {
       dateOrdered: date,
       vipName: vipName,
       vipId: vipRealId,
+      vipEmail: vipId,
       shopName: shopName,
       shopId: shopId,
       shopLocation: shopLocation,
@@ -318,6 +319,15 @@ export class WaybillService {
   updateProductDescription(vipId: string, shopId: string, orderId:string, parcelId:string, updateValue: string){
     return this.afs.collection("vips").doc(vipId).collection("shops").doc(shopId).collection("orders").doc(orderId).collection("parcels").doc(parcelId).update({
       "orderInformation.productDescription": updateValue
+    })
+  }
+
+  insertCaptainData(key: string, captainName: string, captainMobileNumbers: string, routeId: string, parcelStatus: string){
+    return this.afs.collection("prodDB").doc("wayBillList").collection("wayBills").doc(key).update({
+      parcelStatus: parcelStatus,
+      captainName: captainName,
+      captainMobileNumber: captainMobileNumbers,
+      routeId: routeId
     })
   }
 }

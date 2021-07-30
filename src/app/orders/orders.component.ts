@@ -293,6 +293,12 @@ export class OrdersComponent implements OnInit, OnChanges {
 
   onChange(event: any){
     this.selectedRegion = event.target.value
+    if(this.choice == "Volumetric" || this.regionForm == "Please Select a Region" || this.itemValueForm == "" || this.choice == ""){
+      this.isVolumetric = true
+    }
+    else{
+      this.isVolumetric = false
+    }
   }
 
   onChangeProvince(event: any){
@@ -405,6 +411,7 @@ export class OrdersComponent implements OnInit, OnChanges {
 
       this.waybillService.insertParcel(this.vipId, this.vipRealId, this.vipName, this.shopId, this.shopName, this.orderId, this.documentId, this.shopLocation, customerNameInput, this.awbInput, mobileNumberInput, regionInput, provinceInput, municipalityInput, addressLineInput, barangayInput, productDescriptionInput, this.itemValueConvert, this.codFeeIntConvert, this.weightIntConvert, this.insuranceFeeIntConvert, shipmentFeeInput, remarksInput, sizeInput, paymentMethodInput, this.shipmentFee, this.volumetricWeight, this.shopRegion, fullAddress)
       this.clear()
+      this.choice = ""
       this.isVolumetric = true
     }else{
       alert("Please Input the Required Information")
@@ -412,9 +419,10 @@ export class OrdersComponent implements OnInit, OnChanges {
   }
 
   onShipmentTypeChange(){
-    if(this.choice == "Volumetric"){
+    if(this.choice == "Volumetric" || this.regionForm == "Please Select a Region" || this.itemValueForm == "" || this.choice == ""){
       this.isVolumetric = true
-    }else{
+    }
+    else{
       this.isVolumetric = false
     }
   }
@@ -425,6 +433,15 @@ export class OrdersComponent implements OnInit, OnChanges {
     let heightNum = parseInt(this.heightForm)
 
     if(widthNum != 0 && lengthNum != 0 && heightNum != 0){
+      this.isVolumetric = false
+    }
+  }
+
+  itemValueOnInput(){
+    if(this.choice == "Volumetric" || this.regionForm == "Please Select a Region" || this.itemValueForm == "" || this.choice == ""){
+      this.isVolumetric = true
+    }
+    else{
       this.isVolumetric = false
     }
   }
